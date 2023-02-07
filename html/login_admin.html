@@ -14,7 +14,7 @@
   <body>
     <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#"><img src="../images/iiita_logo.png" alt="" width="100px" height="100px" class="d-inline-block align-text-middle"></a>
+          <a class="navbar-brand" href="#"><img src="../images/iiita_logo.png" alt="iiita_logo" width="100px" height="100px" class="d-inline-block align-text-middle"></a>
           <div class="new">
             <a class="navbar-text">
               Welcome to Student Feedback Portal
@@ -30,7 +30,7 @@
       </nav>
       <div id="login">
         <div class="newform">
-          <form name="f1" action="../php/authentication.php" onsubmit="return validation()" method="post" style="display:grid;width: 350px;">
+          <form name="f1" action="../php/authentication.php" onsubmit="return validation()" method="post" style="display:grid;width: 350px;" id="FORM">
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Email address</label>
               <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -47,7 +47,7 @@
               <input type="checkbox" class="form-check-input" id="exampleCheck1">
               <label class="form-check-label" for="exampleCheck1">Remember Me</label>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button id="submitbtn"type="submit" class="btn btn-primary">Submit</button>
           </form>
         </div>
         <script>
