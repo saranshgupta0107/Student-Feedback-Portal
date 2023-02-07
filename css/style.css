@@ -3,7 +3,7 @@
 }
 .navbar-text{
     text-decoration: none;
-    font-size: xx-large;
+    font-size: 2.5rem;
     display: inline-block;
 }
 /* .navbar-brand{
@@ -28,17 +28,14 @@
     justify-content: center;
     margin-top: 50px;
     box-sizing: border-box;
-    border:2px solid #000;
+    border:2px solid #474646;
     padding: 50px 50px;
-    margin-left: 50px;
-    margin-right: 50px;
     margin-bottom: 100px;
     border-radius: 15px;
-
+    background-color: rgba(254, 255, 255, 0.858); /* Black w/opacity/see-through */
 }
 .btn-group-vertical{
     display: flex;
-    margin-left: 38%;
     width: 25%;
     margin-bottom: 300px;
     margin-top: 300px;
@@ -48,4 +45,37 @@
     margin-top: 100px;
     margin-left: 100px;
     margin-right: 100px;
+}
+#group{
+    margin-top: 80px;
+    margin-bottom: 150px;
+    background-image: url(https://source.unsplash.com/1080x640/?education,management);
+    display: flex;
+    justify-content: center;
+    width: 85%;
+    margin-left: 6%;
+    margin-right: 9%;
+}
+#choose{
+    background-color: aliceblue;
+    padding: 10px;
+    height: 25%;
+    width: 25%;
+    border-radius: 10px;
+    border: 1px blue;
+}
+#liveAlertBtn{
+    margin-bottom: 100px;
+}
+#carouselExampleIndicators{
+    display: flex;
+    justify-content: center;
+    width: 85%;
+    margin-left: 6%;
+    margin-right: 9%;
+}
+#login{
+    background-image: url(https://source.unsplash.com/1080x640/?login);
+    display: flex;
+    justify-content: center;
 }

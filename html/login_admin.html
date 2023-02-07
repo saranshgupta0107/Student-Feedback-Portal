@@ -28,26 +28,39 @@
           <li class="breadcrumb-item active" aria-current="page">Admin Log In</li>
         </ol>
       </nav>
-      <div class="newform">
-        <form style="display:grid;width: 350px;">
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
-            <div id="passwordHelp" class="form-text" id="passwordHelpInline">
-              Must be 8-20 characters long.
+      <div id="login">
+        <div class="newform">
+          <form name="f1" action="../php/authentication.php" onsubmit="return validation()" method="post" style="display:grid;width: 350px;">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email address</label>
+              <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
             </div>
-          </div>
-          <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Remember Me</label>
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" name="pass" class="form-control" id="exampleInputPassword1">
+              <div id="passwordHelp" class="form-text" id="passwordHelpInline">
+                Must be 8-20 characters long.
+              </div>
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Remember Me</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+        <script>
+          function validation()
+          {
+            var id=document.f1.exampleInputEmail1;
+            var ps=document.f1.exampleInputPassword1;
+            if(id.length=="" && ps.length==""){
+              alert("User fields are empty");
+              return false;
+            }
+          }
+        </script>
       </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
