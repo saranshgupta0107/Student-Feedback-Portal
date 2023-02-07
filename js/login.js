@@ -34,6 +34,10 @@ function both_true(){
         document.getElementById('submitbtn').disabled=true;
     }
 }
+window.addEventListener("pageshow",function(){
+    document.getElementById("exampleInputEmail1").value="";
+    document.getElementById("exampleInputPassword1").value="";
+})
 
 setInterval(both_true,300);
 setInterval(match_email,300);
