@@ -1,99 +1,53 @@
-var feedback_id=document.getElementById('feedback_id');feedback_id.style.display='none';
-var course_id=document.getElementById('course_id');course_id.style.display='none';
-var comment=document.getElementById('comment');comment.style.display='none';
-var year=document.getElementById('year');year.style.display='none';
-var time=document.getElementById('time');time.style.display='none';
-var check1=document.getElementById('check1');
-var check2=document.getElementById('check2');
-var check3=document.getElementById('check3');
-var check4=document.getElementById('check4');
-var check5=document.getElementById('check5');
+var arr1 = ['feedback_id', 'course_id', 'comment', 'year', 'time'];
+var checkbox = ['check1', 'check2', 'check3', 'check4', 'check5'];
+var tbody = document.getElementById('Tbody');
 
-var rows=0;
+var rows = 0, seeds, collumns;
 
-check1.addEventListener('click',()=>{
-    if(check1.checked){
-        feedback_id.style.display='';
-        rows++;
-    }
-    else {
-        feedback_id.style.display='none';
-        rows--;
-    }
-    change();
-})
-check2.addEventListener('click',()=>{
-    if(check2.checked){
-        course_id.style.display='';
-        rows++;
-    }
-    else {
-        course_id.style.display='none';
-        rows--;
-    }
-    change();
-})
-check3.addEventListener('click',()=>{
-    if(check3.checked){
-        rows++;
-        comment.style.display='';
-    }
-    else {
-        rows--;
-        comment.style.display='none';
-    }
-    change();
-})
-check4.addEventListener('click',()=>{
-    if(check4.checked){
-        year.style.display='';
-        rows++;
-    }
-    else {
-        year.style.display='none';
-        rows--;
-    }
-    change();
-})
-check5.addEventListener('click',()=>{
-    if(check5.checked){
-        time.style.display='';
-        rows++;
-    }
-    else {
-        time.style.display='none';
-        rows--;
-    }
-    change();
-})
-var seed=parseInt(document.getElementById('seed').value);
-var columns=parseInt(document.getElementById('columns').value);
+var statechange = false;
+var checked = [false, false, false, false, false];
 
-document.getElementById('seed').addEventListener('change',()=>{
-    columns=parseInt(document.getElementById('columns').value);
-    seed=parseInt(document.getElementById('seed').value);
-    change();
-});
-
-document.getElementById('columns').addEventListener('change',()=>{
-    columns=parseInt(document.getElementById('columns').value);
-    seed=parseInt(document.getElementById('seed').value);
-    change();
-});
-
-var tbody=document.getElementById('Tbody');
-
-
-function change(){
-    console.log(rows);
-    tbody.innerHTML='';
-    var stri='';
-    for(var i=0;i<columns;i++){
-        stri+="<tr>";
-        for(var j=0;j<rows;j++){
-            stri+=("<td>"+(seed++)+"</td>");
+function addLis(check, id, i) {
+    if (document.getElementById(check).checked) {
+        if (!checked[i]) {
+            checked[i] = 1;
+            statechange = true;
+            rows++;
         }
-        stri+="</tr>";
+        document.getElementById(id).style.display = '';
+
+    } else {
+        if (checked[i]) {
+            checked[i] = 0;
+            statechange = true;
+            rows--;
+        }
+        document.getElementById(id).style.display = 'none';
     }
-    tbody.innerHTML=stri;
+    change();
+}
+
+for (var i = 0; i < 5; i++) {
+    setInterval(addLis, 100, checkbox[i], arr1[i], i);
+}
+
+var tbody = document.getElementById('Tbody');
+
+function change() {
+    var columns = parseInt(document.getElementById('columns').value);
+    var seed = parseInt(document.getElementById('seed').value);
+    if (seed == seeds && collumns == columns && statechange == false) return;
+    statechange = false;
+    seeds = seed;
+    collumns = columns;
+    tbody.innerHTML = '';
+    var stri = '';
+    for (var i = 0; i < columns; i++) {
+        stri += "<tr>";
+        for (var j = 0; j < rows; j++) {
+            stri += ("<td>" + (seed++) + "</td>");
+        }
+        stri += "</tr>";
+    }
+    tbody.innerHTML = stri;
 }
