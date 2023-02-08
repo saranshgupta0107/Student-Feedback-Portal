@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <link rel="icon" href="../images/iiita_logo.png">
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,10 +12,10 @@
     <title>Faculty Log In</title>
   </head>
   <script src='../js/login.js'></script>
-  <body>
+  <body onload="clearAll()">
     <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#"><img src="../images/iiita_logo.png" alt="" width="100px" height="100px" class="d-inline-block align-text-middle"></a>
+          <a class="navbar-brand" href="#"><img src="../images/iiita_logo.png" alt="iiita_logo" width="100px" height="100px" class="d-inline-block align-text-middle"></a>
           <div class="new">
             <a class="navbar-text">
               Welcome to Student Feedback Portal
@@ -30,15 +31,15 @@
       </nav>
       <div id="login">
         <div class="newform">
-          <form style="display:grid;width: 350px;">
+          <form name="f1" action="../php/authentication_faculty.php" onsubmit="return validation()" method="post" style="display:grid;width: 350px;" id="FORM">
             <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <label for="exampleInputEmail1" class="form-label">E-Mail</label>
+              <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
               <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
             </div>
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
+              <input type="password" name="pass" class="form-control" id="exampleInputPassword1">
               <div id="passwordHelp" class="form-text" id="passwordHelpInline">
                 Must be 8-20 characters long.
               </div>
@@ -47,13 +48,30 @@
               <input type="checkbox" class="form-check-input" id="exampleCheck1">
               <label class="form-check-label" for="exampleCheck1">Remember Me</label>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button id="submitbtn"type="submit" class="btn btn-primary">Submit</button>
           </form>
         </div>
+        <script>
+          function validation()
+          {
+            var id=document.f1.exampleInputEmail1;
+            var ps=document.f1.exampleInputPassword1;
+            if(id.length=="" && ps.length==""){
+              alert("User fields are empty");
+              return false;
+            }
+          }
+        </script>
       </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script>
+      function clearAll(){
+        document.getElementById("exampleInputEmail1").value="";
+    document.getElementById("exampleInputPassword1").value="";
+      }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
