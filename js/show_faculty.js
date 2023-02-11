@@ -14,7 +14,7 @@ function addLis(i) {
     xhr.open("POST", "../php/delete_faculty.php");
     xhr.setRequestHeader("Content-type", "application/json")
     xhr.send(JSON.stringify(dat));
-    setTimeout(window.location.replace, 10000, ("../html/show_faculty.html"));
+    setTimeout(window.location.replace, 10000, ("../html/faculty/show_faculty.html"));
 }
 
 function show_data() {

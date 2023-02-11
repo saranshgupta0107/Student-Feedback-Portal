@@ -21,14 +21,14 @@ session_start();
             $count = mysqli_num_rows($result);  
             if($count == 1){
                 echo '<script>
-                window.location.replace("../html/student.html");
+                window.location.replace("../html/student/student.html");
                 </script>';  
                 $_SESSION['loggedin']=true;
                 $_SESSION['userid']=3;
                 exit;
             } 
             else 
-                echo '<script>alert("Username and password does not match");setTimeout(()=>{window.location.replace("../html/login_student.html");},700);</script>';  
+                echo '<script>alert("Username and password does not match");setTimeout(()=>{window.location.replace("../html/student/login_student.html");},700);</script>';  
                 ?>  
                 </body>
                 </html>
