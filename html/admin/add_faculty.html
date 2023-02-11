@@ -41,7 +41,7 @@
       <div class="form-row">
         <div class="col-md-4 mb-3" style="margin-left: 3%;">
           <label for="name">Full name</label>
-          <input name="name" type="text" class="form-control" id="name" placeholder="Name" required>
+          <input name="name" type="text" class="form-control" id="name" name="name" placeholder="Name" required>
           <div class="valid-feedback">
             Looks good!
           </div>
@@ -49,8 +49,9 @@
         <div class="col-md-4 mb-3" style="margin-left: 3%;">
           <label for="email">E-Mail</label>
           <div class="input-group">
-            <input type="email" name="email" class="form-control" id="email" placeholder="E-mail@iiita.ac.in"
-              aria-describedby="inputGroupPrepend" required minlength="13" pattern="[a-z0-9._%+-]+.iiita.ac.in">
+            <input type="email" name="email" class="form-control" id="email" name="email"
+              placeholder="E-mail@iiita.ac.in" aria-describedby="inputGroupPrepend" required minlength="13"
+              pattern="[a-z0-9._%+-]+.iiita.ac.in">
             <div class="invalid-feedback">
               Please enter a valid Email
             </div>
@@ -58,7 +59,7 @@
         </div>
         <div class="col-md-4 mb-3" style="margin-left: 3%;">
           <label for="pass">Password</label>
-          <input type="password" name="pass" class="form-control" id="pass" placeholder="Password" required
+          <input type="password" name="pass" class="form-control" id="pass" name="pass" placeholder="Password" required
             minlength="8" maxlength="20">
           <div id="passwordHelp" class="form-text" id="passwordHelpInline">
             Must be 8-20 characters long.
