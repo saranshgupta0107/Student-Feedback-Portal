@@ -2,9 +2,9 @@
 session_start();
 ?>
         <?php 
-        $conn=new mysqli("localhost","root","12345","feedback_management");
+        $conn=new mysqli("localhost","root","ishaan930838","feedback_management");
         require('connection.php');
-            $sql = "select * from instructor;";  
+            $sql = "select name,email from instructor;";  
             $result = $conn->query($sql);
             if($result->num_rows>0){
                 $arr=array();
