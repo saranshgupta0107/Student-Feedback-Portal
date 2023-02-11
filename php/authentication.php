@@ -15,10 +15,10 @@
             $count = mysqli_num_rows($result);  
             if($count == 1){
                 echo '<script>
-                window.location.replace("http://localhost/demo/html/admin.html");
+                window.location.replace("http://localhost/demo/html/admin/admin.html");
                 </script>';  
                 exit;
             } 
             else 
-                echo '<script>alert("Username and password does not match");setTimeout(()=>{window.location.replace("http://localhost/demo/html/login_admin.html");},700);</script>';  
+                echo '<script>alert("Username and password does not match");setTimeout(()=>{window.location.replace("http://localhost/demo/html/admin/login_admin.html");},700);</script>';  
     ?>  
