@@ -10,7 +10,6 @@ xmlhttp.send();
 
 function addLis(i) {
     var dat = { email: data[i['target'].id.substr(3)]['email'] };
-
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "../php/delete_faculty.php");
     xhr.setRequestHeader("Content-type", "application/json")
