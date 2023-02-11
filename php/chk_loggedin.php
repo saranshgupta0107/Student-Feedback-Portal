@@ -10,7 +10,7 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']== true)
 {
     if(isset($_SESSION['userid']))
     {
-        if($_SESSION['userid']==1 && $curPageName=="admin.html")
+        if($_SESSION['userid']==1 && ($curPageName=="admin.html" || $curPageName="add_faculty.html"))
         {}
         elseif($_SESSION['userid']==2 && $curPageName="faculty.html")
         {}
