@@ -23,15 +23,15 @@ session_start();
             $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
             $count = mysqli_num_rows($result);  
             if($count == 1){
-                echo '<script>alert("Faculty with this combination already exists");setTimeout(()=>{window.location.replace("../html/add_faculty.html");},700);</script>';  
+                echo '<script>alert("Faculty with this combination already exists");setTimeout(()=>{window.location.replace("../html/admin/add_faculty.html");},700);</script>';  
             } 
             else {
                 $sql="INSERT INTO instructor (name,email,pass)
                 VALUES ('$name','$email','$password')";
                 if($conn->query($sql)==TRUE)
-                echo '<script>alert("Faculty successfully added");setTimeout(()=>{window.location.replace("../html/add_faculty.html");},700);</script>';  
+                echo '<script>alert("Faculty successfully added");setTimeout(()=>{window.location.replace("../html/admin/add_faculty.html");},700);</script>';  
                 else
-                echo '<script>alert("Some error was detected! Please try again later.");setTimeout(()=>{window.location.replace("../html/add_faculty.html");},700);</script>';  
+                echo '<script>alert("Some error was detected! Please try again later.");setTimeout(()=>{window.location.replace("../html/admin/add_faculty.html");},700);</script>';  
                 
             }
                 ?>  
