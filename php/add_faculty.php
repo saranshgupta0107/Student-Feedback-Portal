@@ -5,18 +5,18 @@ session_start();
 <html>
     <body>
         <?php 
-        $conn=new mysqli("localhost","root","ishaan930838","feedback_management");
+        $conn=new mysqli("localhost","root","12345","feedback_management");
         require('connection.php');  
         $email = $_POST['email'];  
-        $name=$_POST['examplename1'];
+        $name=$_POST['name'];
         $password = $_POST['pass']; 
             //to prevent from mysqli injection  
             $name = stripcslashes($name);  
             $password = stripcslashes($password);  
             $email=stripcslashes($email);
-            $name = mysqli_real_escape_string($con, $name);
-            $email=mysqli_real_escape_string($con,$email);
-            $password = mysqli_real_escape_string($con, $password);  
+            $name = mysqli_real_escape_string($conn, $name);
+            $email=mysqli_real_escape_string($conn,$email);
+            $password = mysqli_real_escape_string($conn, $password);  
           
             $sql = "select * from instructor where name = '$name' and email= '$email'";  
             $result = mysqli_query($con, $sql);  
