@@ -5,7 +5,7 @@ session_start();
 <html>
     <body>
         <?php 
-        $conn=new mysqli("localhost","root","12345","feedback_management");
+        $conn=new mysqli("localhost","fcsldba","Junaid_123","fcsldb");
         require('connection.php');
             $sql = "select * from instructor;";  
             $result = $conn->query($sql);

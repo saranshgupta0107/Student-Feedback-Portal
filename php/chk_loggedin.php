@@ -17,13 +17,13 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']== true)
         elseif($_SESSION['userid']==3 && $curPageName="student.html")
         {}
         else
-        header("location: ../index.html");
+        header("location: ../../index.html");
     }
     else
-    header("location: ../index.html");
+    header("location: ../../index.html");
 }
 else
-header("location: ../index.html");
+header("location: ../../index.html");
 ?>  
 </body>
 </html>

@@ -2,7 +2,7 @@
 session_start();
 ?>
         <?php 
-        $conn=new mysqli("localhost","root","12345","feedback_management");
+        $conn=new mysqli("localhost","fcsldba","Junaid_123","fcsldb");
         require('connection.php');
             $sql = "select name,email from instructor;";  
             $result = $conn->query($sql);
