@@ -14,7 +14,7 @@ session_start();
             if($order=='desc rating')$sql=$sql." order by rating desc";
             elseif($order=='asc rating') $sql=$sql." order by rating asc";
             elseif($order=='asc date') $sql=$sql." order by year asc";
-            elseif($order=='asc date') $sql=$sql." order by year asc";
+            elseif($order=='desc date') $sql=$sql." order by year desc";
             $result = $con->query($sql);
             if($result->num_rows>0){
                 $arr=array();
