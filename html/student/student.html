@@ -38,52 +38,45 @@
       <li class="breadcrumb-item active" aria-current="page">Student</li>
     </ol>
   </nav>
-  <form>
-    <div class="mb-3 form-check" style="display:inline-block;margin-left: 40%;">
-      <input type="checkbox" class="form-check-input" id="check1">
-      <label class="form-check-label" for="exampleCheck1">feedback_id</label>
+  <div id="top">
+    <div class="jumbotron">
+      <h2 class="display-4">Hello, IIIT Student!</h2>
+      <p class="lead">This is the student feedback portal, designed to collect the feedbacks from the students regarding
+        the courses they are enrolled in.</p>
+      <hr class="my-4">
+      <p>You can view feedback, delete feedback </p>
+      <button type="button" class="btn btn-primary" id="liveAlertBtn" onclick="window.location.href='#group'">Choose
+        Your Action</button>
     </div>
-    <div class="mb-3 form-check" style="display:inline-block">
-      <input type="checkbox" class="form-check-input" id="check2">
-      <label class="form-check-label" for="exampleCheck1">course_id</label>
+  </div>
+  <div id="group">
+    <div class="card-group" style="padding: 10%; background-color: rgba(0, 0, 0, 0.558);">
+      <div class="card">
+        <img src="https://source.unsplash.com/1400x700/?education,technology" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">View Feedback</h5>
+          <p class="card-text">View the different feedbacks submitted by you</p>
+          <a class="btn btn-primary" href="view_feedback.html" role="button">View Feedback</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://source.unsplash.com/1400x700/?education,technology" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Give Feedback</h5>
+          <p class="card-text">Give feedbacks submitted by you</p>
+          <a class="btn btn-primary" href="give_feedback.html" role="button">Give feedback</a>
+        </div>
+      </div>
     </div>
-    <div class="mb-3 form-check" style="display:inline-block">
-      <input type="checkbox" class="form-check-input" id="check3">
-      <label class="form-check-label" for="exampleCheck1">comment</label>
-    </div>
-    <div class="mb-3 form-check" style="display:inline-block">
-      <input type="checkbox" class="form-check-input" id="check4">
-      <label class="form-check-label" for="exampleCheck1">year</label>
-    </div>
-    <div class="mb-3 form-check" style="display:inline-block">
-      <input type="checkbox" class="form-check-input" id="check5">
-      <label class="form-check-label" for="exampleCheck1">time</label>
-    </div>
-    <br>
-    <input type="text" id="seed" style="margin-left: 40%;">
-    <label for='seed'>seed</label>
-    <input type="text" id="columns">
-    <label for='columns'>columns</label>
-  </form>
-  <table class="tablefeed">
-    <thead>
-      <th id='feedback_id'>Feedback ID</th>
-      <th id='course_id'>Course_ID</th>
-      <th id="comment">Feedback Given</th>
-      <th id="year">Year</th>
-      <th id="time">TimeStamp</th>
-    </thead>
-    <tbody id="Tbody">
+  </div>
 
-    </tbody>
-  </table>
   <!-- Optional JavaScript; choose one of the two! -->
 
   <!-- Option 1: Bootstrap Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
-  <script src="../../js/view.js"></script>
+
   <!-- Option 2: Separate Popper and Bootstrap JS -->
   <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
