@@ -10,20 +10,20 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']== true)
 {
     if(isset($_SESSION['userid']))
     {
-        if($_SESSION['userid']==1 && ($curPageName=="admin.html" || $curPageName="add_faculty.html"))
+        if($_SESSION['userid']==1 && ($curPageName=="admin.html" || $curPageName="add_faculty.html" || $curPageName="add_faculty_course.html" || $curPageName="add_student.html" || $curPageName="show_faculty.html" || $curPageName="view_feedback.html"))
         {}
         elseif($_SESSION['userid']==2 && $curPageName="faculty.html")
         {}
         elseif($_SESSION['userid']==3 && $curPageName="student.html")
         {}
         else
-        header("location: ../html/index.html");
+        header("location: ../index.html");
     }
     else
-    header("location: ../html/index.html");
+    header("location: ../index.html");
 }
 else
-header("location: ../html/index.html");
+header("location: ../index.html");
 ?>  
 </body>
 </html>

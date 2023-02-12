@@ -5,7 +5,7 @@ session_start();
 <html>
     <body>
         <?php 
-        $conn=new mysqli("localhost","root","ishaan930838","feedback_management");
+        $conn=new mysqli("localhost","root","12345","feedback_management");
         if(!isset($_POST['validationCustom01'])||!isset($_POST['validationCustomUsername']))return;
         $name = $_POST['validationCustom01'];  
         $email=$_POST['validationCustomUsername'];
