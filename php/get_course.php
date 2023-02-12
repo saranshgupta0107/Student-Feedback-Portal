@@ -8,13 +8,8 @@ session_start();
         $email=$directions['email'];
         $pass =$directions['pass'];
         $course=$directions['course'];
-        $order=$directions['order'];
-            $sql = "select * from gives natural join feedback where student_id='$email'";  
+            $sql = "select * from takes where student_id='$email';";  
             if($course!='none')$sql=$sql." and course_id='$course'";
-            if($order=='desc rating')$sql=$sql." order by rating desc";
-            elseif($order=='asc rating') $sql=$sql." order by rating asc";
-            elseif($order=='asc date') $sql=$sql." order by year asc";
-            elseif($order=='asc date') $sql=$sql." order by year asc";
             $result = $con->query($sql);
             if($result->num_rows>0){
                 $arr=array();

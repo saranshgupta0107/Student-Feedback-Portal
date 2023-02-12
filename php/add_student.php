@@ -5,7 +5,6 @@ session_start();
 <html>
     <body>
         <?php 
-        $conn=new mysqli("localhost","fcsldba","Junaid_123","fcsldb");
         if(!isset($_POST['validationCustom01'])||!isset($_POST['validationCustomUsername']))return;
         $name = $_POST['validationCustom01'];  
         $email=$_POST['validationCustomUsername'];
@@ -19,13 +18,13 @@ session_start();
             $email=stripcslashes($email);
             $semester=stripcslashes($semester);
             $section=stripcslashes($section);
-            $name = mysqli_real_escape_string($conn, $name);
-            $email=mysqli_real_escape_string($conn,$email);
-            $pass = mysqli_real_escape_string($conn, $pass);  
-            $semester = mysqli_real_escape_string($conn, $semester);
-            $section = mysqli_real_escape_string($conn, $section); 
+            $name = mysqli_real_escape_string($con, $name);
+            $email=mysqli_real_escape_string($con,$email);
+            $pass = mysqli_real_escape_string($con, $pass);  
+            $semester = mysqli_real_escape_string($con, $semester);
+            $section = mysqli_real_escape_string($con, $section); 
             $sql = "select * from student where enroll_no= '$email'";  
-            $result = mysqli_query($conn, $sql);  
+            $result = mysqli_query($con, $sql);  
             $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
             $count = mysqli_num_rows($result);  
             if($count == 1){
@@ -35,7 +34,7 @@ session_start();
                 $int_val=(int)$semester;
                 $sql="INSERT INTO student
                 VALUES ('$email','$pass','$name','$int_val','$section')";
-                if($conn->query($sql)==TRUE)
+                if($con->query($sql)==TRUE)
                 echo '<script>alert("Student successfully added");setTimeout(()=>{window.location.replace("../html/admin/add_student.html");},700);</script>';  
                 else
                 echo '<script>alert("Some error was detected! Please try again later.");setTimeout(()=>{window.location.replace("../html/admin/add_student.html");},700);</script>';  

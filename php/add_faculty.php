@@ -5,7 +5,6 @@ session_start();
 <html>
     <body>
         <?php 
-        $conn=new mysqli("localhost","fcsldba","Junaid_123","fcsldb");
         require('connection.php');  
         $email = $_POST['email'];  
         $name=$_POST['name'];
@@ -14,9 +13,9 @@ session_start();
             $name = stripcslashes($name);  
             $password = stripcslashes($password);  
             $email=stripcslashes($email);
-            $name = mysqli_real_escape_string($conn, $name);
-            $email=mysqli_real_escape_string($conn,$email);
-            $password = mysqli_real_escape_string($conn, $password);  
+            $name = mysqli_real_escape_string($con, $name);
+            $email=mysqli_real_escape_string($con,$email);
+            $password = mysqli_real_escape_string($con, $password);  
           
             $sql = "select * from instructor where name = '$name' and email= '$email'";  
             $result = mysqli_query($con, $sql);  
@@ -28,7 +27,7 @@ session_start();
             else {
                 $sql="INSERT INTO instructor (name,email,pass)
                 VALUES ('$name','$email','$password')";
-                if($conn->query($sql)==TRUE)
+                if($con->query($sql)==TRUE)
                 echo '<script>alert("Faculty successfully added");setTimeout(()=>{window.location.replace("../html/admin/add_faculty.html");},700);</script>';  
                 else
                 echo '<script>alert("Some error was detected! Please try again later.");setTimeout(()=>{window.location.replace("../html/admin/add_faculty.html");},700);</script>';  

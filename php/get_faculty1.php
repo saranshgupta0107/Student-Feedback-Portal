@@ -2,10 +2,9 @@
 session_start();
 ?>
         <?php 
-        $conn=new mysqli("localhost","fcsldba","Junaid_123","fcsldb");
         require('connection.php');
             $sql = "select name,email from instructor;";  
-            $result = $conn->query($sql);
+            $result = $con->query($sql);
             if($result->num_rows>0){
                 $arr=array();
                 while($row=$result->fetch_assoc()){
@@ -16,5 +15,5 @@ session_start();
             }
             else
             echo "0 results";
-            $conn->close();
+            $con->close();
                 ?>  

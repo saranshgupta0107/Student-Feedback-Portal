@@ -1,21 +1,20 @@
 <?php   
 session_start();
 ?>
-<!DOCTYPE html>
-<html>
-    <body>
         <?php 
         require('connection.php');
-            $sql = "select * from instructor;";  
+
+            $sql = "select * from gives natural join feedback;";  
             $result = $con->query($sql);
             if($result->num_rows>0){
+                $arr=array();
                 while($row=$result->fetch_assoc()){
-                    echo "Name: " . $row["name"]. " - Email " . $row["email"]. "<br>";
+                    $arr[]=$row;
                 }
+                $myJSON=json_encode($arr);
+                echo $myJSON;
             }
             else
             echo "0 results";
             $con->close();
                 ?>  
-                </body>
-                </html>
