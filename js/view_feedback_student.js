@@ -1,7 +1,7 @@
 
 var email_data = sessionStorage.getItem('username');
-var pass_data= sessionStorage.getItem('password');
-var dat = { email: email_data,pass:pass_data};
+var pass_data = sessionStorage.getItem('password');
+var dat = { email: email_data, pass: pass_data };
 var xhr = new XMLHttpRequest();
 
 var data;
