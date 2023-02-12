@@ -1,20 +1,22 @@
 <?php   
 session_start();
 ?>
+<!DOCTYPE html>
+<html>
+    <body>
         <?php 
         $conn=new mysqli("localhost","root","12345","feedback_management");
         require('connection.php');
-            $sql = "select name,email from instructor;";  
+            $sql = "select * from instructor;";  
             $result = $conn->query($sql);
             if($result->num_rows>0){
-                $arr=array();
                 while($row=$result->fetch_assoc()){
-                    $arr[]=$row;
+                    echo "Name: " . $row["name"]. " - Email " . $row["email"]. "<br>";
                 }
-                $myJSON=json_encode($arr);
-                echo $myJSON;
             }
             else
             echo "0 results";
             $conn->close();
                 ?>  
+                </body>
+                </html>
