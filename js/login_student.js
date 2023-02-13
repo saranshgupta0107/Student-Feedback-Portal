@@ -15,7 +15,6 @@ function match_email(e){
 });
 document.getElementById("exampleInputPassword1").addEventListener('keyup',
 function match_password(e){
-    console.log("24g3rethrn");
     var username=document.getElementById("exampleInputPassword1");
     if(username.value.length==0){
         document.getElementById('exampleInputPassword1').style.border='1px solid gray';
