@@ -8,6 +8,10 @@ session_start();
         require('connection.php');  
         $username = $_POST['email'];  
         $password = $_POST['pass'];  
+        echo "<script> sessionStorage.setItem('username','$username'); 
+        
+                 sessionStorage.setItem('password','$password');
+        </script>";
           
             //to prevent from mysqli injection  
             $username = stripcslashes($username);  
