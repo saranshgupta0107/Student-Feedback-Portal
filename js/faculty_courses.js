@@ -9,6 +9,7 @@ xhr.open("POST", "../../php/getFacultyCourses.php");
 xhr.onload = function () {
     data = JSON.parse(this.responseText);
     console.log(data);
+    var str = '';
     var ShowCourse = document.getElementById('deck');
     for (var i = 0; i < data.length; i++) {
         str += '<div class="card" style="display: inline-block;">';
@@ -17,6 +18,14 @@ xhr.onload = function () {
         str += "</div>";
     }
     ShowCourse.innerHTML = str;
+    for (var i = 0; i < data.length; i++) {
+        document.getElementById('course' + i).addEventListener('mouseover', (i) => {
+            sessionStorage['course'] = data[i.target.id.substr(6)]['course_id'];
+        });
+        document.getElementById('course' + i).addEventListener('click', (i) => {
+            window.location.replace('show_feedback.html');
+        });
+    }
 }
 xhr.setRequestHeader("Content-type", "application/json");
 xhr.send(JSON.stringify(dat));

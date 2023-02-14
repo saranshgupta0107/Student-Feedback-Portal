@@ -1,6 +1,6 @@
 var email_data = sessionStorage.getItem('username');
 var dat = { email: email_data, course: sessionStorage.getItem('course') };
-
+var data;
 document.getElementById('flexRadioDefault2').addEventListener('click', () => {
     dat['order'] = 'desc rating';
     reload();
@@ -18,34 +18,38 @@ document.getElementById('flexRadioDefault4').addEventListener('click', () => {
     reload();
 });
 
-var data;
+
 
 function reload() {
     var xhr = new XMLHttpRequest();
     console.log(dat['order']);
+    console.log(dat);
     xhr.onload = function () {
         const myObj = JSON.parse(this.responseText);
         data = myObj;
+        console.log(data);
         show_data();
     }
     xhr.open("POST", "../../php/view_feedback_faculty.php");
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.send(JSON.stringify(dat));
+    show_data();
 }
 
 reload();
 
+
 function show_data() {
     document.getElementById('top').innerHTML = '';
     var str = '';
-    str += "<table class='tablefeed' width='100%'>";
+    str += "<table class='table'>";
     var columns = Object.keys(data[0]);
-    str += "<thead>";
+    str += "<thead class='p-3 mb-2 bg-primary text-white'>";
     str += "<tr>";
     for (var i = 0; i < columns.length; i++) {
-        str += ("<th>" + columns[i] + "</th>");
+        str += ("<th scope='col'>" + columns[i] + "</th>");
     }
-    str += ("<th>" + "</th>")
+    str += ("<th scope='col'>" + "</th>")
     str += "</tr>";
     str += "</thead>";
     str += "<tbody>";

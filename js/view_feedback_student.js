@@ -86,7 +86,7 @@ function show_data() {
         for (var j = 0; j < columns.length; j++) {
             str += ("<td>" + data[i][columns[j]] + "</td>");
         }
-        str += (`<td><button id=${'btn' + i}>delete</button></td>`);
+        str += (`<td><button id=${'btn' + i} class='btn btn-primary'>delete</button></td>`);
         str += "</tr>";
     }
     str += "</tbody>";
