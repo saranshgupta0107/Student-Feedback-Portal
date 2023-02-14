@@ -70,7 +70,6 @@ function addLis(i) {
 function show_data() {
     document.getElementById('top').innerHTML = '';
     var str = '';
-    str+= "<div class='table-responsive'>";
     str += "<table class='table'>";
     var columns = Object.keys(data[0]);
     str += "<thead class='p-3 mb-2 bg-primary text-white'>";
@@ -92,7 +91,6 @@ function show_data() {
     }
     str += "</tbody>";
     str += "</table>";
-    str+="</div>";
     document.getElementById('top').innerHTML = str;
     for (var i = 0; i < Object.keys(data).length; i++) {
         document.getElementById('btn' + i).addEventListener('click', function (i) {
