@@ -1,4 +1,4 @@
-.tablefeed th,td{
+/* .tablefeed th,td{
     font-size: 1.5rem;
     width: 5%;
     align-content: center;
@@ -7,7 +7,15 @@
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+} */
+.table-responsive {
+    display: flex;
+    justify-content: center;
+    margin: 5%;
+    box-sizing: border-box;
+    border-radius: 10px;
 }
+
 *{
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
