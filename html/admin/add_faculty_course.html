@@ -33,21 +33,23 @@
             <li class="breadcrumb-item" style="text-decoration: none;"><a href="../../index.html#goback">Home</a></li>
             <li class="breadcrumb-item" style="text-decoration: none;"><a href="login_admin.html">Log In</a></li>
             <li class="breadcrumb-item" style="text-decoration: none;"><a href="admin.html">Admin</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Add Faculty</li>
+            <li class="breadcrumb-item active" aria-current="page">Add Course</li>
         </ol>
     </nav>
-    <div id="addUser">
-        <form class="needs-validation" novalidate action="../../php/add_faculty_course.php" method="post">
-            <div class="form-row">
-                <div class="col-md-4 mb-3" style="margin-left: 2%;">
-                    <label for="name">Full name</label>
+    <div id="login">
+        <div class="newform">
+            <form class="needs-validation" novalidate action="../../php/add_faculty_course.php" method="post">
+                <h5 style="margin: 3%;">Add Course Details</h5>
+                <div class="container" style="height: 10%;"></div>
+                <div class="mb-3" style="margin-left: 3%;">
+                    <label for="name">Faculty name</label>
                     <input name="name" type="text" class="form-control" id="name" placeholder="Name" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
                 </div>
-                <div class="col-md-4 mb-3" style="margin-left: 2%;">
-                    <label for="email">E-Mail</label>
+                <div class="mb-3" style="margin-left: 3%;">
+                    <label for="email">Faculty E-Mail</label>
                     <div class="input-group">
                         <input type="email" name="email" class="form-control" id="email"
                             placeholder="E-mail@iiita.ac.in" aria-describedby="inputGroupPrepend" required
@@ -57,32 +59,30 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-3" style="margin-left: 2%;">
-                    <label for="course">Course</label>
+                <div class="mb-3" style="margin-left: 3%;">
+                    <label for="course">Course ID</label>
                     <div class="input-group">
-                        <input type="text" name="course" class="form-control" id="course" placeholder="DBMS"
+                        <input type="text" name="course" class="form-control" id="course" placeholder="Course ID"
                             aria-describedby="inputGroupPrepend" required minlength="0" pattern="[A-Z]+">
                         <div class="invalid-feedback">
                             Please enter a course to add
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 mb-3" style="margin-left: 2%;">
+                <div class="mb-3" style="margin-left: 3%;">
                     <label for="section">Section</label>
                     <div class="input-group">
-                        <input type="text" name="section" class="form-control" id="section" placeholder="ABCD"
+                        <input type="text" name="section" class="form-control" id="section" placeholder="A/B/C/D"
                             aria-describedby="inputGroupPrepend" required minlength="1" pattern="[ABCD]" ">
                         <div class=" invalid-feedback">
                         Please enter a section to add
                     </div>
                 </div>
-            </div>
+                <div class="mb-4"></div>
+                <button style="margin: 1%;" id="submit" class="btn btn-primary mb-5" type="submit">Add Course</button>
+            </form>
+        </div>
     </div>
-
-    <button style="margin: 3%;" id="submit" class="btn btn-primary" type="submit">Change details</button>
-    </form>
-    </div>
-
     <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function () {

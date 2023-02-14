@@ -13,7 +13,7 @@
 }
 .navbar-text{
     text-decoration: none;
-    font-size: 2.5rem;
+    font-size: 2.0rem;
     display: inline-block;
 }
 /* .navbar-brand{
@@ -103,7 +103,7 @@
     display: flex;
     justify-content: center;
 }
-.needs-validation{
+/* .needs-validation{
     justify-content: center;
     width: 60%;
     margin-top: 50px;
@@ -115,7 +115,7 @@
     margin-left: 10%;
     margin-right: 10%;
     background-color: rgba(254, 255, 255, 0.858);
-}
+} */
 #submit {
     display: inline-block;
 }
@@ -123,4 +123,14 @@
     display: flex;
     width: 80%;
     padding: 2%;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    margin: 3%;
+}
+.head{
+    background-image: url(https://source.unsplash.com/1400x400/?login);
+    display: flex;
+    justify-content: center;
 }

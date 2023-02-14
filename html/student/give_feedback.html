@@ -17,8 +17,8 @@
     <?php require '../../php/chk_loggedin.php' ?>
     <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="../../index.html"><img src="../../images/iiita_logo.png" alt="iiita_logo" width="100px"
-                    height="100px" class="d-inline-block align-text-middle"></a>
+            <a class="navbar-brand" href="../../index.html"><img src="../../images/iiita_logo.png" alt="iiita_logo"
+                    width="100px" height="100px" class="d-inline-block align-text-middle"></a>
             <div class="new">
                 <a class="navbar-text">
                     Welcome to Student Feedback Portal
@@ -36,9 +36,9 @@
         </ol>
     </nav>
     <div id="addUser">
-        <form class="needs-validation" novalidate action="../../php/give_feedback.php" method="post" id="form">
-            <div class="form-row">
-                <div class="col-md-2 mb-3" style="margin-left: 3%;">
+        <div class="newform" style="margin-top: 5%;padding-left: 5%;padding-right: 5%;">
+            <form class="needs-validation" novalidate action="../../php/give_feedback.php" method="post" id="form">
+                <div class="mb-3">
                     <label for="student">Username</label>
                     <input name="student" type="text" class="form-control" id="student" placeholder="username" required
                         readonly value="">
@@ -49,14 +49,14 @@
                         Looks good!
                     </div>
                 </div>
-                <div class="col-md-2 mb-3" style="margin-left: 3%;">
+                <div class="mb-3">
                     <label for="course">Course</label>
                     <input name="course" type="text" class="form-control" id="course" placeholder="Course" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
                 </div>
-                <div class="col-md-2 mb-3" style="margin-left: 3%;">
+                <div class="mb-3">
                     <label for="rating">Rating</label>
                     <div class="input-group">
                         <input type="text" class="form-control" id="rating" name="rating" placeholder="0-10"
@@ -66,20 +66,29 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-8 mb-3" style="margin-left: 3%;">
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1">Feedback</label>
+                    <textarea class="form-control" id="comment1" rows="4" name="comment" maxlength="200"></textarea>
+                    <small style="color: rgb(105, 102, 102);margin: 1%;">Max : 200 Characters</small>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                
+                <!-- <div class="mb-3" style="margin-left: 3%;">
                     <label for="comment">comment</label>
                     <textarea id="comment1" name="comment" cols=45 rows=8 maxlength="200">
-                    </textarea>
+                </textarea>
                     <div id="passwordHelp" class="form-text" id="passwordHelpInline">
                         Any comment regarding this course. (Max: 200 characters)
                     </div>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
-                </div>
-            </div>
-            <button style="margin: 3%;" id="submit" class="btn btn-primary" type="submit">Submit Feedback</button>
-        </form>
+                </div> -->
+                <button id="submit" class="btn btn-primary mb-3 mt-4" type="submit">Submit Feedback</button>
+            </form>
+        </div>
     </div>
 
     <script>

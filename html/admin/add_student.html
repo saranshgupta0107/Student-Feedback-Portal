@@ -17,8 +17,8 @@
 <body>
   <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
     <div class="container-fluid">
-      <a class="navbar-brand" href="../../index.html"><img src="../../images/iiita_logo.png" alt="" width="100px" height="100px"
-          class="d-inline-block align-text-middle"></a>
+      <a class="navbar-brand" href="../../index.html"><img src="../../images/iiita_logo.png" alt="" width="100px"
+          height="100px" class="d-inline-block align-text-middle"></a>
       <div class="new">
         <a class="navbar-text">
           Welcome to Student Feedback Portal
@@ -37,16 +37,18 @@
     </ol>
   </nav>
   <div id="addUser">
-    <form class="needs-validation" novalidate action="../../php/add_student.php" method="post">
-      <div class="form-row">
-        <div class="col-md-4 mb-3" style="margin-left: 3%;">
+    <div class="newform">
+      <form class="needs-validation" novalidate action="../../php/add_student.php" method="post">
+        <h5 style="margin: 3%;">Add Student Details</h5>
+        <div class="container" style="height: 8%;"></div>
+        <div class="mb-3" style="margin-left: 3%;">
           <label for="validationCustom01">Full name</label>
           <input type="text" class="form-control" id="validationCustom01" name="validationCustom01"
             placeholder="First name" required>
           <div class="valid-feedback">
           </div>
         </div>
-        <div class="col-md-4 mb-3" style="margin-left: 3%;">
+        <div class="mb-3" style="margin-left: 3%;">
           <label for="validationCustomUsername">Username</label>
           <div class="input-group">
             <div class="input-group-prepend">
@@ -59,7 +61,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 mb-3" style="margin-left: 3%;">
+        <div class="mb-3" style="margin-left: 3%;">
           <label for="validationCustom02">Password</label>
           <input type="password" class="form-control" id="validationCustom02" name="validationCustom02"
             placeholder="Password" value="" required minlength="8" maxlength="20">
@@ -70,9 +72,7 @@
             Looks good!
           </div>
         </div>
-      </div>
-      <div class="form-row">
-        <div class="col-md-4 mb-3" style="margin-left: 3%;">
+        <div class="mb-3" style="margin-left: 3%;">
           <label for="validationCustom03">Semester</label>
           <input type="text" class="form-control" id="validationCustom03" name="validationCustom03"
             placeholder="Semester" required pattern="[1-8]" maxlength="1">
@@ -80,17 +80,17 @@
             Please provide a valid semester.
           </div>
         </div>
-        <div class="col-md-4 mb-3" style="margin-left: 3%;">
+        <div class="mb-3" style="margin-left: 3%;">
           <label for="validationCustom05">Section</label>
           <input type="text" class="form-control" id="validationCustom05" name="validationCustom05"
-            placeholder="Section" required maxlength="1" pattern="[A,B,C,D]" >
+            placeholder="Section" required maxlength="1" pattern="[A,B,C,D]">
           <div class="invalid-feedback">
             Please provide a valid section.
           </div>
         </div>
-      </div>
-      <button style="margin: 3%;" id="submit" class="btn btn-primary" type="submit">Add Student</button>
-    </form>
+        <button style="margin: 3%;" id="submit" class="btn btn-primary mb-5 mt-3" type="submit">Add Student</button>
+      </form>
+    </div>
   </div>
 
   <script>
