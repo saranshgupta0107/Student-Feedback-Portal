@@ -11,9 +11,10 @@ xhr.onload = function () {
     console.log(data);
     var ShowCourse = document.getElementById('deck');
     for (var i = 0; i < data.length; i++) {
-        var str = '<div class="card" style="display: inline-block;">';
-        str += '<img src="https://source.unsplash.com/360x240/?' + randomTopics[Math.random() % 5] + '" class="card-img-top" alt="..." href="show_feedback.html">';
-        str += '<div class="card-body">< h5 class="card-title">' + data[0]['course_id'] + ' </h5 ></div ><div class="card-footer"><small class="text-muted">Last updated 3 mins ago</small></div></div >';
+        str += '<div class="card" style="display: inline-block;">';
+        str += '<img src="https://source.unsplash.com/360x240/?' + randomTopics[Math.ceil(5.3 * Math.random()) % 5] + '" class="card-img-top" alt="..." href="show_feedback.html"' + `id="course${i}">`;
+        str += '<div class="card-body">' + `${data[i]['course_id']}` + '</div >';
+        str += "</div>";
     }
     ShowCourse.innerHTML = str;
 }
