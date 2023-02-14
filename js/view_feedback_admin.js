@@ -23,7 +23,7 @@ function addLis(i) {
 function show_data() {
     document.getElementById('top').innerHTML = '';
     var str = '';
-    str += "<table class='table'>";
+    str += "<table class='table table-hover'>";
     var columns = Object.keys(data[0]);
     str += "<thead class='p-3 mb-2 bg-primary text-white'>";
     str += "<tr>";
