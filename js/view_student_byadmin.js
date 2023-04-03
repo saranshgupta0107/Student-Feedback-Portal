@@ -9,7 +9,7 @@ document.getElementById('y').addEventListener('click', () => {
     dat['name'] = document.getElementById('name').value;
     dat['course'] = document.getElementById('course').value;
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "../../php/addcourse_to_student.php");
+    xhr.open("POST", "../../php/admin/addcourse_to_student.php");
     xhr.onload = function () {
         eval(this.responseText);
     };
@@ -25,7 +25,7 @@ function reload() {
         data = myObj;
         show_data();
     }
-    xhr.open("POST", "../../php/view_student_byadmin.php");
+    xhr.open("POST", "../../php/admin/view_student_byadmin.php");
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.send(JSON.stringify(dat));
 }
@@ -36,7 +36,7 @@ function addLis(i) {
     var dat1 = { email: data[i['target'].id.substr(3)]['student_id'], course_id: data[i['target'].id.substr(3)]['course_id'] };
     console.log(dat1);
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "../../php/delete_student_course.php");
+    xhr.open("POST", "../../php/admin/delete_student_course.php");
     xhr.setRequestHeader("Content-type", "application/json")
     xhr.send(JSON.stringify(dat1));
     reload();

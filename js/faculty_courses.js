@@ -5,7 +5,7 @@ var dat = { email: email_data };
 var data;
 
 var xhr = new XMLHttpRequest();
-xhr.open("POST", "../../php/getFacultyCourses.php");
+xhr.open("POST", "../../php/faculty/getFacultyCourses.php");
 xhr.onload = function () {
     data = JSON.parse(this.responseText);
     console.log(data);

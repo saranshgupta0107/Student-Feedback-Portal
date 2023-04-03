@@ -5,7 +5,7 @@ xhr.onload = function () {
     data = myObj;
     show_data();
 }
-xhr.open("POST", "../../php/view_feedback_admin.php");
+xhr.open("POST", "../../php/admin/view_feedback_admin.php");
 xhr.send();
 
 
@@ -14,7 +14,7 @@ function addLis(i) {
     var dat1 = { email: data[i['target'].id.substr(3)]['student_id'], feedback_id: data[i['target'].id.substr(3)]['feedback_id'] };
     console.log(dat1);
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "../../php/delete_admin_feedback.php");
+    xhr.open("POST", "../../php/admin/delete_admin_feedback.php");
     xhr.setRequestHeader("Content-type", "application/json")
     xhr.send(JSON.stringify(dat1));
     setTimeout(() => { window.location.replace("../admin/view_feedback.html"); }, 600);

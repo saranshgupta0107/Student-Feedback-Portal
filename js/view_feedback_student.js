@@ -36,7 +36,7 @@ getcourse.onload = function () {
     }
     courses.innerHTML = str;
 }
-getcourse.open('POST', '../../php/get_course.php');
+getcourse.open('POST', '../../php/student/get_course.php');
 getcourse.setRequestHeader("Content-type", "application/json");
 getcourse.send(JSON.stringify(dat));
 
@@ -50,7 +50,7 @@ function reload() {
         data = myObj;
         show_data();
     }
-    xhr.open("POST", "../../php/view_feedback_student.php");
+    xhr.open("POST", "../../php/student/view_feedback_student.php");
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.send(JSON.stringify(dat));
 }
@@ -61,7 +61,7 @@ function addLis(i) {
     var dat1 = { email: data[i['target'].id.substr(3)]['student_id'], feedback_id: data[i['target'].id.substr(3)]['feedback_id'] };
     console.log(dat1);
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "../../php/delete_student_feedback.php");
+    xhr.open("POST", "../../php/student/delete_student_feedback.php");
     xhr.setRequestHeader("Content-type", "application/json")
     xhr.send(JSON.stringify(dat1));
     setTimeout(() => { window.location.replace("../student/view_feedback.html"); }, 600);

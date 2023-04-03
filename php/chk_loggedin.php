@@ -4,6 +4,7 @@ session_start();
         <?php 
         $curPageName=substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);
         $userid=$_SESSION['userid'];
+        // echo '<script>alert("efbg");</script>';
 if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']== true)
 {
     if(isset($_SESSION['userid']))

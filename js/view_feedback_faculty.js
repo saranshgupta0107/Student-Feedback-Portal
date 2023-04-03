@@ -30,7 +30,7 @@ function reload() {
         console.log(data);
         show_data();
     }
-    xhr.open("POST", "../../php/view_feedback_faculty.php");
+    xhr.open("POST", "../../php/admin/view_feedback_faculty.php");
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.send(JSON.stringify(dat));
     show_data();

@@ -5,13 +5,13 @@ xmlhttp.onload = function () {
     data = myObj;
     show_data();
 }
-xmlhttp.open("GET", "../../php/get_faculty1.php", true);
+xmlhttp.open("GET", "../../php/admin/get_faculty1.php", true);
 xmlhttp.send();
 
 function addLis(i) {
     var dat = { email: data[i['target'].id.substr(3)]['email'] };
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "../../php/delete_faculty.php");
+    xhr.open("POST", "../../php/admin/delete_faculty.php");
     xhr.setRequestHeader("Content-type", "application/json")
     xhr.send(JSON.stringify(dat));
     setTimeout(() => {
