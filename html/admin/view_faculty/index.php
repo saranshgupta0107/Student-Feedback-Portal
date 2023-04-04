@@ -8,10 +8,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../../css/style.css">
   <!-- Bootstrap CSS -->
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-  <title>Admin Dashboard</title>
+  <title>Show Faculty</title>
 </head>
 
 <body>
@@ -36,57 +37,41 @@
     style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
     aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item" style="text-decoration: none;"><a href="../../index.html">Home</a></li>
+      <li class="breadcrumb-item" style="text-decoration: none;"><a href="../../../">Home</a></li>
       <li class="breadcrumb-item" style="text-decoration: none;"><a href="login_admin.html">Log In</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Admin</li>
+      <li class="breadcrumb-item" style="text-decoration: none;"><a href="../">Admin</a></li>
+      <li class="breadcrumb-item active" aria-current="page">View Faculty</li>
     </ol>
   </nav>
-  <div id="top">
-    <div class="jumbotron">
-      <h2 class="display-4">Hello, IIIT Admin!</h2>
-      <p class="lead">This is the student feedback portal, designed to collect the feedbacks from the students regarding
-        the courses they are enrolled in.</p>
-      <hr class="my-4">
-      <p>You can view feedback, delete feedback or add any new user to the system.</p>
-      <button type="button" class="btn btn-primary" id="liveAlertBtn" onclick="window.location.href='#group'">Choose
-        Your Action</button>
-    </div>
-  </div>
-  <div id="group">
-    <div class="card-group" style="padding: 10%; background-color: rgba(0, 0, 0, 0.558);">
-      <div class="row mt-4">
-        <div class="col">
-          <div class="card">
-            <img src="https://source.unsplash.com/1400x700/?view" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">View Faculty</h5>
-              <p class="card-text">View the faculty.</p>
-              <a class="btn btn-primary" href="view_faculty/" role="button">View Faculty</a>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <img src="https://source.unsplash.com/1400x700/?teacher" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Add Section</h5>
-              <p class="card-text">Add Section for a subject</p>
-              <a class="btn btn-primary" href="add_faculty_course.html" role="button">Add Section</a>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <img src="https://source.unsplash.com/1400x700/?education,technology" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Drop/Add Students</h5>
-              <p class="card-text">Change the students</p>
-              <a class="btn btn-primary" href="add_faculty.html" role="button">Drop/Add</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div id="top" class='table-responsive'>
+    <?php 
+        require('../../../php/connection.php');
+            $sql = "select name,email from instructor;";  
+            $result = $con->query($sql);
+            if($result->num_rows>0){
+                $arr=array();
+                echo "<form action='view_faculty.php' method='POST'>";
+                echo "<table class='table'>";
+                echo "<thead class='p-3 mb-2 bg-primary text-white'>";
+                echo ("<th scope='col'>Name </th>");
+                echo ("<th scope='col'>Email </th>");
+                echo "<th></th>";
+                echo "</thead>";
+                echo "<tbody>";
+                foreach($result as $row=>$val){
+                    echo "<tr>";
+                    echo "<td>".$val['name'].  "</td>";
+                    echo "<td>".$val['email'].  "</td>";
+                    echo "<td><button name='".$val['email']."' class='btn btn-primary' type='submit'>Edit</button></td>";
+                    echo "</tr>";
+                }
+                echo "</tbody>";
+                echo "</table>";
+                echo "</form>";
+            }
+            $con->close();
+                ?>  
+    <script src="../../js/show_faculty.js"></script>
   </div>
   <!-- Optional JavaScript; choose one of the two! -->
 
