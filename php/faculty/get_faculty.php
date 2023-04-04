@@ -5,7 +5,7 @@ session_start();
 <html>
     <body>
         <?php 
-        require('connection.php');
+        require('../connection.php');
             $sql = "select * from instructor;";  
             $result = $con->query($sql);
             if($result->num_rows>0){

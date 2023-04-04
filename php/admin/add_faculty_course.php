@@ -5,7 +5,7 @@ session_start();
 <html>
     <body>
         <?php 
-        require('connection.php');  
+        require('../connection.php');  
         $email = $_POST['email'];  
         $name=$_POST['name'];
         $course = $_POST['course']; 
@@ -30,17 +30,17 @@ session_start();
             if($count1 == 1&&$count2==1){
                 $insertq = "insert into teaches values('$name','$email' , '$course','$section');";
                 $insert_res= mysqli_query($con,$insertq);
-                echo '<script>setTimeout(()=>{window.location.replace("../html/admin/add_course.html");},700);</script>';  
+                echo '<script>setTimeout(()=>{window.location.replace("../../html/admin/add_faculty_course.html");},700);</script>';  
 
             } 
             else if( $count1==0){
                 echo '<script>  alert("User does not exist");</script>';
-                echo '<script>setTimeout(()=>{window.location.replace("../html/admin/add_course.html");},700);</script>';  
+                echo '<script>setTimeout(()=>{window.location.replace("../../html/admin/add_faculty_course.html");},700);</script>';  
 
             }
             else {
                 echo '<script>  alert("User does not exist");</script>';
-                echo '<script>setTimeout(()=>{window.location.replace("../html/admin/add_course.html");},700);</script>';  
+                echo '<script>setTimeout(()=>{window.location.replace("../../html/admin/add_faculty_course.html");},700);</script>';  
 
                 
             }

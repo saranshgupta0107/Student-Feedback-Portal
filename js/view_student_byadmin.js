@@ -9,7 +9,7 @@ document.getElementById('y').addEventListener('click', () => {
     dat['name'] = document.getElementById('name').value;
     dat['course'] = document.getElementById('course').value;
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "../../php/addcourse_to_student.php");
+    xhr.open("POST", "../../php/admin/addcourse_to_student.php");
     xhr.onload = function () {
         eval(this.responseText);
     };
@@ -25,7 +25,7 @@ function reload() {
         data = myObj;
         show_data();
     }
-    xhr.open("POST", "../../php/view_student_byadmin.php");
+    xhr.open("POST", "../../php/admin/view_student_byadmin.php");
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.send(JSON.stringify(dat));
 }
@@ -36,7 +36,7 @@ function addLis(i) {
     var dat1 = { email: data[i['target'].id.substr(3)]['student_id'], course_id: data[i['target'].id.substr(3)]['course_id'] };
     console.log(dat1);
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "../../php/delete_student_course.php");
+    xhr.open("POST", "../../php/admin/delete_student_course.php");
     xhr.setRequestHeader("Content-type", "application/json")
     xhr.send(JSON.stringify(dat1));
     reload();
@@ -45,12 +45,12 @@ function addLis(i) {
 function show_data() {
     document.getElementById('top').innerHTML = '';
     var str = '';
-    str += "<table class='tablefeed' width='100%'>";
+    str += "<table class='table table-hover'>";
     var columns = Object.keys(data[0]);
-    str += "<thead>";
+    str += "<thead class='p-3 mb-2 bg-primary text-white'>";
     str += "<tr>";
     for (var i = 0; i < columns.length; i++) {
-        str += ("<th>" + columns[i] + "</th>");
+        str += ("<th scope='col'>" + columns[i] + "</th>");
     }
     str += ("<th>" + "</th>")
     str += "</tr>";
@@ -61,7 +61,7 @@ function show_data() {
         for (var j = 0; j < columns.length; j++) {
             str += ("<td>" + data[i][columns[j]] + "</td>");
         }
-        str += (`<td><button id=${'btn' + i}>delete</button></td>`);
+        str += (`<td><button id=${'btn' + i}  class='btn btn-primary'>delete</button></td>`);
         str += "</tr>";
     }
     str += "</tbody>";

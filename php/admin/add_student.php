@@ -28,16 +28,16 @@ session_start();
             $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
             $count = mysqli_num_rows($result);  
             if($count == 1){
-                echo '<script>alert("Student with this combination already exists");setTimeout(()=>{window.location.replace("../html/admin/add_student.html");},700);</script>';  
+                echo '<script>alert("Student with this combination already exists");setTimeout(()=>{window.location.replace("../../html/admin/add_student.html");},700);</script>';  
             } 
             else {
                 $int_val=(int)$semester;
                 $sql="INSERT INTO student
                 VALUES ('$email','$pass','$name','$int_val','$section')";
                 if($con->query($sql)==TRUE)
-                echo '<script>alert("Student successfully added");setTimeout(()=>{window.location.replace("../html/admin/add_student.html");},700);</script>';  
+                echo '<script>alert("Student successfully added");setTimeout(()=>{window.location.replace("../../html/admin/add_student.html");},700);</script>';  
                 else
-                echo '<script>alert("Some error was detected! Please try again later.");setTimeout(()=>{window.location.replace("../html/admin/add_student.html");},700);</script>';  
+                echo '<script>alert("Some error was detected! Please try again later.");setTimeout(()=>{window.location.replace("../../html/admin/add_student.html");},700);</script>';  
                 
             }
                 ?>  

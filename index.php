@@ -21,6 +21,7 @@
   });
 </script>
 <body>
+<<<<<<< HEAD:index.html
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="#"><img src="images/iiita_logo.png" alt="" width="60" height="60"
@@ -33,7 +34,7 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#top" style="font-size: larger;">Student Feedback Portal</a>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown" style="align-items: end;">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Choose Your Action
             </a>
@@ -51,6 +52,14 @@
     </div>
   </nav>
   <!-- <nav id="goback" class="navbar navbar-light" style="background-color: #e3f2fd;">
+=======
+  <?php   
+    session_start();
+    session_destroy();
+    $_SESSION = array();
+  ?>
+  <nav id="goback" class="navbar navbar-light" style="background-color: #e3f2fd;">
+>>>>>>> 0752287b225aed681c3d884bebd76d0f12a40db5:index.php
     <div class="container-fluid">
       <a class="navbar-brand" href="#"><img src="images/iiita_logo.png" alt="" width="100" height="100"
           class="d-inline-block align-text-middle"></a>
@@ -71,8 +80,7 @@
       <button type="button" class="btn btn-primary" id="liveAlertBtn" onclick="window.location.href='#group'">Choose
         Your Role to continue</button>
     </div>
-  </div>
-
+</div>
   <div id="carouselExampleIndicators" class="carousel slide">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"

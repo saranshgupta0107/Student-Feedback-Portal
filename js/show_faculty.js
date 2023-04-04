@@ -5,13 +5,13 @@ xmlhttp.onload = function () {
     data = myObj;
     show_data();
 }
-xmlhttp.open("GET", "../../php/get_faculty1.php", true);
+xmlhttp.open("GET", "../../php/admin/get_faculty1.php", true);
 xmlhttp.send();
 
 function addLis(i) {
     var dat = { email: data[i['target'].id.substr(3)]['email'] };
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "../../php/delete_faculty.php");
+    xhr.open("POST", "../../php/admin/delete_faculty.php");
     xhr.setRequestHeader("Content-type", "application/json")
     xhr.send(JSON.stringify(dat));
     setTimeout(() => {
@@ -22,12 +22,12 @@ function addLis(i) {
 function show_data() {
     document.getElementById('top').innerHTML = '';
     var str = '';
-    str += "<table class='tablefeed' width='100%'>";
+    str += "<table class='table'>";
     var columns = Object.keys(data[0]);
-    str += "<thead>";
+    str += "<thead class='p-3 mb-2 bg-primary text-white'>";
     str += "<tr>";
     for (var i = 0; i < columns.length; i++) {
-        str += ("<th>" + columns[i] + "</th>");
+        str += ("<th scope='col'>" + columns[i] + "</th>");
     }
     str += ("<th>" + "</th>")
     str += "</tr>";
@@ -38,7 +38,7 @@ function show_data() {
         for (var j = 0; j < columns.length; j++) {
             str += ("<td>" + data[i][columns[j]] + "</td>");
         }
-        str += (`<td><button id=${'btn' + i}>delete</button></td>`);
+        str += (`<td><button id=${'btn' + i} class='btn btn-primary'>delete</button></td>`);
         str += "</tr>";
     }
     str += "</tbody>";

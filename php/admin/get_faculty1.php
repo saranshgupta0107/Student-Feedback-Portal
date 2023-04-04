@@ -2,11 +2,8 @@
 session_start();
 ?>
         <?php 
-        require('connection.php');
-
-        $directions=(json_decode(file_get_contents('php://input'), true));
-        $name=$directions['name'];
-            $sql = "select * from takes where student_id='$name'";  
+        require('../connection.php');
+            $sql = "select name,email from instructor;";  
             $result = $con->query($sql);
             if($result->num_rows>0){
                 $arr=array();
@@ -17,6 +14,6 @@ session_start();
                 echo $myJSON;
             }
             else
-            echo "";
+            echo "0 results";
             $con->close();
                 ?>  

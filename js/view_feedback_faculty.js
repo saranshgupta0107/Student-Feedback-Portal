@@ -30,7 +30,7 @@ function reload() {
         console.log(data);
         show_data();
     }
-    xhr.open("POST", "../../php/view_feedback_faculty.php");
+    xhr.open("POST", "../../php/admin/view_feedback_faculty.php");
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.send(JSON.stringify(dat));
     show_data();
@@ -42,7 +42,7 @@ reload();
 function show_data() {
     document.getElementById('top').innerHTML = '';
     var str = '';
-    str += "<table class='table'>";
+    str += "<table class='table table-hover'>";
     var columns = Object.keys(data[0]);
     str += "<thead class='p-3 mb-2 bg-primary text-white'>";
     str += "<tr>";

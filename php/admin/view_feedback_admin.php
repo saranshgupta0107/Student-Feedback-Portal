@@ -2,7 +2,7 @@
 session_start();
 ?>
         <?php 
-        require('connection.php');
+        require('../connection.php');
 
             $sql = "select * from gives natural join feedback;";  
             $result = $con->query($sql);

@@ -2,7 +2,7 @@
 session_start();
 ?>
         <?php 
-        require('connection.php');
+        require('../connection.php');
         
             $sql = "select uuid() as id;";  
             $result = $con->query($sql);
@@ -18,10 +18,10 @@ session_start();
                 $query1="insert into feedback values ('$sql','$comment',$rating,'$date' )";
                 mysqli_query($con,$query1);
                 mysqli_query($con,"insert into gives values ('$username','$sql','$course');");
-                echo "<script>alert('Succesful, redirecting');setTimeout(()=>{window.location.replace('../html/student/give_feedback.html');},700);</script>";
+                echo "<script>alert('Succesful, redirecting');setTimeout(()=>{window.location.replace('../../html/student/give_feedback.html');},700);</script>";
             }
             else{
-                echo "<script>alert('unSuccesful, not enrolled in this course, redirecting');setTimeout(()=>{window.location.replace('../html/student/student.html');},700);</script>";
+                echo "<script>alert('unSuccesful, not enrolled in this course, redirecting');setTimeout(()=>{window.location.replace('../../html/student/student.html');},700);</script>";
             }
             $con->close();
                 ?>  

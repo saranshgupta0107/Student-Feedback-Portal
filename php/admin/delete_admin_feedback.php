@@ -2,7 +2,7 @@
 session_start();
 ?>
         <?php 
-        require('connection.php');  
+        require('../connection.php');  
         $directions=(json_decode(file_get_contents('php://input'), true));
         $id= $directions['feedback_id'];
             //to prevent from mysqli injection  

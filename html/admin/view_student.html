@@ -14,10 +14,11 @@
 </head>
 
 <body onload="clearAll()">
+    <?php require '../../php/chk_loggedin.php' ?>
     <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="../../index.html"><img src="../../images/iiita_logo.png" alt="iiita_logo" width="100px"
-                    height="100px" class="d-inline-block align-text-middle"></a>
+            <a class="navbar-brand" href="../../index.html"><img src="../../images/iiita_logo.png" alt="iiita_logo"
+                    width="100px" height="100px" class="d-inline-block align-text-middle"></a>
             <div class="new">
                 <a class="navbar-text">
                     Welcome to Student Feedback Portal
@@ -38,8 +39,8 @@
         <form class="needs-validation" novalidate>
             <div class="col-md-4 mb-3" style="margin-left: 3%;">
                 <label for="name">Username</label>
-                <input name="name" type="text" class="form-control" id="name" name="name" placeholder="Student"
-                    required>
+                <input name="name" type="text" class="form-control" id="name" name="name" placeholder="Student" required
+                    size='50'>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -51,7 +52,8 @@
         <form class="needs-validation" novalidate>
             <div class="col-md-4 mb-3" style="margin-left: 3%;">
                 <label for="course">Add course</label>
-                <input name="course" type="text" class="form-control" id="course" placeholder="Course" required>
+                <input name="course" type="text" class="form-control" id="course" placeholder="Course" required
+                    size='50'>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -59,7 +61,7 @@
         </form>
         <button style="margin: 3%;" id="y" class="btn btn-primary" style="display:contents;">Get details</button>
     </div>
-    <div id="top">
+    <div id="top" class="table-responsive">
         <script src="../../js/view_student_byadmin.js"></script>
     </div>
 
