@@ -13,6 +13,11 @@
 <script src='js/index.js'></script>
 
 <body>
+  <?php   
+    session_start();
+    session_destroy();
+    $_SESSION = array();
+  ?>
   <nav id="goback" class="navbar navbar-light" style="background-color: #e3f2fd;">
     <div class="container-fluid">
       <a class="navbar-brand" href="#"><img src="images/iiita_logo.png" alt="" width="100" height="100"
@@ -34,8 +39,6 @@
       <button type="button" class="btn btn-primary" id="liveAlertBtn" onclick="window.location.href='#group'">Choose
         Your Role to continue</button>
     </div>
-  </div>
-
   <div id="carouselExampleIndicators" class="carousel slide">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
