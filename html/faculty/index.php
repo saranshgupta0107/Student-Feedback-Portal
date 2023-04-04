@@ -11,15 +11,18 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-  <title>Student Dashboard</title>
+  <title>Faculty Dashboard</title>
 </head>
 
 <body>
-  <?php require '../../php/chk_loggedin.php' ?>
+  <?php   
+  session_start();
+  ?>
+  <?php if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!= true||$_SESSION['userid']!='faculty'): echo"<script> alert('You are not authorised to this page'); window.location.replace('../../index.html');</script>"; ?>
   <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
     <div class="container-fluid">
-      <a class="navbar-brand" href="../../index.html"><img src="../../images/iiita_logo.png" alt="" width="100px" height="100px"
-          class="d-inline-block align-text-middle"></a>
+      <a class="navbar-brand" href="../../index.html"><img src="../../images/iiita_logo.png" alt="" width="100px"
+          height="100px" class="d-inline-block align-text-middle"></a>
       <div class="new">
         <a class="navbar-text">
           Welcome to Student Feedback Portal
@@ -35,42 +38,45 @@
     aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item" style="text-decoration: none;"><a href="../../index.html#goback">Home</a></li>
-      <li class="breadcrumb-item" style="text-decoration: none;"><a href="login_student.html">Log In</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Student</li>
+      <li class="breadcrumb-item" style="text-decoration: none;"><a href="login_faculty.html">Log In</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Faculty</li>
     </ol>
   </nav>
   <div id="top">
     <div class="jumbotron">
-      <h2 class="display-4">Hello, IIIT Student!</h2>
+      <h2 class="display-4">Hello,Professor!</h2>
       <p class="lead">This is the student feedback portal, designed to collect the feedbacks from the students regarding
         the courses they are enrolled in.</p>
       <hr class="my-4">
-      <p>You can view feedback, delete feedback </p>
-      <button type="button" class="btn btn-primary" id="liveAlertBtn" onclick="window.location.href='#group'">Choose
-        Your Action</button>
+      <p>See the Feedback for your Courses.</p>
+      <button type="button" class="btn btn-primary" id="liveAlertBtn" onclick="window.location.href='#deck'">Go to
+        Dashboard</button>
     </div>
   </div>
   <div id="group">
-    <div class="card-group" style="padding: 10%; background-color: rgba(0, 0, 0, 0.558);">
-      <div class="card">
-        <img src="https://source.unsplash.com/1400x700/?education,technology" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">View Feedback</h5>
-          <p class="card-text">View the feedbacks submitted by you.</p>
-        </div>
-        <a class="btn btn-primary mb-4" href="view_feedback.html" role="button" style="width: 60%;margin-left: 4%;">View Feedback</a>
+    <div class="container-fluid" style="background-color: rgba(0,0,0,0.556);">
+      <div class="card-deck" id="deck" style="padding:10%;">
+        <!--<div class="card" style="display: inline-block;">
+      <img src="https://source.unsplash.com/360x240/?technology" class="card-img-top" alt="..." href="show_feedback.html">
+      <div class="card-body">
+        <h5 class="card-title">DBMS</h5>
+        <p class="card-text">Database Management System.</p>
       </div>
-      <div class="card">
-        <img src="https://source.unsplash.com/1400x700/?education,technology" class="card-img-top" alt="...">
+      <div class="card" style="display: inline-block;">
+        <a href="show_feedback.html" style="text-decoration: none;color: black;">
+        <img src="https://source.unsplash.com/360x240/?education" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">Give Feedback</h5>
-          <p class="card-text">Give feedbacks about the courses you are enrolled in.</p>
+          <h5 class="card-title">OS</h5>
+          <p class="card-text">Operating System.</p>
         </div>
-        <a class="btn btn-primary mb-4" href="give_feedback.html" role="button" style="width: 60%;margin-left: 4%;">Give feedback</a>
+        </a>
+      </div>
+    </div>-->
       </div>
     </div>
   </div>
-
+  <script src='../../js/faculty_courses.js'>
+  </script>
   <!-- Optional JavaScript; choose one of the two! -->
 
   <!-- Option 1: Bootstrap Bundle with Popper -->

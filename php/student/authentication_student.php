@@ -27,10 +27,10 @@ session_start();
             $count = mysqli_num_rows($result);  
             if($count == 1){
                 echo '<script>
-                window.location.replace("../../html/student/student.html");
+                window.location.replace("../../html/student/");
                 </script>';  
                 $_SESSION['loggedin']=true;
-                $_SESSION['userid']=3;
+                $_SESSION['userid']='student';
                 exit;
             } 
             else 

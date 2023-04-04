@@ -24,11 +24,11 @@ session_start();
             $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
             $count = mysqli_num_rows($result);  
             if($count == 1){
-                echo '<script>
-                window.location.replace("../../html/faculty/faculty.html");
-                </script>';  
                 $_SESSION['loggedin']=true;
-                $_SESSION['userid']=2;
+                $_SESSION['userid']='faculty';
+                echo '<script>
+                window.location.replace("../../html/faculty/");
+                </script>';  
                 exit;
             } 
             else 

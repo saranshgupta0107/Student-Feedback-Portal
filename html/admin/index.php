@@ -15,11 +15,14 @@
 </head>
 
 <body>
-  <?php require '../../php/chk_loggedin.php'; ?>
+  <?php   
+  session_start();
+  ?>
+  <?php if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!= true||$_SESSION['userid']!='admin'): echo"<script> alert('You are not authorised to this page'); window.location.replace('../../index.html')</script>"; endif;?>
   <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
     <div class="container-fluid">
-      <a class="navbar-brand" href="../../index.html"><img src="../../images/iiita_logo.png" alt="" width="100px" height="100px"
-          class="d-inline-block align-text-middle"></a>
+      <a class="navbar-brand" href="../../index.html"><img src="../../images/iiita_logo.png" alt="" width="100px"
+          height="100px" class="d-inline-block align-text-middle"></a>
       <div class="new">
         <a class="navbar-text">
           Welcome to Student Feedback Portal
