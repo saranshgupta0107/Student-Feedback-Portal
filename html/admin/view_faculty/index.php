@@ -46,11 +46,11 @@
   <div id="top" class='table-responsive'>
     <?php 
         require('../../../php/connection.php');
-            $sql = "select name,email from instructor;";  
+            $sql = "select name,id from instructor;";  
             $result = $con->query($sql);
             if($result->num_rows>0){
                 $arr=array();
-                echo "<form action='view_faculty.php' method='POST' class='table-responsive' style='width:100%;'>";
+                echo "<form action='view_faculty.php' method='POST'style='width:100%;'>";
                 echo "<table class='table'>";
                 echo "<thead class='p-3 mb-2 bg-primary text-white'>";
                 echo ("<th scope='col'>Name </th>");
@@ -61,8 +61,8 @@
                 foreach($result as $row=>$val){
                     echo "<tr>";
                     echo "<td>".$val['name'].  "</td>";
-                    echo "<td>".$val['email'].  "</td>";
-                    echo "<td><button name='".$val['email']."' class='btn btn-primary' type='submit'>Edit</button></td>";
+                    echo "<td>".$val['id'].  "</td>";
+                    echo "<td><button name='".$val['id']."' class='btn btn-primary' type='submit' value='".$val['id']."'>Edit</button></td>";
                     echo "</tr>";
                 }
                 echo "</tbody>";

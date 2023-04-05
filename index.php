@@ -36,7 +36,7 @@
         </a>
       </div>
     </div>
-  </nav> -->
+  </nav>
   <div id="top">
     <div class="jumbotron">
       <h2 class="display-4">Hello, IIIT Allahabad!</h2>
@@ -83,9 +83,9 @@
     <div id="liveAlertPlaceholder"></div>
     <div id="choose" class="btn-group-vertical">
       <button type="button" class="btn btn-outline-primary"
-        onclick="window.location.href='html/admin/login_admin.html'">Admin</button>
+        onclick="window.location.href='html/admin/login_admin.php'">Admin</button>
       <button type="button" class="btn btn-outline-primary"
-        onclick="window.location.href='html/faculty/login_faculty.html'">Faculty</button>
+        onclick="window.location.href='html/faculty/login_faculty.php'">Faculty</button>
       <button type="button" class="btn btn-outline-primary"
         onclick="window.location.href='html/student/login_student.html'">Student</button>
     </div>

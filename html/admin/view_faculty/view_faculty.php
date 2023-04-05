@@ -8,81 +8,97 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../../../css/style.css">
   <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
   <title>Admin Log In</title>
 </head>
 
 
 <body onload="clearAll()">
-  <?php   
+  <?php
   session_start();
   ?>
-  <?php if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!= true||$_SESSION['userid']!='admin'): echo"<script> alert('You are not authorised to this page'); window.location.replace('../../')</script>"; endif;?>
+  <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'admin') :
+    echo "<script> alert('You are not authorised to this page'); window.location.replace('../../')</script>";
+  endif; ?>
   <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
     <div class="container-fluid">
-      <a class="navbar-brand" href="../../index.html"><img src="../../images/iiita_logo.png" alt="iiita_logo"
-          width="100px" height="100px" class="d-inline-block align-text-middle"></a>
+      <a class="navbar-brand" href="../../index.html"><img src="../../../images/iiita_logo.png" alt="" width="100px" height="100px" class="d-inline-block align-text-middle"></a>
       <div class="new">
         <a class="navbar-text">
           Welcome to Student Feedback Portal
         </a>
       </div>
+      <a href="../../php/logout.php"><button type="button" class="btn btn-primary" id="liveAlertn" style="margin-bottom: 1%;margin-left: -20%;">Logout</button></a>
     </div>
   </nav>
-  <nav
-    style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
-    aria-label="breadcrumb">
+  <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item" style="text-decoration: none;"><a href="../../index.html#goback">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Admin Log In</li>
+      <li class="breadcrumb-item" style="text-decoration: none;"><a href="../../../">Home</a></li>
+      <li class="breadcrumb-item" style="text-decoration: none;"><a href="login_admin.html">Log In</a></li>
+      <li class="breadcrumb-item" style="text-decoration: none;"><a href="../">Admin</a></li>
+      <li class="breadcrumb-item" style="text-decoration: none;"" aria-current=" page"><a href="../">View Faculty</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Edit
+        <?php require('../../../php/connection.php');
+        $email = array_values($_POST)[0];
+        $email = stripcslashes($email);
+        $email = mysqli_real_escape_string($con, $email);
+        $sql = "select name from instructor where id='" . $email . "';";
+        $result = mysqli_query($con, $sql);
+        $row = $result->fetch_row();
+        echo $row[0]; ?>
+      </li>
     </ol>
   </nav>
-  <div id="login">
-    <div class="newform">
-      <form name="f1" action="../../php/admin/authentication_admin.php" onsubmit="return validation()" method="post"
-        style="display:grid;width: 350px;" id="FORM">
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email address</label>
-          <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-            placeholder="email@iiita.ac.in" pattern="[a-z]+@iiita.ac.in" required>
-          <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input type="password" name="pass" class="form-control" id="exampleInputPassword1" pattern="\w{8,20}"
-            required>
-          <div id="passwordHelp" class="form-text" id="passwordHelpInline">
-            Must be 8-20 characters long.
-          </div>
-        </div>
-        <button id="submitbtn" type="submit" class="btn btn-primary">Submit</button>
-      </form>
-    </div>
+  <div id="top" class='table-responsive'>
     <script>
-      function validation() {
-        var id = document.f1.exampleInputEmail1;
-        var ps = document.f1.exampleInputPassword1;
-        if (id.length == "" && ps.length == "") {
-          alert("User fields are empty");
+      function show_alert() {
+        if (!confirm("Do you really want to do this?")) {
           return false;
         }
+        this.form.submit();
       }
     </script>
+    <?php
+    require('../../../php/connection.php');
+    $email = array_values($_POST)[0];
+    $email = stripcslashes($email);
+    $email = mysqli_real_escape_string($con, $email);
+    $sql = "select sec_id,semester,course_id from teaches where id='" . $email . "';";
+    $result = $con->query($sql);
+    if ($result->num_rows > 0) {
+      $arr = array();
+      echo "<table class='table'>";
+      echo "<thead class='p-3 mb-2 bg-primary text-white'>";
+      echo ("<th scope='col'>Section</th>");
+      echo ("<th scope='col'>Course</th>");
+      echo ("<th scope='col'>Semester</th>");
+      echo "<th></th>";
+      echo "</thead>";
+      echo "<tbody>";
+      foreach ($result as $row => $val) {
+        echo "<form action='../../../php/admin/faculty_section_drop.php' method='POST' style='width:100%;' onsubmit='return show_alert(this);'>";
+        echo "<input type='hidden' name='course_id' value='" . $val['course_id'] . "' style='display:none'></input>";
+        echo "<input type='hidden' name='sec_id' value='" . $val['sec_id'] . "' style='display:none'></input>";
+        echo "<input type='hidden' name='semester' value='" . $val['semester'] . "' style='display:none'></input>";
+        echo "<input type='hidden' name='id' value='" . $email . "' style='display:none'></input>";
+        echo "<tr>";
+        echo "<td>" . $val['sec_id'] . "</td>";
+        echo "<td>" . $val['course_id'] . "</td>";
+        echo "<td>" . $val['semester'] . "</td>";
+        echo "<td><button class='btn btn-primary' type='submit'>Drop</button></td>";
+        echo "</tr>";
+        echo "</form>";
+      }
+      echo "</tbody>";
+      echo "</table>";
+    } else
+      echo "<h1>No Sections alloted yet</h1>";
+    $con->close();
+    ?>
   </div>
-  <!-- Optional JavaScript; choose one of the two! -->
-
-  <!-- Option 1: Bootstrap Bundle with Popper -->
-  <script>
-    function clearAll() {
-      document.getElementById("exampleInputEmail1").value = "";
-      document.getElementById("exampleInputPassword1").value = "";
-    }
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
   <!-- Option 2: Separate Popper and Bootstrap JS -->
   <!--
