@@ -23,20 +23,12 @@ function addLis(i) {
 function show_data() {
     document.getElementById('top').innerHTML = '';
     var str = '';
-<<<<<<< HEAD
-    str += "<table class='table'>";
-=======
     str += "<table class='table table-hover'>";
->>>>>>> 0752287b225aed681c3d884bebd76d0f12a40db5
     var columns = Object.keys(data[0]);
     str += "<thead class='p-3 mb-2 bg-primary text-white'>";
     str += "<tr>";
     for (var i = 0; i < columns.length; i++) {
-<<<<<<< HEAD
-        str += ("<th scope='col'>" + columns[i].toUpperCase + "</th>");
-=======
         str += ("<th >" + columns[i] + "</th>");
->>>>>>> 0752287b225aed681c3d884bebd76d0f12a40db5
     }
     str += ("<th scope='col'>" + "</th>")
     str += "</tr>";

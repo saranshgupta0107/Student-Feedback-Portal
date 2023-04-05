@@ -21,45 +21,12 @@
   });
 </script>
 <body>
-<<<<<<< HEAD:index.html
-  <nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#"><img src="images/iiita_logo.png" alt="" width="60" height="60"
-        class="d-inline-block align-text-middle"></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#top" style="font-size: larger;">Student Feedback Portal</a>
-          </li>
-          <li class="nav-item dropdown" style="align-items: end;">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Choose Your Action
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="../html/admin/login_admin.html">Admin</a></li>
-              <li><a class="dropdown-item" href="../html/faculty/login_faculty.html">Faculty</a></li>
-              <li><a class="dropdown-item" href="../html/student/login_student.html">Student</a></li>
-            </ul>
-          </li>
-        </ul>
-        <form class="d-flex" role="submit">
-          <button class="btn btn-outline-primary" type="submit">Log In</button>
-        </form>
-      </div>
-    </div>
-  </nav>
-  <!-- <nav id="goback" class="navbar navbar-light" style="background-color: #e3f2fd;">
-=======
   <?php   
     session_start();
     session_destroy();
     $_SESSION = array();
   ?>
   <nav id="goback" class="navbar navbar-light" style="background-color: #e3f2fd;">
->>>>>>> 0752287b225aed681c3d884bebd76d0f12a40db5:index.php
     <div class="container-fluid">
       <a class="navbar-brand" href="#"><img src="images/iiita_logo.png" alt="" width="100" height="100"
           class="d-inline-block align-text-middle"></a>
@@ -81,7 +48,7 @@
         Your Role to continue</button>
     </div>
 </div>
-  <div id="carouselExampleIndicators" class="carousel slide">
+  <!-- <div id="carouselExampleIndicators" class="carousel slide">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
         aria-current="true" aria-label="Slide 1"></button>
@@ -92,13 +59,13 @@
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="https://source.unsplash.com/1400x700/?feedback,technology" class="d-block w-100" alt="...">
+        <img src="images/iiita_buil3.jpg" class="d-block w-100" alt="...">
       </div>
       <div class="carousel-item">
-        <img src="https://source.unsplash.com/1400x700/?education,technology" class="d-block w-100" alt="...">
+        <img src="images/iiita_buil3.jpg" class="d-block w-100" alt="...">
       </div>
       <div class="carousel-item">
-        <img src="https://source.unsplash.com/1400x700/?programming,technology" class="d-block w-100" alt="...">
+        <img src="images/iiita_buil3.jpg" class="d-block w-100" alt="...">
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
@@ -111,8 +78,7 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
-  </div>
-
+  </div> -->
   <div id="group">
     <div id="liveAlertPlaceholder"></div>
     <div id="choose" class="btn-group-vertical">
