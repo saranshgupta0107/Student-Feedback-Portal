@@ -61,15 +61,15 @@
 
 #top {
     display: flex;
-    margin-top: 100px;
+    margin-top: 50px;
     margin-left: 100px;
     margin-right: 100px;
 }
 
 #group {
-    margin-top: 80px;
+    /* margin-top: 80px; */
     margin-bottom: 150px;
-    background-image: url(https://source.unsplash.com/1080x640/?education,management);
+    background-image: url(../images/iiita_buil.jpg);
     display: flex;
     justify-content: center;
     width: 85%;
@@ -99,8 +99,9 @@
 }
 
 #login {
-    background-image: url(https://source.unsplash.com/1080x640/?login);
+    background-image: url(../images/iiita_buil2.jpg);
     display: flex;
+    /* margin-bottom: 5%; */
     justify-content: center;
 }
 
