@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-  <link rel="icon" href="../../images/iiita_logo.png">
+  <link rel="icon" href="../../../images/iiita_logo.png">
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../../css/style.css">
   <!-- Bootstrap CSS -->
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -22,7 +22,7 @@
   <?php if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!= true||$_SESSION['userid']!='admin'): echo"<script> alert('You are not authorised to this page'); window.location.replace('../../')</script>"; endif;?>
   <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
     <div class="container-fluid">
-      <a class="navbar-brand" href="../../index.html"><img src="../../images/iiita_logo.png" alt="" width="100px"
+      <a class="navbar-brand" href="../../index.html"><img src="../../../images/iiita_logo.png" alt="" width="100px"
           height="100px" class="d-inline-block align-text-middle"></a>
       <div class="new">
         <a class="navbar-text">
@@ -50,7 +50,7 @@
             $result = $con->query($sql);
             if($result->num_rows>0){
                 $arr=array();
-                echo "<form action='view_faculty.php' method='POST'>";
+                echo "<form action='view_faculty.php' method='POST' class='table-responsive' style='width:100%;'>";
                 echo "<table class='table'>";
                 echo "<thead class='p-3 mb-2 bg-primary text-white'>";
                 echo ("<th scope='col'>Name </th>");
@@ -71,7 +71,6 @@
             }
             $con->close();
                 ?>  
-    <script src="../../js/show_faculty.js"></script>
   </div>
   <!-- Optional JavaScript; choose one of the two! -->
 
