@@ -42,7 +42,7 @@
     </nav>
     <div id="top" class='table-responsive'>
         <form action="../../../php/admin/view_faculty/faculty_section_add.php" method="POST" style="display:grid;width: 100%;" id="FORM">
-            <h2>Allot Section to </h2>
+            <h2>Allot Section to <?php echo $_COOKIE['Teacher']; ?></h2>
             <div class="mb-3">
                 <?php echo "<input type='hidden' name='id' value='" . $_COOKIE['Teacher'] . "'>"; ?>
                 <label for="section" class="form-label">Enter the Section:</label>

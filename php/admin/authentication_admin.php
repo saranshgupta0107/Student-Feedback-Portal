@@ -29,7 +29,7 @@ session_start();
                 </script>';
         exit;
     } else
-        echo '<script>alert("Username and password does not match");setTimeout(()=>{window.location.replace("../../html/admin/");},700);</script>';
+        echo '<script>alert("Username and password does not match");setTimeout(()=>{window.location.replace("../../");},700);</script>';
     ?>
 </body>
 

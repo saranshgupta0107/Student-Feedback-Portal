@@ -10,7 +10,7 @@
     <!-- Bootstrap CSS -->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.min.js"></script>
     <title>Show Faculty</title>
 </head>
 
@@ -22,13 +22,13 @@
     endif; ?>
     <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="../../index.html"><img src="../../../images/iiita_logo.png" alt="" width="100px" height="100px" class="d-inline-block align-text-middle"></a>
+            <a class="navbar-brand" href="../../../"><img src="../../../images/iiita_logo.png" alt="" width="100px" height="100px" class="d-inline-block align-text-middle"></a>
             <div class="new">
                 <a class="navbar-text">
                     Welcome to Student Feedback Portal
                 </a>
             </div>
-            <a href="../../php/logout.php"><button type="button" class="btn btn-primary" id="liveAlertn" style="margin-bottom: 1%;margin-left: -20%;">Logout</button></a>
+            <a href="../../../php/logout.php"><button type="button" class="btn btn-primary" id="liveAlertn" style="margin-bottom: 1%;margin-left: -20%;">Logout</button></a>
         </div>
     </nav>
     <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
@@ -39,22 +39,38 @@
             <li class="breadcrumb-item active" aria-current="page">Drop Students</li>
         </ol>
     </nav>
-    <div id="top" class='table-responsive'>
-        <form action="form_action.php" method="POST" enctype="multipart/form-data" style="display:grid;width:100%;" id="FORM">
-            <h2>Drop student</h2>
+    <div id="top" class='table-responsive' style="display:flow-root">
+        <h2>Drop student</h2>
+        <form action="../../../php/admin/drop_student/drop_student.php" method="POST" enctype="multipart/form-data" style="display:grid;width:100%;" id="FORM">
             <div class="mb-3">
                 <br>
                 <label for="ID" class="form-label">Enter the student to drop:</label>
                 <input type="text" id="ID" name="ID" required class="form-control" placeholder="Example: IIT2021155">
+                <input type="submit" name="submit1" id='submit1' value="Submit">
+            </div>
+        </form>
+        <br>
+        <label for="csvfile" class="form-label">Or Upload CSV file for mass delete:</label>
+        <input type="file" id="csvfile" name="csvfile" required class="form-control" accept=".csv">
+        <form action="../../../php/admin/drop_student/drop_student.php" method="POST" enctype="multipart/form-data" style="display:grid;width:100%;" id="FORM">
+            <div class="mb-3">
+                <input type='hidden' name='file_data' id='file_data'>
+                <input type="submit" name="submit2" id='submit2' value="Submit" disabled='true'>
+            </div>
+        </form>
+        <form action="../../../php/admin/drop_student/drop_student.php" method="POST" enctype="multipart/form-data" style="display:grid;width:100%;" id="FORM">
+            <div class="mb-3">
                 <br>
-                <label for="csvfile" class="form-label">Or Upload CSV file for mass delete:</label>
-                <input type="file" id="csvfile" name="csvfile" required class="form-control">
-                <br>
-                <input type="submit" name="submit" value="Submit">
+                <label for="submit" class="form-label">Or Click me to drop all students:</label>
+                <input type='hidden' name='all' value='all'>
+                <input type="submit" name="submit3" value="Submit">
             </div>
         </form>
     </div>
-    <!-- Optional JavaScript; choose one of the two! -->
+
+    <script src='../../../js/admin/drop_student/drop_student.js'></script>
+    <!-- Optional JavaScript; choose one of the two! 
+        -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

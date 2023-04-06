@@ -9,10 +9,6 @@ session_start();
     require('../connection.php');
     $username = $_POST['email'];
     $password = $_POST['pass'];
-    echo "<script> sessionStorage.setItem('username','$username'); 
-        
-                 sessionStorage.setItem('password','$password');
-        </script>";
 
     //to prevent from mysqli injection  
     $username = stripcslashes($username);
@@ -20,20 +16,20 @@ session_start();
     $username = mysqli_real_escape_string($con, $username);
     $password = mysqli_real_escape_string($con, $password);
 
-    $sql = "select * from instructor where email = '$username' and pass = '$password'";
+    $sql = "select *from instructor where id = '$username' and password = '$password'";
     $result = mysqli_query($con, $sql);
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
     $count = mysqli_num_rows($result);
     if ($count == 1) {
         $_SESSION['loggedin'] = true;
-        $_SESSION['userid'] = 'faculty';
+        $_SESSION['userid'] = "faculty";
         $_SESSION['LAST_ACTIVITY'] = time();
         echo '<script>
-                window.location.replace("../../html/faculty/");
+                setTimeout(()=>{window.location.replace("../../html/faculty/");},1000);
                 </script>';
         exit;
     } else
-        echo '<script>alert("Username and password does not match");setTimeout(()=>{window.location.replace("../../html/faculty/login_faculty.html");},700);</script>';
+        echo '<script>alert("Username and password does not match");setTimeout(()=>{window.location.replace("../../");},700);</script>';
     ?>
 </body>
 
