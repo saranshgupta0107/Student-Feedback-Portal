@@ -22,13 +22,13 @@
     endif; ?>
     <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="../../index.html"><img src="../../../images/iiita_logo.png" alt="" width="100px" height="100px" class="d-inline-block align-text-middle"></a>
+            <a class="navbar-brand" href="../../../"><img src="../../../images/iiita_logo.png" alt="" width="100px" height="100px" class="d-inline-block align-text-middle"></a>
             <div class="new">
                 <a class="navbar-text">
                     Welcome to Student Feedback Portal
                 </a>
             </div>
-            <a href="../../php/logout.php"><button type="button" class="btn btn-primary" id="liveAlertn" style="margin-bottom: 1%;margin-left: -20%;">Logout</button></a>
+            <a href="../../../php/logout.php"><button type="button" class="btn btn-primary" id="liveAlertn" style="margin-bottom: 1%;margin-left: -20%;">Logout</button></a>
         </div>
     </nav>
     <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
@@ -36,19 +36,23 @@
             <li class="breadcrumb-item" style="text-decoration: none;"><a href="../../../">Home</a></li>
             <li class="breadcrumb-item" style="text-decoration: none;"><a href="login_admin.html">Log In</a></li>
             <li class="breadcrumb-item" style="text-decoration: none;"><a href="../">Admin</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Drop Students</li>
+            <li class="breadcrumb-item" style="text-decoration: none;"" aria-current=" page"><a href="../view_faculty/">View Faculty</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Allot Section</li>
         </ol>
     </nav>
     <div id="top" class='table-responsive'>
-        <form action="form_action.php" method="POST" enctype="multipart/form-data" style="display:grid;width:100%;" id="FORM">
-            <h2>Drop student</h2>
+        <form action="../../../php/admin/view_faculty/faculty_section_add.php" method="POST" style="display:grid;width: 100%;" id="FORM">
+            <h2>Allot Section to </h2>
             <div class="mb-3">
+                <?php echo "<input type='hidden' name='id' value='" . $_COOKIE['Teacher'] . "'>"; ?>
+                <label for="section" class="form-label">Enter the Section:</label>
+                <input type="text" id="sec_id" name="sec_id" required class="form-control" pattern="\w{1,2}">
                 <br>
-                <label for="ID" class="form-label">Enter the student to drop:</label>
-                <input type="text" id="ID" name="ID" required class="form-control" placeholder="Example: IIT2021155">
+                <label for="semester" class="form-label">Enter the semester:</label>
+                <input type="number" id="semester" name="semester" required class="form-control" max='10' min='1'>
                 <br>
-                <label for="csvfile" class="form-label">Or Upload CSV file for mass delete:</label>
-                <input type="file" id="csvfile" name="csvfile" required class="form-control">
+                <label for="course_id" class="form-label">Enter the course:</label>
+                <input type="text" id="course_id" name="course_id" required class="form-control" pattern="\w{1,20}">
                 <br>
                 <input type="submit" name="submit" value="Submit">
             </div>

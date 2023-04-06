@@ -23,13 +23,13 @@
   endif; ?>
   <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
     <div class="container-fluid">
-      <a class="navbar-brand" href="../../index.html"><img src="../../../images/iiita_logo.png" alt="" width="100px" height="100px" class="d-inline-block align-text-middle"></a>
+      <a class="navbar-brand" href="../../"><img src="../../../images/iiita_logo.png" alt="" width="100px" height="100px" class="d-inline-block align-text-middle"></a>
       <div class="new">
         <a class="navbar-text">
           Welcome to Student Feedback Portal
         </a>
       </div>
-      <a href="../../php/logout.php"><button type="button" class="btn btn-primary" id="liveAlertn" style="margin-bottom: 1%;margin-left: -20%;">Logout</button></a>
+      <a href="../../../php/logout.php"><button type="button" class="btn btn-primary" id="liveAlertn" style="margin-bottom: 1%;margin-left: -20%;">Logout</button></a>
     </div>
   </nav>
   <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
@@ -37,11 +37,12 @@
       <li class="breadcrumb-item" style="text-decoration: none;"><a href="../../../">Home</a></li>
       <li class="breadcrumb-item" style="text-decoration: none;"><a href="login_admin.html">Log In</a></li>
       <li class="breadcrumb-item" style="text-decoration: none;"><a href="../">Admin</a></li>
-      <li class="breadcrumb-item" style="text-decoration: none;"" aria-current=" page"><a href="../">View Faculty</a>
+      <li class="breadcrumb-item" style="text-decoration: none;"" aria-current=" page"><a href="../view_faculty/">View Faculty</a>
       </li>
       <li class="breadcrumb-item active" aria-current="page">Edit
         <?php require('../../../php/connection.php');
         $email = array_values($_POST)[0];
+        setcookie('Teacher', $email, time() + 60 * 5);
         $email = stripcslashes($email);
         $email = mysqli_real_escape_string($con, $email);
         $sql = "select name from instructor where id='" . $email . "';";
@@ -67,18 +68,18 @@
     $email = mysqli_real_escape_string($con, $email);
     $sql = "select sec_id,semester,course_id from teaches where id='" . $email . "';";
     $result = $con->query($sql);
+    echo "<table class='table'>";
+    echo "<thead class='p-3 mb-2 bg-primary text-white'>";
+    echo ("<th scope='col'>Section</th>");
+    echo ("<th scope='col'>Course</th>");
+    echo ("<th scope='col'>Semester</th>");
+    echo ("<th scope='col'></th>");
+    echo "<th></th>";
+    echo "</thead>";
+    echo "<tbody>";
     if ($result->num_rows > 0) {
-      $arr = array();
-      echo "<table class='table'>";
-      echo "<thead class='p-3 mb-2 bg-primary text-white'>";
-      echo ("<th scope='col'>Section</th>");
-      echo ("<th scope='col'>Course</th>");
-      echo ("<th scope='col'>Semester</th>");
-      echo "<th></th>";
-      echo "</thead>";
-      echo "<tbody>";
       foreach ($result as $row => $val) {
-        echo "<form action='../../../php/admin/faculty_section_drop.php' method='POST' style='width:100%;' onsubmit='return show_alert(this);'>";
+        echo "<form action='../../../php/admin/view_faculty/faculty_section_drop.php' method='POST' style='width:100%;' onsubmit='return show_alert(this);'>";
         echo "<input type='hidden' name='course_id' value='" . $val['course_id'] . "' style='display:none'></input>";
         echo "<input type='hidden' name='sec_id' value='" . $val['sec_id'] . "' style='display:none'></input>";
         echo "<input type='hidden' name='semester' value='" . $val['semester'] . "' style='display:none'></input>";
@@ -91,10 +92,12 @@
         echo "</tr>";
         echo "</form>";
       }
-      echo "</tbody>";
-      echo "</table>";
-    } else
-      echo "<h1>No Sections alloted yet</h1>";
+    }
+    echo "<form action='allot_section.php' method='POST'style='width:100%;'>";
+    echo "<tr><td></td><td></td><td></td><td><button name='x' class='btn btn-primary' type='submit' >Allot a section+</button></td></tr>";
+    echo "</form>";
+    echo "</tbody>";
+    echo "</table>";
     $con->close();
     ?>
   </div>
