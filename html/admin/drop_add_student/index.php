@@ -54,6 +54,21 @@
             </div>
         </form>
     </div>
+    <div id="top" class='table-responsive'>
+        <form action="form_action.php" method="POST" enctype="multipart/form-data" style="display:grid;width:100%;" id="FORM">
+            <h2>Add student</h2>
+            <div class="mb-3">
+                <br>
+                <label for="ID" class="form-label">Enter the student to add:</label>
+                <input type="text" id="ID" name="ID" required class="form-control" placeholder="Example: IIT2021155">
+                <br>
+                <label for="csvfile" class="form-label">Or Upload CSV file for mass addition:</label>
+                <input type="file" id="csvfile" name="csvfile" required class="form-control">
+                <br>
+                <input type="submit" name="submit" value="Submit">
+            </div>
+        </form>
+    </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
