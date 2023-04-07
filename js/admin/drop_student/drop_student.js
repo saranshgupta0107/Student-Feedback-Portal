@@ -25,7 +25,6 @@ async function excelFileToJSON(file) {
                 }
                 var hidden = document.getElementById('file_data')
                 hidden.value = result;
-                console.log(result);
             });
         }
     } catch (e) {

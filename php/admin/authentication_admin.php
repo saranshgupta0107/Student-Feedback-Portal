@@ -13,6 +13,8 @@ session_start();
     //to prevent from mysqli injection  
     $username = stripcslashes($username);
     $password = stripcslashes($password);
+    $password = $password . "randomsalt";
+    $password = hash('ripemd128', $password);
     $username = mysqli_real_escape_string($con, $username);
     $password = mysqli_real_escape_string($con, $password);
 

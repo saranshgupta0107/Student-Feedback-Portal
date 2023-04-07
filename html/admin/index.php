@@ -93,7 +93,7 @@
             <div class="card-body">
               <h5 class="card-title">View Feedback</h5>
               <p class="card-text">View the feedback.</p>
-              <a class="btn btn-primary" href="view_faculty/" role="button">View Feedback</a>
+              <a class="btn btn-primary" href="view_feedback/" role="button">View Feedback</a>
             </div>
           </div>
         </div>

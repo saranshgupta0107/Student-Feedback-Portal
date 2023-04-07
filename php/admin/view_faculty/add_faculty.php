@@ -22,6 +22,8 @@ session_start();
     $name = stripcslashes($name);
     $dept_name = stripcslashes($dept_name);
     $id = mysqli_real_escape_string($con, $id);
+    $password = $password . "randomsalt";
+    $password = hash('ripemd128', $password);
     $password = mysqli_real_escape_string($con, $password);
     $dept_name = mysqli_real_escape_string($con, $dept_name);
     $name = mysqli_real_escape_string($con, $name);
