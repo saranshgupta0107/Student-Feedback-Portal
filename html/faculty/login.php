@@ -34,7 +34,7 @@
   </nav>
   <div id="login">
     <div class="newform">
-      <form name="f1" action="../../php/faculty/authentication_faculty.php" onsubmit="return validation()" method="post" style="display:grid;width: 350px;" id="FORM">
+      <form name="f1" action="../../php/faculty/authentication.php" onsubmit="return validation()" method="post" style="display:grid;width: 350px;" id="FORM">
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email address</label>
           <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="email@iiita.ac.in" pattern="[a-z]+@iiita.ac.in" required>

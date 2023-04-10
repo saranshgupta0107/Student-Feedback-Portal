@@ -21,11 +21,11 @@
     session_destroy();
   }
   ?>
-  <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'faculty') : echo "<script> alert('You are not authorised to this page'); window.location.replace('../../index.html');</script>";
+  <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'faculty') : echo "<script> alert('You are not authorised to this page'); window.location.replace('../../');</script>";
   endif ?>
   <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
     <div class="container-fluid">
-      <a class="navbar-brand" href="../../index.html"><img src="../../images/iiita_logo.png" alt="" width="100px" height="100px" class="d-inline-block align-text-middle"></a>
+      <a class="navbar-brand" href="../../"><img src="../../images/iiita_logo.png" alt="" width="100px" height="100px" class="d-inline-block align-text-middle"></a>
       <div class="new">
         <a class="navbar-text">
           Welcome to Student Feedback Portal
@@ -37,42 +37,57 @@
   </nav>
   <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item" style="text-decoration: none;"><a href="../../index.html#goback">Home</a></li>
-      <li class="breadcrumb-item" style="text-decoration: none;"><a href="login_faculty.html">Log In</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Faculty</li>
+      <li class="breadcrumb-item" style="text-decoration: none;"><a href="../../">Home</a></li>
+      <li class="breadcrumb-item" style="text-decoration: none;"><a href="login.php">Log In</a></li>
+      <li class="breadcrumb-item active" aria-current="page"><?php echo($_SESSION['id']);?></li>
     </ol>
   </nav>
-  <div id="top">
-    <div class="jumbotron">
-      <h2 class="display-4">Hello,Professor!</h2>
-      <p class="lead">This is the student feedback portal, designed to collect the feedbacks from the students regarding
-        the courses they are enrolled in.</p>
-      <hr class="my-4">
-      <p>See the Feedback for your Courses.</p>
-      <button type="button" class="btn btn-primary" id="liveAlertBtn" onclick="window.location.href='#deck'">Go to
-        Dashboard</button>
-    </div>
-  </div>
   <div id="group">
-    <div class="container-fluid" style="background-color: rgba(0,0,0,0.556);">
-      <div class="card-deck" id="deck" style="padding:10%;">
-        <!--<div class="card" style="display: inline-block;">
-      <img src="https://source.unsplash.com/360x240/?technology" class="card-img-top" alt="..." href="show_feedback.html">
-      <div class="card-body">
-        <h5 class="card-title">DBMS</h5>
-        <p class="card-text">Database Management System.</p>
-      </div>
-      <div class="card" style="display: inline-block;">
-        <a href="show_feedback.html" style="text-decoration: none;color: black;">
-        <img src="https://source.unsplash.com/360x240/?education" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">OS</h5>
-          <p class="card-text">Operating System.</p>
+    <div class="card-group" style="padding: 10%; background-color: rgba(0, 0, 0, 0.558);">
+      <div class="row mt-4">
+        <div class="col">
+          <div class="card">
+            <img src="https://source.unsplash.com/1400x700/?view" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Add Students</h5>
+              <p class="card-text">Add students to a course taught by you.</p>
+              <a class="btn btn-primary" href="add_student/" role="button">Add</a>
+            </div>
+          </div>
         </div>
-        </a>
+        <!-- <div class="col">
+          <div class="card">
+            <img src="https://source.unsplash.com/1400x700/?teacher" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Add Section</h5>
+              <p class="card-text">Add Section for a subject</p>
+              <a class="btn btn-primary" href="" role="button">Add Section</a>
+            </div>
+          </div>
+        </div> -->
       </div>
-    </div>-->
-      </div>
+      <!-- <div class="row mt-4">
+        <div class="col">
+          <div class="card">
+            <img src="https://source.unsplash.com/1400x700/?education,technology" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Drop/Add Students</h5>
+              <p class="card-text">Change the students</p>
+              <a class="btn btn-primary" href="drop_add_student/" role="button">Drop/Add</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img src="https://source.unsplash.com/1400x700/?view" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">View Feedback</h5>
+              <p class="card-text">View the feedback.</p>
+              <a class="btn btn-primary" href="view_feedback/" role="button">View Feedback</a>
+            </div>
+          </div>
+        </div>
+      </div> -->
     </div>
   </div>
   <script src='../../js/faculty_courses.js'>
