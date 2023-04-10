@@ -85,7 +85,7 @@
       <button type="button" class="btn btn-outline-primary"
         onclick="window.location.href='html/admin/login_admin.php'">Admin</button>
       <button type="button" class="btn btn-outline-primary"
-        onclick="window.location.href='html/faculty/login_faculty.php'">Faculty</button>
+        onclick="window.location.href='html/faculty/login.php'">Faculty</button>
       <button type="button" class="btn btn-outline-primary"
         onclick="window.location.href='html/student/login_student.php'">Student</button>
     </div>
