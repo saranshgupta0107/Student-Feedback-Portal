@@ -71,7 +71,7 @@
             <div class="card-body">
               <h5 class="card-title">Add Section</h5>
               <p class="card-text">Add Section for a subject</p>
-              <a class="btn btn-primary" href="" role="button">Add Section</a>
+              <a class="btn btn-primary" href="add_section/" role="button">Add Section</a>
             </div>
           </div>
         </div>
