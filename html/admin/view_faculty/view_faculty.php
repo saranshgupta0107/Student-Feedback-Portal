@@ -70,10 +70,10 @@
     $result = $con->query($sql);
     echo "<table class='table'>";
     echo "<thead class='p-3 mb-2 bg-primary text-white'>";
-    echo ("<th scope='col'>Section</th>");
-    echo ("<th scope='col'>Course</th>");
-    echo ("<th scope='col'>Semester</th>");
-    echo ("<th scope='col'></th>");
+    echo ("<th scope='col' style='width: 25%;text-align: center;'>Section</th>");
+    echo ("<th scope='col' style='width: 25%;text-align: center;'>Course</th>");
+    echo ("<th scope='col' style='width: 25%;text-align: center;'>Semester</th>");
+    echo ("<th scope='col' style='width: 25%;text-align: center;'></th>");
     echo "<th></th>";
     echo "</thead>";
     echo "<tbody>";

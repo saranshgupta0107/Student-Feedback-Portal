@@ -39,7 +39,7 @@
     <ol class="breadcrumb">
       <li class="breadcrumb-item" style="text-decoration: none;"><a href="../../">Home</a></li>
       <li class="breadcrumb-item" style="text-decoration: none;"><a href="login.php">Log In</a></li>
-      <li class="breadcrumb-item active" aria-current="page"><?php echo($_SESSION['id']);?></li>
+      <li class="breadcrumb-item active" aria-current="page"><?php echo ($_SESSION['id']); ?></li>
     </ol>
   </nav>
   <div id="group">
@@ -55,28 +55,6 @@
             </div>
           </div>
         </div>
-        <!-- <div class="col">
-          <div class="card">
-            <img src="https://source.unsplash.com/1400x700/?teacher" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Add Section</h5>
-              <p class="card-text">Add Section for a subject</p>
-              <a class="btn btn-primary" href="" role="button">Add Section</a>
-            </div>
-          </div>
-        </div> -->
-      </div>
-      <!-- <div class="row mt-4">
-        <div class="col">
-          <div class="card">
-            <img src="https://source.unsplash.com/1400x700/?education,technology" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Drop/Add Students</h5>
-              <p class="card-text">Change the students</p>
-              <a class="btn btn-primary" href="drop_add_student/" role="button">Drop/Add</a>
-            </div>
-          </div>
-        </div>
         <div class="col">
           <div class="card">
             <img src="https://source.unsplash.com/1400x700/?view" class="card-img-top" alt="...">
@@ -87,7 +65,7 @@
             </div>
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
   <script src='../../js/faculty_courses.js'>

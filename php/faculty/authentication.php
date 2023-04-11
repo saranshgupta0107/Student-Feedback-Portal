@@ -3,6 +3,7 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html>
+
 <body>
     <?php
     require('../connection.php');
@@ -23,7 +24,7 @@ session_start();
         $_SESSION['loggedin'] = true;
         $_SESSION['userid'] = "faculty";
         $_SESSION['LAST_ACTIVITY'] = time();
-        $_SESSION['id']=$username;
+        $_SESSION['id'] = $username;
         echo '<script>
                 setTimeout(()=>{window.location.replace("../../html/faculty/");},1000);
                 </script>';
@@ -32,4 +33,5 @@ session_start();
         echo '<script>alert("Username and password does not match");setTimeout(()=>{window.location.replace("../../");},700);</script>';
     ?>
 </body>
+
 </html>

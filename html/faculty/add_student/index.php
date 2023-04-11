@@ -35,7 +35,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item" style="text-decoration: none;"><a href="../../../">Home</a></li>
             <li class="breadcrumb-item" style="text-decoration: none;"><a href="../login.php">Log In</a></li>
-            <li class="breadcrumb-item" style="text-decoration: none;"><a href="../"><?php echo($_SESSION['id'])?></a></li>
+            <li class="breadcrumb-item" style="text-decoration: none;"><a href="../"><?php echo ($_SESSION['id']) ?></a></li>
             <li class="breadcrumb-item active" aria-current="page">Add Students</li>
         </ol>
     </nav>
@@ -48,8 +48,8 @@
                 <input type="text" id="ID" name="ID" required class="form-control" placeholder="ID Example: IIT2021155">
                 <input type="text" id="sec" name="sec" required class="form-control" placeholder="SECTION Example: B">
                 <input type="text" id="course" name="course" required class="form-control" placeholder="COURSE Example: DBMS">
-                <input type="number" id="semes" name="semes" required class="form-control" placeholder="SEMESTER Example: 4" min="1" max="8" >
-                <input type="submit" name="submit_add_single" id='submit_add_single' value="Submit">
+                <input type="number" id="semes" name="semes" required class="form-control" placeholder="SEMESTER Example: 4" min="1" max="8">
+                <input type="submit" name="submit_add_single" id='submit_add_single' value="Submit" class='btn btn-primary'>
             </div>
         </form>
         <br>
@@ -57,11 +57,11 @@
         <input type="file" id="csvfile" name="csvfile" required class="form-control" accept=".csv,.xlsx">
         <form action="../../../php/faculty/add_student/add_student.php" method="POST" enctype="multipart/form-data" style="display:grid;width:100%;" id="FORM">
             <div class="mb-3">
-            <input type="text" id="sec" name="sec" required class="form-control" placeholder="SECTION Example: B">
+                <input type="text" id="sec" name="sec" required class="form-control" placeholder="SECTION Example: B">
                 <input type="text" id="course" name="course" required class="form-control" placeholder="COURSE Example: DBMS">
-                <input type="number" id="semes" name="semes" required class="form-control" placeholder="SEMESTER Example: 4" min="1" max="8" >
+                <input type="number" id="semes" name="semes" required class="form-control" placeholder="SEMESTER Example: 4" min="1" max="8">
                 <input type='hidden' name='file_data' id='file_data'>
-                <input type="submit" name="submit2" id='submit2' value="Submit" disabled='true'>
+                <input type="submit" name="submit2" id='submit2' value="Submit" disabled='true' class='btn btn-primary'>
             </div>
         </form>
     </div>

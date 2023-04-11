@@ -47,8 +47,8 @@
     $result = $con->query($sql);
     echo "<table class='table'>";
     echo "<thead class='p-3 mb-2 bg-primary text-white'>";
-    echo ("<th scope='col'>Name </th>");
-    echo ("<th scope='col'>Email </th>");
+    echo ("<th scope='col' style='width: 25%;text-align: center;'>Name </th>");
+    echo ("<th scope='col' style='width: 25%;text-align: center;'>Email </th>");
     echo "<th></th>";
     echo "</thead>";
     echo "<tbody>";

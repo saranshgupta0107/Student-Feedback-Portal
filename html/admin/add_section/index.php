@@ -53,7 +53,7 @@
                 <label for="semester" class="form-label">Enter the semester to create the course for:</label>
                 <input type="number" id="semester" min="1" max="10" name="semester" required class="form-control">
                 <br>
-                <input type="submit" name="submit" value="Submit">
+                <input type="submit" name="submit" value="Submit" class='btn btn-primary'>
             </div>
         </form>
     </div>

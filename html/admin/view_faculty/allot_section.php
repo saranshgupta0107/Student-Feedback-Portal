@@ -54,7 +54,7 @@
                 <label for="course_id" class="form-label">Enter the course:</label>
                 <input type="text" id="course_id" name="course_id" required class="form-control" pattern="\w{1,20}">
                 <br>
-                <input type="submit" name="submit" value="Submit">
+                <input type="submit" name="submit" value="Submit" class='btn btn-primary'>
             </div>
         </form>
     </div>
