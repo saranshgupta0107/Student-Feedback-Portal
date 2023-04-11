@@ -30,8 +30,12 @@
         </script>";
     }
     ?>
-    <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'admin') : echo "<script> alert('You are not authorised to this page'); window.location.replace('../../')</script>";
-    endif; ?>
+    <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'admin') {
+        session_unset();
+        session_destroy();
+        echo "<script> alert('You are not authorised to this page'); window.location.replace('../../../')</script>";
+    }
+    ?>
     <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
         <div class="container-fluid">
             <a class="navbar-brand" href="../../../"><img src="../../../images/iiita_logo.png" alt="" width="100px" height="100px" class="d-inline-block align-text-middle"></a>
@@ -59,9 +63,6 @@
                 <br>
                 <label for="ID" class="form-label">Enter the instructor ID:</label>
                 <input type="text" id="ID" name="ID" required class="form-control" placeholder="Example: xyz@iiita.ac.in" pattern="\w+@iiita.ac.in">
-                <br>
-                <label for="password" class="form-label">Enter the instructor password:</label>
-                <input type="password" id="password" name="password" required class="form-control" pattern="\w{8,20}">
                 <br>
                 <label for="name" class="form-label">Enter the instructor Name:</label>
                 <input type="text" id="name" name="name" required class="form-control" pattern="\w+">

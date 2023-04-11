@@ -14,11 +14,11 @@ session_start();
     $username = stripcslashes($username);
     $password = stripcslashes($password);
     $password = $password . "randomsalt";
-    $password = hash('ripemd128', $password);
+    $password = hash('ripemd160', $password);
     $username = mysqli_real_escape_string($con, $username);
     $password = mysqli_real_escape_string($con, $password);
 
-    $sql = "select *from student where id = '$username' and password = '$password'";
+    $sql = "select * from student where id = '$username' and password = '$password'";
     $result = mysqli_query($con, $sql);
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
     $count = mysqli_num_rows($result);
@@ -26,9 +26,14 @@ session_start();
         $_SESSION['loggedin'] = true;
         $_SESSION['userid'] = "student";
         $_SESSION['LAST_ACTIVITY'] = time();
-        $_SESSION['username'] = $username;
+        $sql = "select anon_id from represents where stud_id='$username';";
+        $result = mysqli_query($con, $sql);
+        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+        $row = json_decode(json_encode($row));
+        $_SESSION['id'] = $username;
+        $_SESSION['username'] = $row->anon_id;
         echo '<script>
-                setTimeout(()=>{window.location.replace("../../html/student/");},1000);
+                setTimeout(()=>{window.location.replace("../../html/student/");},100);
                 </script>';
         exit;
     } else

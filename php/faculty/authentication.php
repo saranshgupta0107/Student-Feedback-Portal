@@ -13,7 +13,7 @@ session_start();
     $username = stripcslashes($username);
     $password = stripcslashes($password);
     $password = $password . "randomsalt";
-    $password = hash('ripemd128', $password);
+    $password = hash('ripemd160', $password);
     $username = mysqli_real_escape_string($con, $username);
     $password = mysqli_real_escape_string($con, $password);
     $sql = "select *from instructor where id = '$username' and password = '$password'";

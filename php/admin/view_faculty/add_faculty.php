@@ -25,8 +25,9 @@ session_start();
     endif; ?>
     <?php
     require('../../connection.php');
+    require('../../gen_id.php');
     $id = $_POST['ID'];
-    $password = $_POST['password'];
+    $password = gen_pas();
     $name = $_POST['name'];
     $dept_name = $_POST['dept_name'];
     //to prevent from mysqli injection  

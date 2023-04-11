@@ -7,6 +7,7 @@ session_start();
 <body>
     <?php
     session_start();
+    require('../../connection.php');
     if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
         session_unset();
         session_destroy();
@@ -24,7 +25,7 @@ session_start();
     <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'admin') : echo "<script> alert('You are not authorised to this page'); window.location.replace('../../')</script>";
     endif; ?>
     <?php
-    require('../../connection.php');
+
     $id = $_POST['course_id'];
     $sec_id = $_POST['sec_id'];
     $semester = $_POST['semester'];

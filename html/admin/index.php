@@ -14,10 +14,12 @@
 
 <body>
   <?php
+  require('../../php/gen_id.php');
   session_start();
   if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
     session_unset();
     session_destroy();
+    erase_cookies();
     echo "
         <script>
         function logout() {
@@ -28,8 +30,13 @@
         </script>";
   }
   ?>
-  <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'admin') : echo "<script> alert('You are not authorised to this page'); window.location.replace('../../')</script>";
-  endif; ?>
+  <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'admin') {
+    session_unset();
+    session_destroy();
+    erase_cookies();
+    echo "<script> alert('You are not authorised to this page'); window.location.replace('../../')</script>";
+  }
+  ?>
   <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
     <div class="container-fluid">
       <a class="navbar-brand" href="../../"><img src="../../images/iiita_logo.png" alt="" width="100px" height="100px" class="d-inline-block align-text-middle"></a>
@@ -50,13 +57,10 @@
   </nav>
   <div id="top">
     <div class="jumbotron">
-      <h2 class="display-4">Hello, IIIT Admin!</h2>
+      <h6 class="display-4">Hello, IIIT Admin!</h6>
       <p class="lead">This is the student feedback portal, designed to collect the feedbacks from the students regarding
         the courses they are enrolled in.</p>
       <hr class="my-4">
-      <p>You can view feedback, delete feedback or add any new user to the system.</p>
-      <button type="button" class="btn btn-primary" id="liveAlertBtn" onclick="window.location.href='#group'">Choose
-        Your Action</button>
     </div>
   </div>
   <div id="group">

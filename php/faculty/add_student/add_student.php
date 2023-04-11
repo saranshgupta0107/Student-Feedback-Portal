@@ -80,7 +80,7 @@ session_start();
             $sqlchk2 = "select * from teaches where id='" . $_SESSION['id'] . "' and course_id='" . $course . "' and semester=" . (int)$_semes . " and sec_id='" . $_sec . "';";
             $resultchk1 = mysqli_query($con, $sqlchk1);
             if (mysqli_num_rows($resultchk1) == 0) {
-                echo "<script>alert('The student with the name and id is not present in the database!');setTimeout(()=>{window.location.replace('../../../html/faculty/add_student/');},700);</script>";
+                echo "<script>alert('The student with the id:$id is not present in the database!');setTimeout(()=>{window.location.replace('../../../html/faculty/add_student/');},700);</script>";
                 mysqli_rollback($con);
                 return;
             }

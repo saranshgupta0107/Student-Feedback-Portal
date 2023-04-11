@@ -30,8 +30,12 @@
         </script>";
     }
     ?>
-    <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'admin') : echo "<script> alert('You are not authorised to this page'); window.location.replace('../../')</script>";
-    endif; ?>
+    <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'admin') {
+        session_unset();
+        session_destroy();
+        echo "<script> alert('You are not authorised to this page'); window.location.replace('../../../')</script>";
+    }
+    ?>
     <script>
         function show_alert() {
             if (!confirm("Do you really want to do this?")) {
