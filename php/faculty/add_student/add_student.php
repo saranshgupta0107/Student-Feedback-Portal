@@ -5,6 +5,20 @@ session_start();
 <html>
 
 <body>
+    <?php
+    if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
+        session_unset();
+        session_destroy();
+        echo "
+        <script>
+        function logout() {
+            alert('You have been logged in for more than 30 minutes, Timeout!');
+            window.location.replace('http://localhost/DBMS-Project/');
+        };
+        logout();
+        </script>";
+    }
+    ?>
     <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'faculty') : echo "<script> alert('You are not authorised to this page'); window.location.replace('../../../')</script>";
     endif; ?>
     <?php
@@ -23,7 +37,7 @@ session_start();
         $_sec = mysqli_real_escape_string($con, $_sec);
         $_semes = stripcslashes($_semes);
         $_semes = mysqli_real_escape_string($con, $_semes);
-        $sqlchk1 = "select * from student where id='" . $id . "';";
+        $sqlchk1 = "select * from student where id='" . $id . "@iiita.ac.in';";
         $sqlchk2 = "select * from teaches where id='" . $_SESSION['id'] . "' and course_id='" . $course . "' and semester=" . (int)$_semes . " and sec_id='" . $_sec . "';";
         $resultchk1 = mysqli_query($con, $sqlchk1);
         if (mysqli_num_rows($resultchk1) == 0) {
@@ -35,7 +49,7 @@ session_start();
             echo "<script>alert('You dont currently teach this course!\nPlease check the semester or section');setTimeout(()=>{window.location.replace('../../../html/faculty/add_student/');},700);</script>";
             return;
         }
-        $sql = $sql . " values ('" . $id . "','" . $course . "','" . $_sec . "'," . (int)$_semes . ");";
+        $sql = $sql . " values ('" . $id . "@iiita.ac.in','" . $course . "','" . $_sec . "'," . (int)$_semes . ");";
         // echo($sql);
         try {
             $result = mysqli_query($con, $sql);

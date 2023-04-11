@@ -9,7 +9,7 @@ session_start();
     require('../connection.php');
     $username = $_POST['email'];
     $password = $_POST['pass'];
-    
+
     //to prevent from mysqli injection  
     $username = stripcslashes($username);
     $password = stripcslashes($password);
@@ -26,6 +26,7 @@ session_start();
         $_SESSION['loggedin'] = true;
         $_SESSION['userid'] = "student";
         $_SESSION['LAST_ACTIVITY'] = time();
+        $_SESSION['username'] = $username;
         echo '<script>
                 setTimeout(()=>{window.location.replace("../../html/student/");},1000);
                 </script>';

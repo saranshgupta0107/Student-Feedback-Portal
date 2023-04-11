@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="../../css/style.css">
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
   <title>Admin Dashboard</title>
 </head>
 
@@ -19,6 +18,14 @@
   if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
     session_unset();
     session_destroy();
+    echo "
+        <script>
+        function logout() {
+            alert('You have been logged in for more than 30 minutes, Timeout!');
+            window.location.replace('http://localhost/DBMS-Project/');
+        };
+        logout();
+        </script>";
   }
   ?>
   <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'admin') : echo "<script> alert('You are not authorised to this page'); window.location.replace('../../')</script>";
