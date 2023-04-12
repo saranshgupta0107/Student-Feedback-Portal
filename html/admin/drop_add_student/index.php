@@ -60,7 +60,7 @@
             <li class="breadcrumb-item" style="text-decoration: none;"><a href="../../../">Home</a></li>
             <li class="breadcrumb-item" style="text-decoration: none;"><a href="login_admin.html">Log In</a></li>
             <li class="breadcrumb-item" style="text-decoration: none;"><a href="../">Admin</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Drop Students</li>
+            <li class="breadcrumb-item active" aria-current="page">Drop/Add Students</li>
         </ol>
     </nav>
     <div role="group" class="btn-group d-flex justify-center" aria-label="Basic radio toggle button group" style="margin-left:2%;margin-right:2%;padding-left:5%;padding-right:5%;padding-top:2%;width:55%;display:flex;position:relative;left:20%;">
@@ -77,18 +77,18 @@
             </div>
             <div class="mb-3" style="width:100%;">
                 <form action="../../../php/admin/drop_student/drop_student.php" method="POST" enctype="multipart/form-data" style="width:100%;" id="FORM1">
-                    <label for="ID" class="form-label">Enter the student to drop:</label>
-                    <input type="text" id="ID" name="ID" required class="form-control" placeholder="Example: IIT2021155">
-                    <input type="submit" name="submit1" id='submit1' value="Submit" class="btn btn-primary">
+                    <label for="ID" class="form-label mb-3">Enter the student to drop:</label>
+                    <input type="text" id="ID" name="ID" required class="form-control mb-3" placeholder="Example: IIT2021155">
+                    <input type="submit" name="submit1" id='submit1' value="Submit" class="btn btn-primary mb-3">
                 </form>
             </div>
             <br>
             <div class="mb-3" style="width:100%;">
                 <form action="../../../php/admin/drop_student/drop_student.php" method="POST" enctype="multipart/form-data" style="width:100%;" id="FORM2">
                     <label for="csvfile" class="form-label">Or Upload CSV file for mass delete:</label>
-                    <input type="file" id="csvfile1" name="csvfile1" required class="form-control" accept=".csv">
+                    <input type="file" id="csvfile1" name="csvfile1" required class="form-control mb-3" accept=".csv">
                     <input type='hidden' name='file_data1' id='file_data1'>
-                    <input type="submit" name="submit2" id='submit2' value="Submit" disabled='true' class="btn btn-primary">
+                    <input type="submit" name="submit2" id='submit2' value="Submit" disabled='true' class="btn btn-primary mb-3">
                 </form>
             </div>
             <div class="mb-3">
@@ -100,7 +100,7 @@
             </div>
         </div>
     </div>
-    <div id="add" class='table-responsive' style="margin-left:2%;margin-right:2%;padding:5%;padding-top:2%;display:none;">
+    <div id="add" class='table-responsive' style="margin-left:2%;margin-right:2%;padding:5%;padding-top:2%;display:block;">
         <div style="display:flexbox;">
             <div class="mb-3" style="width:100%;">
                 <h2 style="display:flex;">Add student</h2>
@@ -108,37 +108,22 @@
             <div class="mb-3" style="width:100%;">
                 <form action="../../../php/admin/drop_student/add_student.php" method="POST" enctype="multipart/form-data" style="width:100%;" id="FORM4">
                     <label for="ID" class="form-label">Enter the student to add:</label>
-                    <input type="text" id="ID" name="ID" required class="form-control" placeholder="Example: IIT2021155">
-                    <input type="text" id="name" name="name" required class="form-control" placeholder="Example: XXXXXXXXXX">
-                    <input type="text" id="dept_name" name="dept_name" required class="form-control" placeholder="Example: IT">
-                    <input type="submit" name="submit4" id='submit4' value="Submit" class="btn btn-primary">
+                    <input type="text" id="ID" name="ID" required class="form-control mb-3" placeholder="Example: IIT2021155">
+                    <input type="text" id="name" name="name" required class="form-control mb-3" placeholder="Example: XXXXXXXXXX">
+                    <input type="text" id="dept_name" name="dept_name" required class="form-control mb-3" placeholder="Example: IT">
+                    <input type="submit" name="submit4" id='submit4' value="Submit" class="btn btn-primary mb-3">
                 </form>
             </div>
             <br>
             <div class="mb-3" style="width:100%;">
                 <form action="../../../php/admin/drop_student/add_student.php" method="POST" enctype="multipart/form-data" style="width:100%;" id="FORM5">
                     <label for="csvfile" class="form-label">Or Upload CSV file for mass add:</label>
-                    <input type="file" id="csvfile2" name="csvfile2" required class="form-control" accept=".csv">
+                    <input type="file" id="csvfile2" name="csvfile2" required class="form-control mb-3" accept=".csv">
                     <input type='hidden' name='file_data2' id='file_data2'>
-                    <input type="submit" name="submit5" id='submit5' value="Submit" disabled='true' class="btn btn-primary">
+                    <input type="submit" name="submit5" id='submit5' value="Submit" disabled='true' class="btn btn-primary mb-3">
                 </form>
             </div>
         </div>
-    </div>
-    <div id="top" class='table-responsive'>
-        <form action="form_action.php" method="POST" enctype="multipart/form-data" style="display:grid;width:100%;" id="FORM">
-            <h2>Add student</h2>
-            <div class="mb-3">
-                <br>
-                <label for="ID" class="form-label">Enter the student to add:</label>
-                <input type="text" id="ID" name="ID" required class="form-control" placeholder="Example: IIT2021155">
-                <br>
-                <label for="csvfile" class="form-label">Or Upload CSV file for mass addition:</label>
-                <input type="file" id="csvfile" name="csvfile" required class="form-control">
-                <br>
-                <input type="submit" name="submit" value="Submit">
-            </div>
-        </form>
     </div>
     <!-- Optional JavaScript; choose one of the two! -->
     <script src="../../../js/admin/drop_student/drop_student.js"></script>

@@ -62,39 +62,105 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item" style="text-decoration: none;"><a href="../../../">Home</a></li>
             <li class="breadcrumb-item" style="text-decoration: none;"><a href="login_admin.html">Log In</a></li>
-            <li class="breadcrumb-item" style="text-decoration: none;"><a href="../">Admin</a></li>
-            <li class="breadcrumb-item" style="text-decoration: none;"" aria-current=" page"><a href="../view_faculty/">View Faculty</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Add Faculty</li>
+            <li class="breadcrumb-item" style="text-decoration: none;"><a href="../">Student</a></li>
+            <li class="breadcrumb-item active" style="text-decoration: none;"" aria-current=" page">Give Feedback</li>
         </ol>
     </nav>
     <div id="top" class='table-responsive'>
-        <form action="../../../php/admin/view_faculty/add_faculty.php" method="POST" style="display:grid;width: 100%;" id="FORM">
+        <form action="../../../php/student/give_feedback/give_feedback.php" method="POST" style="display:grid;width: 100%;" id="FORM">
             <h2 style="padding:3%;">Give Feedback</h2>
             <div class="mb-3">
-                <div class="mb-3" style="padding:3%;">
+                <div class="mb-3" style="padding-left:3%;padding-right:3%">
                     <label for="ID" class="form-label">Your ID:</label>
-                    <input type="text" id="ID" name="ID" required class="form-control-plaintext" readonly placeholder="<?php echo $_SESSION['username']; ?>" value='<?php echo $_SESSION['username']; ?>'>
+                    <input class="form-control" type="text" id="ID" name="ID" required class="form-control-plaintext" readonly placeholder="<?php echo $_SESSION['username']; ?>" value='<?php echo $_SESSION['username']; ?>'>
                 </div>
-                <div>
+                <div class="mb-3" style="padding-left:3%;padding-right:3%">
                     <label for="course_id" class="form-label">Choose the Course</label>
-                    <select class="form-select" aria-label="Default select example" id="course_id" required onfocus="this.selectedIndex = -1;empty(sec_id);empty(semester);"></select>
+                    <select class="form-select" aria-label="Default select example" id="course_id" name='course_id' required onfocus="this.selectedIndex = -1;empty(sec_id);empty(semester);"></select>
                 </div>
-                <div class="mb-3" style="padding:3%;">
+                <div class="mb-3" style="padding-left:3%;padding-right:3%">
                     <label for="sec_id" class="form-label">Choose the Sec_id</label>
-                    <select class="form-select" aria-label="Default select example" id="sec_id" required onfocus="this.selectedIndex = -1;empty(semester);">
+                    <select class="form-select" aria-label="Default select example" id="sec_id" name='sec_id' required onfocus="this.selectedIndex = -1;empty(semester);">
                     </select>
                 </div>
-                <div class="mb-3" style="padding:3%;">
+                <div class="mb-3" style="padding-left:3%;padding-right:3%">
                     <label for="semester" class="form-label">Choose the Semester</label>
-                    <select class="form-select" aria-label="Default select example" id="semester" required onfocus="this.selectedIndex = -1;">
+                    <select class="form-select" aria-label="Default select example" id="semester" name='semester' required onfocus="this.selectedIndex = -1;">
                     </select>
                 </div>
-                <div class="mb-3" style="padding:3%;">
-                    <label for="comment" class="form-label">Comments</label>
-                    <textarea class="form-control" id="comment" required></textarea>
+                <div class="mb-3" style="padding-left:3%;padding-right:3%">
+                    <label for="rating" class="form-label">Rating</label>
+                    <input type='number' min='1' max='10' class="form-control" id="rating" name='rating' required>
                 </div>
-                <input type="submit" name="submit" value="Submit" class='btn btn-primary' style="padding:3%;">
-            </div>
+                <div class="mb-3" style="padding-left:3%;padding-right:3%">
+                    <h6 class='form-label' style='margin-top:2%'>What do you feel about the number of assignments?</h6>
+                    <div class="form-check form-check-inline" style="padding-left:3%;padding-right:3%">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio1" value="option1">
+                        <label class="form-check-label" for="inlineRadio1">Too few</label>
+                    </div>
+                    <div class="form-check form-check-inline" style="padding-left:3%;padding-right:3%">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio2" value="option2">
+                        <label class="form-check-label" for="inlineRadio2">Can add More</label>
+                    </div>
+                    <div class="form-check form-check-inline" style="padding-left:3%;padding-right:3%">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio3" value="option3">
+                        <label class="form-check-label" for="inlineRadio3">Ok</label>
+                    </div>
+                    <div class="form-check form-check-inline" style="padding-left:3%;padding-right:3%">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio4" value="option4">
+                        <label class="form-check-label" for="inlineRadio4">Reduce a bit</label>
+                    </div>
+                    <div class="form-check form-check-inline" style="padding-left:3%;padding-right:3%">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio5" value="option5">
+                        <label class="form-check-label" for="inlineRadio5">Too many</label>
+                    </div>
+                </div>
+                <div class="mb-3" style="padding-left:3%;padding-right:3%">
+                    <h6 class='form-label' style='margin-top:2%'>What do you feel about the number of lab evaluations?</h6>
+                    <div class="form-check form-check-inline" style="padding-left:3%;padding-right:3%">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio6" value="option1">
+                        <label class="form-check-label" for="inlineRadio6">Too few</label>
+                    </div>
+                    <div class="form-check form-check-inline" style="padding-left:3%;padding-right:3%">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio7" value="option2">
+                        <label class="form-check-label" for="inlineRadio7">Can add More</label>
+                    </div>
+                    <div class="form-check form-check-inline" style="padding-left:3%;padding-right:3%">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio8" value="option3">
+                        <label class="form-check-label" for="inlineRadio8">Ok</label>
+                    </div>
+                    <div class="form-check form-check-inline" style="padding-left:3%;padding-right:3%">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio9" value="option4">
+                        <label class="form-check-label" for="inlineRadio9">Reduce a bit</label>
+                    </div>
+                    <div class="form-check form-check-inline" style="padding-left:3%;padding-right:3%">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio10" value="option5">
+                        <label class="form-check-label" for="inlineRadio10">Too many</label>
+                    </div>
+                </div>
+                <div class="mb-3" style="padding-left:3%;padding-right:3%">
+                    <h6 class='form-label' style='margin-top:2%'>Level of Exams?</h6>
+                    <div class="form-check form-check-inline" style="padding-left:3%;padding-right:3%">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio11" value="option1">
+                        <label class="form-check-label" for="inlineRadio6">Easy</label>
+                    </div>
+                    <div class="form-check form-check-inline" style="padding-left:3%;padding-right:3%">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio12" value="option2">
+                        <label class="form-check-label" for="inlineRadio7">Moderate</label>
+                    </div>
+                    <div class="form-check form-check-inline" style="padding-left:3%;padding-right:3%">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio13" value="option3">
+                        <label class="form-check-label" for="inlineRadio8">Hard</label>
+                    </div>
+                </div>
+                <div class="mb-3" style="padding-left:3%;padding-right:3%">
+                    <label for="comment" class="form-label">Comments</label>
+                    <textarea class="form-control" name='comment' id="comment" required></textarea>
+                </div>
+                <div class="mb-3 mt-4" style="padding-left:3%;padding-right:3%">
+                    <input type="submit" name="submit" value="Submit" class='btn btn-primary' style="padding-left:3%;padding-right:3%">
+                </div>
+
         </form>
     </div>
     <script>

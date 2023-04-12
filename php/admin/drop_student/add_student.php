@@ -50,10 +50,9 @@ session_start();
         try {
             $result = mysqli_query($con, $sql);
             if ($result) {
-                $sql = "select * from represents where anon_id='";
+                $sql = "select * from represents where anon_id='User";
                 $anon_id = gen_id();
                 while (mysqli_num_rows(mysqli_query($con, $sql . $anon_id . "'"))) {
-                    echo $anon_id;
                     $anon_id = gen_id();
                 }
                 $sql = "insert into represents values ('$id','User$anon_id')";

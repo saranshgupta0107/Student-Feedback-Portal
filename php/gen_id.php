@@ -1,7 +1,7 @@
 <?php
 function gen_id()
 {
-    $id = hash('sha512', "Salting randomly" . time() . "salting randomly");
+    $id = hash('sha512', "Salting randomly" . time() . "salting randomly" . time());
     $id = substr(base_convert($id, 16, 10), 0, 16);
     return $id;
 }
@@ -21,4 +21,10 @@ function erase_cookies()
             setcookie($name, '', 1, '/');
         }
     }
+}
+function gen_feedbackid()
+{
+    $id = hash('sha512', "Salting randomly" . time() . "salting randomly"  . time());
+    $id = substr(base_convert($id, 16, 10), 0, 40);
+    return $id;
 }
