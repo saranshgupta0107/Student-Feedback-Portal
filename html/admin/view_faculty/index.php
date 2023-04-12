@@ -55,43 +55,52 @@
       <li class="breadcrumb-item active" aria-current="page">View Faculty</li>
     </ol>
   </nav>
+  <?php
+  require('../../../php/connection.php');
+  $sql = "select name,id from instructor;";
+  $result = mysqli_query($con, $sql);
+  $arr = [];
+  while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+    array_push($arr, $row);
+  }
+  $var = json_encode($arr);
+  echo "<script>var data=$var;</script>";
+  setcookie('Teacher', 'destroy', time() - 10 * 60 * 5);
+  ?>
   <div id="top" class='table-responsive'>
-    <?php
-    require('../../../php/connection.php');
-    setcookie('Teacher', 'destroy', time() - 10 * 60 * 5);
-    $sql = "select name,id from instructor;";
-    $result = $con->query($sql);
-    echo "<table class='table'>";
-    echo "<thead class='p-3 mb-2 bg-primary text-white'>";
-    echo ("<th scope='col' style='width: 25%;text-align: center;'>Name </th>");
-    echo ("<th scope='col' style='width: 25%;text-align: center;'>Email </th>");
-    echo "<th></th>";
-    echo "</thead>";
-    echo "<tbody>";
-    if ($result->num_rows > 0) {
-      foreach ($result as $row => $val) {
-        echo "<form action='view_faculty.php' method='POST'style='width:100%;'>";
-        echo "<tr>";
-        echo "<td>" . $val['name'] .  "</td>";
-        echo "<td>" . $val['id'] .  "</td>";
-        echo "<td><button name='" . $val['id'] . "' class='btn btn-primary' type='submit' value='" . $val['id'] . "'>Edit</button></td>";
-        echo "</tr>";
-        echo "</form>";
-      }
-    }
-    echo "<form action='add_faculty.php' method='POST'style='width:100%;'>";
-    echo "<tr><td></td><td></td><td><button name='x' class='btn btn-primary' type='submit' value=''>Add a faculty +</button></td></tr>";
-    echo "</form>";
-    echo "</tbody>";
-    echo "</table>";
-
-    $con->close();
-    ?>
+    <table class='table'>
+      <thead class='p-3 mb-2 bg-primary text-white'>
+        <th scope='col' style='width: 25%;text-align: center;'>Name </th>
+        <th scope='col' style='width: 25%;text-align: center;'>Email </th>
+        <th></th>
+      </thead>
+      <tbody id='table-body'>
+        <form action='add_faculty.php' method='POST' style='width:100%;'>
+          <tr>
+            <td></td>
+            <td></td>
+            <td><button name='x' class='btn btn-primary' type='submit' value=''>Add a faculty +</button></td>
+          </tr>
+        </form>
+      </tbody>
+    </table>
   </div>
+
   <!-- Optional JavaScript; choose one of the two! -->
 
   <!-- Option 1: Bootstrap Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script>
+    var tbody = document.getElementById('table-body');
+    for (var key in data) {
+      //Create each row
+      var row = document.createElement('tr');
+      row.innerHTML += `<td>${data[key].name}</td>`;
+      row.innerHTML += `<td>${data[key].id}</td>`;
+      row.innerHTML += `<td><form action='view_faculty.php' method='POST'style='width:100%;'><button name='${data[key].id}'class="btn btn-primary" type="submit" action="view_faculty.php" value='${data[key].id}'>Edit</button></form></td>`;
+      tbody.insertBefore(row, tbody.firstChild);
+    }
+  </script>
 
   <!-- Option 2: Separate Popper and Bootstrap JS -->
   <!--
