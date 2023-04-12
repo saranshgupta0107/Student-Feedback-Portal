@@ -30,12 +30,8 @@
         </script>";
   }
   ?>
-  <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'admin') {
-    session_unset();
-    session_destroy();
-    echo "<script> alert('You are not authorised to this page'); window.location.replace('../../../')</script>";
-  }
-  ?>
+  <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'student') : echo "<script> alert('You are not authorised to this page'); window.location.replace('../../')</script>";
+  endif; ?>
   <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
     <div class="container-fluid">
       <a class="navbar-brand" href="../../index.html"><img src="../../../images/iiita_logo.png" alt="" width="100px" height="100px" class="d-inline-block align-text-middle"></a>
@@ -44,14 +40,14 @@
           Welcome to Student Feedback Portal
         </a>
       </div>
-      <a href="../../php/logout.php"><button type="button" class="btn btn-primary" id="liveAlertn" style="margin-bottom: 1%;margin-left: -20%;">Logout</button></a>
+      <a href="../../../php/logout.php"><button type="button" class="btn btn-primary" id="liveAlertn" style="margin-bottom: 1%;margin-left: -20%;">Logout</button></a>
     </div>
   </nav>
   <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item" style="text-decoration: none;"><a href="../../../">Home</a></li>
-      <li class="breadcrumb-item" style="text-decoration: none;"><a href="login_admin.html">Log In</a></li>
-      <li class="breadcrumb-item" style="text-decoration: none;"><a href="../">Admin</a></li>
+      <li class="breadcrumb-item" style="text-decoration: none;"><a href="login_student.php">Log In</a></li>
+      <li class="breadcrumb-item" style="text-decoration: none;"><a href="../">Student</a></li>
       <li class="breadcrumb-item active" aria-current="page">View Faculty</li>
     </ol>
   </nav>
@@ -63,8 +59,8 @@
     $result = $con->query($sql);
     echo "<table class='table'>";
     echo "<thead class='p-3 mb-2 bg-primary text-white'>";
-    echo ("<th scope='col' style='width: 25%;text-align: center;'>Name </th>");
-    echo ("<th scope='col' style='width: 25%;text-align: center;'>Email </th>");
+    echo ("<th scope='col'>Name </th>");
+    echo ("<th scope='col'>Email </th>");
     echo "<th></th>";
     echo "</thead>";
     echo "<tbody>";

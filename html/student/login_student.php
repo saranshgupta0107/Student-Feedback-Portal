@@ -11,7 +11,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-  <title>Faculty Log In</title>
+  <title>Student Log In</title>
 </head>
 
 
@@ -33,17 +33,17 @@
     aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item" style="text-decoration: none;"><a href="../../">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Faculty Log In</li>
+      <li class="breadcrumb-item active" aria-current="page">Student Log In</li>
     </ol>
   </nav>
   <div id="login">
     <div class="newform">
-      <form name="f1" action="../../php/admin/authentication_admin.php" onsubmit="return validation()" method="post"
+      <form name="f1" action="../../php/student/authentication_student.php" onsubmit="return validation()" method="post"
         style="display:grid;width: 350px;" id="FORM">
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email address</label>
           <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-            placeholder="email@iiita.ac.in" pattern="[a-z]+@iiita.ac.in" required>
+            placeholder="email@iiita.ac.in" pattern="[a-z0-9]+@iiita.ac.in" required>
           <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
         </div>
         <div class="mb-3">
@@ -61,7 +61,7 @@
       function validation() {
         var id = document.f1.exampleInputEmail1;
         var ps = document.f1.exampleInputPassword1;
-        if (id.length == "" && ps.length == "") {
+        if (id.length == "" || ps.length == "") {
           alert("User fields are empty");
           return false;
         }

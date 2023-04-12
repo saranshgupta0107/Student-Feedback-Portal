@@ -17,10 +17,25 @@
 <body onload="clearAll()">
   <?php
   session_start();
+  if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
+    session_unset();
+    session_destroy();
+    echo "
+        <script>
+        function logout() {
+            alert('You have been logged in for more than 30 minutes, Timeout!');
+            window.location.replace('http://localhost/DBMS-Project/');
+        };
+        logout();
+        </script>";
+  }
   ?>
-  <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'admin') :
-    echo "<script> alert('You are not authorised to this page'); window.location.replace('../../')</script>";
-  endif; ?>
+  <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'admin') {
+    session_unset();
+    session_destroy();
+    echo "<script> alert('You are not authorised to this page'); window.location.replace('../../../')</script>";
+  }
+  ?>
   <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
     <div class="container-fluid">
       <a class="navbar-brand" href="../../"><img src="../../../images/iiita_logo.png" alt="" width="100px" height="100px" class="d-inline-block align-text-middle"></a>
@@ -70,10 +85,10 @@
     $result = $con->query($sql);
     echo "<table class='table'>";
     echo "<thead class='p-3 mb-2 bg-primary text-white'>";
-    echo ("<th scope='col'>Section</th>");
-    echo ("<th scope='col'>Course</th>");
-    echo ("<th scope='col'>Semester</th>");
-    echo ("<th scope='col'></th>");
+    echo ("<th scope='col' style='width: 25%;text-align: center;'>Section</th>");
+    echo ("<th scope='col' style='width: 25%;text-align: center;'>Course</th>");
+    echo ("<th scope='col' style='width: 25%;text-align: center;'>Semester</th>");
+    echo ("<th scope='col' style='width: 25%;text-align: center;'></th>");
     echo "<th></th>";
     echo "</thead>";
     echo "<tbody>";

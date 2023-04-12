@@ -50,25 +50,24 @@
     <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item" style="text-decoration: none;"><a href="../../../">Home</a></li>
-            <li class="breadcrumb-item" style="text-decoration: none;"><a href="login_admin.html">Log In</a></li>
+            <li class="breadcrumb-item" style="text-decoration: none;"><a href="../login_admin.php">Log In</a></li>
             <li class="breadcrumb-item" style="text-decoration: none;"><a href="../">Admin</a></li>
-            <li class="breadcrumb-item" style="text-decoration: none;"" aria-current=" page"><a href="../view_faculty/">View Faculty</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Allot Section</li>
+            <li class="breadcrumb-item active" aria-current="page">Add Section</li>
         </ol>
     </nav>
     <div id="top" class='table-responsive'>
-        <form action="../../../php/admin/view_faculty/faculty_section_add.php" method="POST" style="display:grid;width: 100%;" id="FORM">
-            <h2>Allot Section to <?php echo $_COOKIE['Teacher']; ?></h2>
+        <form action="../../../php/admin/add_section/add_section.php" method="POST" style="display:grid;width: 100%;" id="FORM">
+            <h2>Add Section</h2>
             <div class="mb-3">
-                <?php echo "<input type='hidden' name='id' value='" . $_COOKIE['Teacher'] . "'>"; ?>
-                <label for="section" class="form-label">Enter the Section:</label>
-                <input type="text" id="sec_id" name="sec_id" required class="form-control" pattern="\w{1,2}">
                 <br>
-                <label for="semester" class="form-label">Enter the semester:</label>
-                <input type="number" id="semester" name="semester" required class="form-control" max='10' min='1'>
+                <label for="course_id" class="form-label">Enter the Course to add to:</label>
+                <input type="text" id="course_id" name="course_id" required class="form-control" placeholder="Example:DBMS" pattern="\w{1,20}">
                 <br>
-                <label for="course_id" class="form-label">Enter the course:</label>
-                <input type="text" id="course_id" name="course_id" required class="form-control" pattern="\w{1,20}">
+                <label for="sec_id" class="form-label">Enter the Section to create:</label>
+                <input type="text" id="sec_id" name="sec_id" required class="form-control" placeholder="Example:A/B/C/D" pattern="\w{1,2}">
+                <br>
+                <label for="semester" class="form-label">Enter the semester to create the course for:</label>
+                <input type="number" id="semester" min="1" max="10" name="semester" required class="form-control">
                 <br>
                 <input type="submit" name="submit" value="Submit" class='btn btn-primary'>
             </div>

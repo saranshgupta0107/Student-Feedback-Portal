@@ -164,9 +164,11 @@
     box-sizing: border-box;
     border-radius: 10px;
 }
-td{
+
+td {
     text-align: center;
 }
-th{
+
+th {
     text-align: center;
 }

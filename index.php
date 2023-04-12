@@ -85,9 +85,9 @@
       <button type="button" class="btn btn-outline-primary"
         onclick="window.location.href='html/admin/login_admin.php'">Admin</button>
       <button type="button" class="btn btn-outline-primary"
-        onclick="window.location.href='html/faculty/login_faculty.php'">Faculty</button>
+        onclick="window.location.href='html/faculty/login.php'">Faculty</button>
       <button type="button" class="btn btn-outline-primary"
-        onclick="window.location.href='html/student/login_student.html'">Student</button>
+        onclick="window.location.href='html/student/login_student.php'">Student</button>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

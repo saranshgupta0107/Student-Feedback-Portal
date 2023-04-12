@@ -30,11 +30,22 @@
         </script>";
     }
     ?>
-    <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'admin') {
+    <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'student') {
         session_unset();
         session_destroy();
-        echo "<script> alert('You are not authorised to this page'); window.location.replace('../../../')</script>";
+        echo "<script> alert('You are not authorised to this page'); window.location.replace('../../')</script>";
     }
+    ?>
+    <?php
+    require('../../../php/connection.php');
+    $sql = "select * from takes where ID='" . $_SESSION['id'] . "'";
+    $result = mysqli_query($con, $sql);
+    $arr = [];
+    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+        array_push($arr, $row);
+    }
+    $var = json_encode($arr);
+    echo "<script>var data=$var</script>";
     ?>
     <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
         <div class="container-fluid">
@@ -58,24 +69,74 @@
     </nav>
     <div id="top" class='table-responsive'>
         <form action="../../../php/admin/view_faculty/add_faculty.php" method="POST" style="display:grid;width: 100%;" id="FORM">
-            <h2>Add Faculty</h2>
+            <h2>Give Feedback</h2>
             <div class="mb-3">
                 <br>
-                <label for="ID" class="form-label">Enter the instructor ID:</label>
-                <input type="text" id="ID" name="ID" required class="form-control" placeholder="Example: xyz@iiita.ac.in" pattern="\w+@iiita.ac.in">
+                <label for="ID" class="form-label">Your ID:</label>
+                <input type="text" id="ID" name="ID" required class="form-control-plaintext" readonly placeholder="<?php echo $_SESSION['username']; ?>" value='<?php echo $_SESSION['username']; ?>'>
                 <br>
-                <label for="name" class="form-label">Enter the instructor Name:</label>
-                <input type="text" id="name" name="name" required class="form-control" pattern="\w+">
+                <label for="course_id" class="form-label">Choose the Course</label>
+                <select class="form-select" aria-label="Default select example" id="course_id" required onfocus="this.selectedIndex = -1;empty(sec_id);empty(semester);">
+                </select>
                 <br>
-                <label for="dept_name" class="form-label">Enter the instructor department:</label>
-                <input type="text" id="dept_name" name="dept_name" required class="form-control" pattern="\w+">
+                <label for="sec_id" class="form-label">Choose the Sec_id</label>
+                <select class="form-select" aria-label="Default select example" id="sec_id" required onfocus="this.selectedIndex = -1;empty(semester);">
+                </select>
                 <br>
-                <input type="submit" name="submit" value="Submit">
+                <label for="semester" class="form-label">Choose the Semester</label>
+                <select class="form-select" aria-label="Default select example" id="semester" required onfocus="this.selectedIndex = -1;">
+                </select>
+                <label for="comment" class="form-label">Comments</label>
+                <textarea class="form-control" id="comment" required></textarea>
+                <br>
+                <input type="submit" name="submit" value="Submit" class='btn btn-primary'>
             </div>
         </form>
     </div>
     <!-- Optional JavaScript; choose one of the two! -->
+    <script>
+        var course_id = document.getElementById('course_id');
+        var sec_id = document.getElementById('sec_id');
+        var semester = document.getElementById('semester');
+        for (var key in data) {
+            var temp_child = (document.createElement('option'));
+            temp_child.setAttribute('value', data[key].course_id);
+            temp_child.setAttribute('selected', false);
+            temp_child.appendChild(document.createTextNode(data[key].course_id));
+            course_id.appendChild(temp_child);
+        }
 
+        function empty(node) {
+            while (node.firstChild) {
+                node.removeChild(node.lastChild);
+            }
+        }
+        course_id.addEventListener('change', () => {
+            console.log(1);
+            empty(sec_id);
+            empty(semester);
+            for (var key in data) {
+                if (data[key].course_id == course_id.options[course_id.selectedIndex].text) {
+                    var temp_child = (document.createElement('option'));
+                    temp_child.setAttribute('value', data[key].sec_id);
+                    temp_child.appendChild(document.createTextNode(data[key].sec_id));
+                    sec_id.appendChild(temp_child);
+                }
+            }
+        })
+        sec_id.addEventListener('change', () => {
+            empty(semester);
+            for (var key in data) {
+                if (data[key].course_id == course_id.options[course_id.selectedIndex].text &&
+                    data[key].sec_id == sec_id.options[sec_id.selectedIndex].text) {
+                    var temp_child = (document.createElement('option'));
+                    temp_child.setAttribute('value', data[key].semester);
+                    temp_child.appendChild(document.createTextNode(data[key].semester));
+                    semester.appendChild(temp_child);
+                }
+            }
+        })
+    </script>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 

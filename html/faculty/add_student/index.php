@@ -10,8 +10,8 @@
     <!-- Bootstrap CSS -->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-    <title>Show Faculty</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.min.js"></script>
+    <title>Add Student</title>
 </head>
 
 <body>
@@ -30,12 +30,8 @@
         </script>";
     }
     ?>
-    <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'admin') {
-        session_unset();
-        session_destroy();
-        echo "<script> alert('You are not authorised to this page'); window.location.replace('../../../')</script>";
-    }
-    ?>
+    <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'faculty') : echo "<script> alert('You are not authorised to this page'); window.location.replace('../../../')</script>";
+    endif; ?>
     <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
         <div class="container-fluid">
             <a class="navbar-brand" href="../../../"><img src="../../../images/iiita_logo.png" alt="" width="100px" height="100px" class="d-inline-block align-text-middle"></a>
@@ -50,31 +46,41 @@
     <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item" style="text-decoration: none;"><a href="../../../">Home</a></li>
-            <li class="breadcrumb-item" style="text-decoration: none;"><a href="login_admin.html">Log In</a></li>
-            <li class="breadcrumb-item" style="text-decoration: none;"><a href="../">Admin</a></li>
-            <li class="breadcrumb-item" style="text-decoration: none;"" aria-current=" page"><a href="../view_faculty/">View Faculty</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Allot Section</li>
+            <li class="breadcrumb-item" style="text-decoration: none;"><a href="../login.php">Log In</a></li>
+            <li class="breadcrumb-item" style="text-decoration: none;"><a href="../"><?php echo ($_SESSION['id']) ?></a></li>
+            <li class="breadcrumb-item active" aria-current="page">Add Students</li>
         </ol>
     </nav>
-    <div id="top" class='table-responsive'>
-        <form action="../../../php/admin/view_faculty/faculty_section_add.php" method="POST" style="display:grid;width: 100%;" id="FORM">
-            <h2>Allot Section to <?php echo $_COOKIE['Teacher']; ?></h2>
+    <div id="top" class='table-responsive' style="display:flow-root">
+        <h2>Add student</h2>
+        <form action="../../../php/faculty/add_student/add_student.php" method="POST" enctype="multipart/form-data" style="display:grid;width:100%;" id="FORM">
             <div class="mb-3">
-                <?php echo "<input type='hidden' name='id' value='" . $_COOKIE['Teacher'] . "'>"; ?>
-                <label for="section" class="form-label">Enter the Section:</label>
-                <input type="text" id="sec_id" name="sec_id" required class="form-control" pattern="\w{1,2}">
                 <br>
-                <label for="semester" class="form-label">Enter the semester:</label>
-                <input type="number" id="semester" name="semester" required class="form-control" max='10' min='1'>
-                <br>
-                <label for="course_id" class="form-label">Enter the course:</label>
-                <input type="text" id="course_id" name="course_id" required class="form-control" pattern="\w{1,20}">
-                <br>
-                <input type="submit" name="submit" value="Submit" class='btn btn-primary'>
+                <label for="ID" class="form-label">Enter the student to add:</label>
+                <input type="text" id="ID" name="ID" required class="form-control" placeholder="ID Example: IIT2021155">
+                <input type="text" id="sec" name="sec" required class="form-control" placeholder="SECTION Example: B">
+                <input type="text" id="course" name="course" required class="form-control" placeholder="COURSE Example: DBMS">
+                <input type="number" id="semes" name="semes" required class="form-control" placeholder="SEMESTER Example: 4" min="1" max="8">
+                <input type="submit" name="submit_add_single" id='submit_add_single' value="Submit" class='btn btn-primary'>
+            </div>
+        </form>
+        <br>
+        <label for="csvfile" class="form-label">Or Upload CSV file for mass add:</label>
+        <input type="file" id="csvfile" name="csvfile" required class="form-control" accept=".csv,.xlsx">
+        <form action="../../../php/faculty/add_student/add_student.php" method="POST" enctype="multipart/form-data" style="display:grid;width:100%;" id="FORM">
+            <div class="mb-3">
+                <input type="text" id="sec" name="sec" required class="form-control" placeholder="SECTION Example: B">
+                <input type="text" id="course" name="course" required class="form-control" placeholder="COURSE Example: DBMS">
+                <input type="number" id="semes" name="semes" required class="form-control" placeholder="SEMESTER Example: 4" min="1" max="8">
+                <input type='hidden' name='file_data' id='file_data'>
+                <input type="submit" name="submit2" id='submit2' value="Submit" disabled='true' class='btn btn-primary'>
             </div>
         </form>
     </div>
-    <!-- Optional JavaScript; choose one of the two! -->
+
+    <script src='../../../js/faculty/add_student.js'></script>
+    <!-- Optional JavaScript; choose one of the two! 
+        -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
