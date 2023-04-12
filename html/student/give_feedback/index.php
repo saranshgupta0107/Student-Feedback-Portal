@@ -69,31 +69,34 @@
     </nav>
     <div id="top" class='table-responsive'>
         <form action="../../../php/admin/view_faculty/add_faculty.php" method="POST" style="display:grid;width: 100%;" id="FORM">
-            <h2>Give Feedback</h2>
+            <h2 style="padding:3%;">Give Feedback</h2>
             <div class="mb-3">
-                <br>
-                <label for="ID" class="form-label">Your ID:</label>
-                <input type="text" id="ID" name="ID" required class="form-control-plaintext" readonly placeholder="<?php echo $_SESSION['username']; ?>" value='<?php echo $_SESSION['username']; ?>'>
-                <br>
-                <label for="course_id" class="form-label">Choose the Course</label>
-                <select class="form-select" aria-label="Default select example" id="course_id" required onfocus="this.selectedIndex = -1;empty(sec_id);empty(semester);">
-                </select>
-                <br>
-                <label for="sec_id" class="form-label">Choose the Sec_id</label>
-                <select class="form-select" aria-label="Default select example" id="sec_id" required onfocus="this.selectedIndex = -1;empty(semester);">
-                </select>
-                <br>
-                <label for="semester" class="form-label">Choose the Semester</label>
-                <select class="form-select" aria-label="Default select example" id="semester" required onfocus="this.selectedIndex = -1;">
-                </select>
-                <label for="comment" class="form-label">Comments</label>
-                <textarea class="form-control" id="comment" required></textarea>
-                <br>
-                <input type="submit" name="submit" value="Submit" class='btn btn-primary'>
+                <div class="mb-3" style="padding:3%;">
+                    <label for="ID" class="form-label">Your ID:</label>
+                    <input type="text" id="ID" name="ID" required class="form-control-plaintext" readonly placeholder="<?php echo $_SESSION['username']; ?>" value='<?php echo $_SESSION['username']; ?>'>
+                </div>
+                <div>
+                    <label for="course_id" class="form-label">Choose the Course</label>
+                    <select class="form-select" aria-label="Default select example" id="course_id" required onfocus="this.selectedIndex = -1;empty(sec_id);empty(semester);"></select>
+                </div>
+                <div class="mb-3" style="padding:3%;">
+                    <label for="sec_id" class="form-label">Choose the Sec_id</label>
+                    <select class="form-select" aria-label="Default select example" id="sec_id" required onfocus="this.selectedIndex = -1;empty(semester);">
+                    </select>
+                </div>
+                <div class="mb-3" style="padding:3%;">
+                    <label for="semester" class="form-label">Choose the Semester</label>
+                    <select class="form-select" aria-label="Default select example" id="semester" required onfocus="this.selectedIndex = -1;">
+                    </select>
+                </div>
+                <div class="mb-3" style="padding:3%;">
+                    <label for="comment" class="form-label">Comments</label>
+                    <textarea class="form-control" id="comment" required></textarea>
+                </div>
+                <input type="submit" name="submit" value="Submit" class='btn btn-primary' style="padding:3%;">
             </div>
         </form>
     </div>
-    <!-- Optional JavaScript; choose one of the two! -->
     <script>
         var course_id = document.getElementById('course_id');
         var sec_id = document.getElementById('sec_id');
