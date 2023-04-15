@@ -73,7 +73,7 @@ session_start();
         $_semes = mysqli_real_escape_string($con, $_semes);
         foreach ($arr as $row => $val) {
             $val = json_decode(json_encode($val), true);
-            $id = $val['Roll Number'];
+            $id = $val['Roll Number'] . '@iiita.ac.in';
             $id = stripcslashes($id);
             $id = mysqli_real_escape_string($con, $id);
             $sqlchk1 = "select * from student where id='" . $id . "';";
@@ -86,7 +86,7 @@ session_start();
             }
             $resultchk2 = mysqli_query($con, $sqlchk2);
             if (mysqli_num_rows($resultchk2) == 0) {
-                echo "<script>alert('You dont currently teach this course!\nPlease check the semester or section');setTimeout(()=>{window.location.replace('../../../html/faculty/add_student/');},700);</script>";
+                echo "<script>alert('You dont currently teach this course!\\nPlease check the semester or section');setTimeout(()=>{window.location.replace('../../../html/faculty/add_student/');},700);</script>";
                 mysqli_rollback($con);
                 return;
             }
