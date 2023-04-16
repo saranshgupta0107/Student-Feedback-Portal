@@ -6,7 +6,7 @@ session_start();
 
 <body>
     <?php
-    session_start();
+    require_once("../../connection.php");
     if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
         session_unset();
         session_destroy();
@@ -21,11 +21,13 @@ session_start();
         return;
     }
     ?>
-    <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'admin') : echo "<script> alert('You are not authorised to this page'); window.location.replace('../../')</script>";
-    endif; ?>
+    <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'admin') {
+        echo "<script> alert('You are not authorised to this page'); window.location.replace('../../../')</script>";
+    } ?>
     <?php
-    require('../../connection.php');
-    require('../../gen_id.php');
+
+    require_once('../../gen_id.php');
+    require_once('../../mailtesting.php');
     $id = $_POST['ID'];
     $password = gen_pas();
     $name = $_POST['name'];
@@ -36,6 +38,10 @@ session_start();
     $name = stripcslashes($name);
     $dept_name = stripcslashes($dept_name);
     $id = mysqli_real_escape_string($con, $id);
+    if (!sendPassword($id, $password)) {
+        echo "<script>alert('some error occured while mailing');setTimeout(()=>{window.location.replace('../../../html/admin/view_faculty/');},700000);</script>";
+        return;
+    }
     $password = $password . "randomsalt";
     $password = hash('ripemd128', $password);
     $password = mysqli_real_escape_string($con, $password);
@@ -45,6 +51,7 @@ session_start();
     try {
         $result = mysqli_query($con, $sql);
         if ($result) {
+            mysqli_commit($con);
             echo "<script>alert('Success!');setTimeout(()=>{window.location.replace('../../../html/admin/view_faculty/');},700);</script>";
         } else
             echo '<script>alert("There was some error deleting this record");setTimeout(()=>{window.location.replace("../../../html/admin/view_faculty/");},700);</script>';

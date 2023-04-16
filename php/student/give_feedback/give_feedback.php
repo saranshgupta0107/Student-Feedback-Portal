@@ -88,7 +88,7 @@ session_start();
             echo '<script>alert("There was some error ");setTimeout(()=>{window.location.replace("../../../html/student/");},70);</script>';
     } catch (mysqli_sql_exception $e) {
         echo "<script>alert('$e');</script>";
-        echo "<script>alert('Erroreneous entry of data!');setTimeout(()=>{window.location.replace('../../../html/student/');},700000);</script>";
+        echo "<script>alert('Erroreneous entry of data!');setTimeout(()=>{window.location.replace('../../../html/student/');},70);</script>";
     }
     ?>
 </body>

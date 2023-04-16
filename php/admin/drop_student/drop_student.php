@@ -51,7 +51,7 @@ session_start();
             echo "<script>alert('Erroreneous operation!');setTimeout(()=>{window.location.replace('../../../html/admin/drop_add_student//');},700);</script>";
         }
     } else {
-        $arr = json_decode($_POST['file_data']);
+        $arr = json_decode($_POST['file_data1']);
         mysqli_commit($con);
         foreach ($arr as $row => $val) {
             $val = json_decode(json_encode($val), true);
@@ -68,6 +68,7 @@ session_start();
                 echo "<script>alert('Erroreneous operation!');window.location.replace('../../../html/admin/drop_add_student/');;</script>";
             }
         }
+        mysqli_commit($con);
         echo "<script>alert('Success!');setTimeout(()=>{window.location.replace('../../../html/admin/drop_add_student/');},700);</script>";
     }
     ?>
