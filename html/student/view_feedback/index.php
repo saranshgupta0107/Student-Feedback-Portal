@@ -74,14 +74,25 @@
   }
   $var = json_encode($arr);
   echo "<script>var data=$var;</script>";
-  $sql = "select distinct(course_id) from feedback;";
+  $sql =
+    "select course_id,sec_id,semester from feedback natural join (select feedback_id from gives where anon_id ='" . $_SESSION['username'] . "') e1;";
   $result = $con->query($sql);
   $arr = [];
   while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
     array_push($arr, $row);
   }
   $var = json_encode($arr);
-  echo "<script>var course_data=$var;</script>";
+  echo "<script>
+    var courseSet=new Set();
+    var sectionSet=new Set();
+    var semesterSet=new Set();
+    var temp=$var;
+    for(var k in temp){
+      courseSet.add(temp[k].course_id);
+      sectionSet.add(temp[k].sec_id);
+      semesterSet.add(temp[k].semester);
+    }
+    </script>";
   ?>
   <div id="top" class='table-responsive '>
     <table class='table sortable'>
@@ -102,13 +113,16 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <script>
     var tbody = document.getElementById('table-body');
+    var course_id = document.getElementById('course_id');
+    var sec_id = document.getElementById('sec_id');
+    var semester = document.getElementById('semester');
 
-    function create_table(course, sec, semester) {
+    function create_table() {
       for (var key in data) {
         //Create each row
-        if (course && data[key].course_id != course) continue;
-        if (sec && data[key].sec_id != sec) continue;
-        if (semester && data[key].semester != semester) continue;
+        if (course_id.value != 'All' && data[key].course_id != course_id.value) continue;
+        if (sec_id.value != 'All' && data[key].sec_id != sec_id.value) continue;
+        if (semester.value != 'All' && data[key].semester != semester.value) continue;
         var row = document.createElement('tr');
         row.setAttribute('class', 'item');
         row.innerHTML += `<td>${data[key].course_id}</td>`;
@@ -121,96 +135,134 @@
     create_table();
   </script>
   <script>
-    var course_id = document.getElementById('course_id');
-    var sec_id = document.getElementById('sec_id');
-    var semester = document.getElementById('semester');
-    for (var key in course_data) {
-      var temp_child = (document.createElement('option'));
-      temp_child.setAttribute('value', data[key].course_id);
-      temp_child.setAttribute('selected', false);
-      temp_child.appendChild(document.createTextNode(data[key].course_id));
-      course_id.appendChild(temp_child);
-    }
-
     function empty(node) {
       while (node.firstChild) {
         node.removeChild(node.lastChild);
       }
     }
-    course_id.addEventListener('change', () => {
-      empty(sec_id);
-      empty(semester);
-      var set = new Set();
-      for (var key in data) {
-        if (data[key].course_id == course_id.options[course_id.selectedIndex].text) {
-          if (set.has(data[key].sec_id)) continue;
-          else set.add(data[key].sec_id);
-          var temp_child = (document.createElement('option'));
-          temp_child.setAttribute('value', data[key].sec_id);
-          temp_child.appendChild(document.createTextNode(data[key].sec_id));
-          sec_id.appendChild(temp_child);
-        }
-      }
-    })
-    sec_id.addEventListener('change', () => {
-      empty(semester);
-      var set = new Set();
-      for (var key in data) {
-        if (data[key].course_id == course_id.options[course_id.selectedIndex].text &&
-          data[key].sec_id == sec_id.options[sec_id.selectedIndex].text) {
-          if (set.has(data[key].semester)) continue;
-          else set.add(data[key].semester);
-          var temp_child = (document.createElement('option'));
-          temp_child.setAttribute('value', data[key].semester);
-          temp_child.appendChild(document.createTextNode(data[key].semester));
-          semester.appendChild(temp_child);
-        }
-      }
-    })
-    course_id.addEventListener('click', () => {
-      empty(sec_id);
-      empty(semester);
-      var set = new Set();
-      for (var key in data) {
-        if (data[key].course_id == course_id.options[course_id.selectedIndex].text) {
-          if (set.has(data[key].sec_id)) continue;
-          else set.add(data[key].sec_id);
-          var temp_child = (document.createElement('option'));
-          temp_child.setAttribute('value', data[key].sec_id);
-          temp_child.appendChild(document.createTextNode(data[key].sec_id));
-          sec_id.appendChild(temp_child);
-        }
-      }
-    })
-    sec_id.addEventListener('click', () => {
-      empty(semester);
-      var set = new Set();
-      for (var key in data) {
-        if (data[key].course_id == course_id.options[course_id.selectedIndex].text &&
-          data[key].sec_id == sec_id.options[sec_id.selectedIndex].text) {
-          if (set.has(data[key].semester)) continue;
-          else set.add(data[key].semester);
-          var temp_child = (document.createElement('option'));
-          temp_child.setAttribute('value', data[key].semester);
-          temp_child.appendChild(document.createTextNode(data[key].semester));
-          semester.appendChild(temp_child);
-        }
-      }
-    })
-    semester.addEventListener('change', () => {
-      if (!semester.value || semester.value == 'Select Semester') return;
+
+    function addOption(value, node) {
+      var temp_child = (document.createElement('option'));
+      temp_child.setAttribute('value', value);
+      temp_child.appendChild(document.createTextNode(value));
+      node.appendChild(temp_child);
+
+    }
+
+    function setall(x) {
+      empty(x);
+      var temp_child = (document.createElement('option'));
+      temp_child.setAttribute('value', 'All');
+      temp_child.appendChild(document.createTextNode('All'));
+      x.appendChild(temp_child);
+    }
+
+    function reset() {
       empty(tbody);
-      create_table(course_id.value, sec_id.value, semester.value);
-    })
-    semester.addEventListener('click', () => {
-      if (!semester.value || semester.value == 'Select Semester') return;
-      empty(tbody);
-      create_table(course_id.value, sec_id.value, semester.value);
-    })
+      setall(course_id);
+      setall(sec_id);
+      setall(semester);
+      for (var k of courseSet) {
+        addOption(k, course_id);
+      }
+      for (var k of sectionSet) {
+        addOption(k, sec_id);
+      }
+      for (var k of semesterSet) {
+        addOption(k, semester);
+      }
+    }
+    reset();
+    create_table();
+
+    function addSectionOptions() {
+      const initial = sec_id.value;
+      empty(sec_id);
+      setall(sec_id);
+      var set = new Set();
+      for (var k in data) {
+        var pos = true;
+        if (course_id.value == 'All' || data[k].course_id == course_id.value);
+        else pos = false;
+        if (semester.value == 'All' || data[k].semester == semester.value);
+        else pos = false;
+        if (pos) set.add(data[k].sec_id);
+      }
+      for (var k of set) {
+        addOption(k, sec_id);
+      }
+      for (var childs of sec_id.childNodes) {
+        if (childs.value == initial) {
+          childs.selected = true;
+          return;
+        }
+      }
+      sec_id.firstChild.selected = true;
+    }
+
+    function addCourseOptions() {
+      const initial = course_id.value;
+      empty(course_id);
+      setall(course_id);
+      var set = new Set();
+      for (var k in data) {
+        var pos = true;
+        if (sec_id.value == 'All' || data[k].sec_id == sec_id.value);
+        else pos = false;
+        if (semester.value == 'All' || data[k].semester == semester.value);
+        else pos = false;
+        if (pos) set.add(data[k].course_id);
+      }
+      for (var k of set) {
+        addOption(k, course_id);
+      }
+      for (var childs of course_id.childNodes) {
+        if (childs.value == initial) {
+          childs.selected = true;
+          return;
+        }
+      }
+      course_id.firstChild.selected = true;
+    }
+
+    function addSemesterOptions() {
+      const initial = semester.value;
+      empty(semester);
+      setall(semester);
+      var set = new Set();
+      for (var k in data) {
+        var pos = true;
+        if (sec_id.value == 'All' || data[k].sec_id == sec_id.value);
+        else pos = false;
+        if (course_id.value == 'All' || data[k].course_id == course_id.value);
+        else pos = false;
+        if (pos) set.add(data[k].semester);
+      }
+      for (var k of set) {
+        addOption(k, semester);
+      }
+      for (var childs of semester.childNodes) {
+        if (childs.value == initial) {
+          childs.selected = true;
+          return;
+        }
+      }
+      semester.firstChild.selected = true;
+    }
+
+    for (var k1 of ['change', 'click']) {
+      for (var k2 of [semester, sec_id, course_id]) {
+        k2.addEventListener(k1, () => {
+          empty(tbody);
+          addCourseOptions();
+          addSectionOptions();
+          addSemesterOptions();
+          create_table();
+        })
+      }
+    }
     document.getElementById('reset').addEventListener('click', () => {
-      empty(tbody);
-      empty(sec_id);
-      empty(semester);
+      reset();
       create_table();
     });
   </script>

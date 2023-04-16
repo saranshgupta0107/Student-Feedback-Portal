@@ -6,7 +6,7 @@ session_start();
 
 <body>
     <?php
-    require('../../connection.php');
+    require_once('../../connection.php');
     if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
         session_unset();
         session_destroy();
