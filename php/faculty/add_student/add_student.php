@@ -46,7 +46,7 @@ session_start();
         }
         $resultchk2 = mysqli_query($con, $sqlchk2);
         if (mysqli_num_rows($resultchk2) == 0) {
-            echo "<script>alert('You dont currently teach this course!\nPlease check the semester or section');setTimeout(()=>{window.location.replace('../../../html/faculty/add_student/');},700);</script>";
+            echo "<script>alert('You dont currently teach this course!\\nPlease check the semester or section');setTimeout(()=>{window.location.replace('../../../html/faculty/add_student/');},700);</script>";
             return;
         }
         $sql = $sql . " values ('" . $id . "@iiita.ac.in','" . $course . "','" . $_sec . "'," . (int)$_semes . ");";

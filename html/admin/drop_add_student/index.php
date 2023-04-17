@@ -70,7 +70,6 @@
         <label class="btn btn-outline-primary" for="btnradio2">Drop Student</label>
     </div>
     <div id="drop" class='table-responsive' style="margin-left:2%;margin-right:2%;padding:5%;padding-top:2%;display:none;">
-
         <div style="display:flexbox;">
             <div class="mb-3" style="width:100%;">
                 <h2 style="display:flex;">Drop student</h2>

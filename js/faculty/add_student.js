@@ -1,6 +1,6 @@
-document.getElementById('csvfile').addEventListener('change', read)
+document.getElementById('csvfile1').addEventListener('change', read1)
 var submit = document.getElementById('submit2');
-async function read(evt) {
+async function read1(evt) {
     if (evt.target.files.length == 0) {
         submit.disabled = true;
         return;
@@ -23,7 +23,7 @@ async function excelFileToJSON(file) {
                 if (roa.length > 0) {
                     result = JSON.stringify(roa, null, 4);
                 }
-                var hidden = document.getElementById('file_data')
+                var hidden = document.getElementById('file_data1')
                 hidden.value = result;
             });
         }

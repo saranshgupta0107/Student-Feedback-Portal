@@ -32,6 +32,14 @@
     ?>
     <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'faculty') : echo "<script> alert('You are not authorised to this page'); window.location.replace('../../../')</script>";
     endif; ?>
+    <script>
+        function show_alert() {
+            if (!confirm("Do you really want to do this?")) {
+                return false;
+            }
+            this.form.submit();
+        }
+    </script>
     <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
         <div class="container-fluid">
             <a class="navbar-brand" href="../../../"><img src="../../../images/iiita_logo.png" alt="" width="100px" height="100px" class="d-inline-block align-text-middle"></a>
@@ -51,29 +59,61 @@
             <li class="breadcrumb-item active" aria-current="page">Add Students</li>
         </ol>
     </nav>
-    <div id="top" class='table-responsive' style="display:flow-root">
+    <div role="group" class="btn-group d-flex justify-center" aria-label="Basic radio toggle button group" style="margin-left:2%;margin-right:2%;padding-left:5%;padding-right:5%;padding-top:2%;width:55%;display:flex;position:relative;left:20%;">
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+        <label class="btn btn-outline-primary" for="btnradio1">Add Student</label>
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+        <label class="btn btn-outline-primary" for="btnradio2">Drop Student</label>
+    </div>
+    <div id="add" class='table-responsive' style="margin-left:2%;margin-right:2%;padding:5%;padding-top:2%;display:none;">
         <h2>Add student</h2>
-        <form action="../../../php/faculty/add_student/add_student.php" method="POST" enctype="multipart/form-data" style="display:grid;width:100%;" id="FORM">
+        <form action="../../../php/faculty/add_student/add_student.php" method="POST" enctype="multipart/form-data" style="display:grid;width:100%;" id="FORM1">
             <div class="mb-3">
                 <br>
-                <label for="ID" class="form-label">Enter the student to add:</label>
-                <input type="text" id="ID" name="ID" required class="form-control" placeholder="ID Example: IIT2021155">
-                <input type="text" id="sec" name="sec" required class="form-control" placeholder="SECTION Example: B">
-                <input type="text" id="course" name="course" required class="form-control" placeholder="COURSE Example: DBMS">
-                <input type="number" id="semes" name="semes" required class="form-control" placeholder="SEMESTER Example: 4" min="1" max="8">
+                <label for="ID1" class="form-label">Enter the student to add:</label>
+                <input type="text" id="ID1" name="ID1" required class="form-control" placeholder="ID Example: IIT2021155">
+                <input type="text" id="sec1" name="sec1" required class="form-control" placeholder="SECTION Example: B">
+                <input type="text" id="course1" name="course1" required class="form-control" placeholder="COURSE Example: DBMS">
+                <input type="number" id="semes1" name="semes1" required class="form-control" placeholder="SEMESTER Example: 4" min="1" max="8">
                 <input type="submit" name="submit_add_single" id='submit_add_single' value="Submit" class='btn btn-primary'>
             </div>
         </form>
         <br>
         <label for="csvfile" class="form-label">Or Upload CSV file for mass add:</label>
-        <input type="file" id="csvfile" name="csvfile" required class="form-control" accept=".csv,.xlsx">
-        <form action="../../../php/faculty/add_student/add_student.php" method="POST" enctype="multipart/form-data" style="display:grid;width:100%;" id="FORM">
+        <input type="file" id="csvfile1" name="csvfile1" required class="form-control" accept=".csv,.xlsx">
+        <form action="../../../php/faculty/add_student/add_student.php" method="POST" enctype="multipart/form-data" style="display:grid;width:100%;" id="FORM2">
             <div class="mb-3">
-                <input type="text" id="sec" name="sec" required class="form-control" placeholder="SECTION Example: B">
-                <input type="text" id="course" name="course" required class="form-control" placeholder="COURSE Example: DBMS">
-                <input type="number" id="semes" name="semes" required class="form-control" placeholder="SEMESTER Example: 4" min="1" max="8">
-                <input type='hidden' name='file_data' id='file_data'>
+                <input type="text" id="sec1" name="sec1" required class="form-control" placeholder="SECTION Example: B">
+                <input type="text" id="course1" name="course1" required class="form-control" placeholder="COURSE Example: DBMS">
+                <input type="number" id="semes1" name="semes1" required class="form-control" placeholder="SEMESTER Example: 4" min="1" max="8">
+                <input type='hidden' name='file_data1' id='file_data1'>
                 <input type="submit" name="submit2" id='submit2' value="Submit" disabled='true' class='btn btn-primary'>
+            </div>
+        </form>
+    </div>
+    <div id="drop" class='table-responsive' style="margin-left:2%;margin-right:2%;padding:5%;padding-top:2%;display:none;">
+        <h2>Drop student</h2>
+        <form action="../../../php/faculty/add_student/add_student.php" method="POST" enctype="multipart/form-data" style="display:grid;width:100%;" id="FORM3">
+            <div class="mb-3">
+                <br>
+                <label for="ID" class="form-label">Enter the student to drop:</label>
+                <input type="text" id="ID2" name="ID2" required class="form-control" placeholder="ID Example: IIT2021155">
+                <input type="text" id="sec2" name="sec2" required class="form-control" placeholder="SECTION Example: B">
+                <input type="text" id="course2" name="course2" required class="form-control" placeholder="COURSE Example: DBMS">
+                <input type="number" id="semes2" name="semes2" required class="form-control" placeholder="SEMESTER Example: 4" min="1" max="8">
+                <input type="submit" name="submit_drop_single" id='submit_drop_single' value="Submit" class='btn btn-primary'>
+            </div>
+        </form>
+        <br>
+        <label for="csvfile" class="form-label">Or Upload CSV file for mass drop:</label>
+        <input type="file" id="csvfile2" name="csvfile2" required class="form-control" accept=".csv,.xlsx">
+        <form action="../../../php/faculty/add_student/add_student.php" method="POST" enctype="multipart/form-data" style="display:grid;width:100%;" id="FORM4">
+            <div class="mb-3">
+                <input type="text" id="sec2" name="sec2" required class="form-control" placeholder="SECTION Example: B">
+                <input type="text" id="course2" name="course2" required class="form-control" placeholder="COURSE Example: DBMS">
+                <input type="number" id="semes2" name="semes2" required class="form-control" placeholder="SEMESTER Example: 4" min="1" max="8">
+                <input type='hidden' name='file_data2' id='file_data2'>
+                <input type="submit" name="submit3" id='submit3' value="Submit" disabled='true' class='btn btn-primary'>
             </div>
         </form>
     </div>
@@ -84,7 +124,23 @@
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        var drop = document.getElementById('drop');
+        var add = document.getElementById('add');
 
+        var dropBtn = document.getElementById('btnradio2');
+        var addBtn = document.getElementById('btnradio1');
+
+        dropBtn.onclick = function() {
+            drop.style.display = 'block';
+            add.style.display = 'none';
+        };
+
+        addBtn.onclick = function() {
+            drop.style.display = 'none';
+            add.style.display = 'block';
+        };
+    </script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
