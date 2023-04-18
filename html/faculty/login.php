@@ -37,7 +37,7 @@
       <form name="f1" action="../../php/faculty/authentication.php" onsubmit="return validation()" method="post" style="display:grid;width: 350px;" id="FORM">
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email address</label>
-          <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="email@iiita.ac.in" pattern="[a-z]+@iiita.ac.in" required>
+          <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="email@iiita.ac.in" pattern="[a-z0-9]+@iiita.ac.in" required>
           <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
         </div>
         <div class="mb-3">
@@ -47,7 +47,7 @@
             Must be 8-20 characters long.
           </div>
           <div id="passwordHelp" class="form-text" id="passwordHelpInline">
-          <a href="lostpass.php">Lost Password? Click Here.</a>
+            <a href="lostpass.php">Lost Password? Click Here.</a>
           </div>
         </div>
         <button id="submitbtn" type="submit" class="btn btn-primary">Submit</button>

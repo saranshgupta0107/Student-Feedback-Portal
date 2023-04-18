@@ -24,11 +24,11 @@ session_start();
     <?php
     require('../../connection.php');
     $sql = "insert into takes";
-    if (isset($_POST['ID'])) {
-        $id = $_POST['ID'];
-        $course = $_POST['course'];
-        $_sec = $_POST['sec'];
-        $_semes = $_POST['semes'];
+    if (isset($_POST['ID1'])) {
+        $id = $_POST['ID1'];
+        $course = $_POST['course1'];
+        $_sec = $_POST['sec1'];
+        $_semes = $_POST['semes1'];
         $id = stripcslashes($id);
         $id = mysqli_real_escape_string($con, $id);
         $course = stripcslashes($course);
@@ -61,10 +61,10 @@ session_start();
             // echo "<script>alert('Erroreneous operation!');setTimeout(()=>{window.location.replace('../../../html/faculty/add_student/');},700);</script>";
         }
     } else {
-        $arr = json_decode($_POST['file_data']);
-        $course = $_POST['course'];
-        $_sec = $_POST['sec'];
-        $_semes = $_POST['semes'];
+        $arr = json_decode($_POST['file_data1']);
+        $course = $_POST['course1'];
+        $_sec = $_POST['sec1'];
+        $_semes = $_POST['semes1'];
         $course = stripcslashes($course);
         $course = mysqli_real_escape_string($con, $course);
         $_sec = stripcslashes($_sec);
@@ -90,12 +90,10 @@ session_start();
                 mysqli_rollback($con);
                 return;
             }
-            $sql = $sql . " values ('" . $id . "','" . $course . "','" . $_sec . "'," . (int)$_semes . ");";
+            $sql1 = $sql . " values ('" . $id . "','" . $course . "','" . $_sec . "'," . (int)$_semes . ");";
             try {
-                $result = mysqli_query($con, $sql);
+                $result = mysqli_query($con, $sql1);
                 if ($result) {
-                    mysqli_commit($con);
-                    echo "<script>alert('Success!');setTimeout(()=>{window.location.replace('../../../html/faculty/add_student/');},700);</script>";
                 }
             } catch (mysqli_sql_exception $e) {
                 mysqli_rollback($con);
@@ -103,6 +101,8 @@ session_start();
                 return;
             }
         }
+        echo "<script>alert('Success!');window.location.replace('../../../html/faculty/add_student/');;</script>";
+        mysqli_commit($con);
     }
     ?>
 </body>
