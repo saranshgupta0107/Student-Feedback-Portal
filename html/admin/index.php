@@ -68,39 +68,50 @@
       <div class="row mt-4">
         <div class="col">
           <div class="card">
-            <img src="https://source.unsplash.com/1400x700/?view" class="card-img-top" alt="...">
+            
+            <img src="../../images/view_faculty.jpg" class="card-img-top " alt="...">
+            
             <div class="card-body">
               <h5 class="card-title">View Faculty</h5>
               <p class="card-text">View the faculty.</p>
               <a class="btn btn-primary" href="view_faculty/" role="button">View Faculty</a>
-            </div>
+              </div>
+          
           </div>
         </div>
         <div class="col">
           <div class="card">
-            <img src="https://source.unsplash.com/1400x700/?teacher" class="card-img-top" alt="...">
+         
+            <img src="../../images/add_section.jpg" class="card-img-top " alt="...">
+          
             <div class="card-body">
               <h5 class="card-title">Add Section</h5>
               <p class="card-text">Add Section for a subject</p>
               <a class="btn btn-primary" href="add_section/" role="button">Add Section</a>
             </div>
+          
           </div>
         </div>
       </div>
       <div class="row mt-4">
         <div class="col">
           <div class="card">
-            <img src="https://source.unsplash.com/1400x700/?education,technology" class="card-img-top" alt="...">
+         
+            <img src="../../images/addremove.jpg" class="card-img-top " alt="...">
+          
             <div class="card-body">
               <h5 class="card-title">Drop/Add Students</h5>
               <p class="card-text">Change the students</p>
               <a class="btn btn-primary" href="drop_add_student/" role="button">Drop/Add</a>
-            </div>
+            
+          </div>
           </div>
         </div>
         <div class="col">
           <div class="card">
-            <img src="https://source.unsplash.com/1400x700/?view" class="card-img-top" alt="...">
+         
+            <img src="../../images/feedback.jpg" class="card-img-top " alt="...">
+         
             <div class="card-body">
               <h5 class="card-title">View Feedback</h5>
               <p class="card-text">View the feedback.</p>
@@ -108,6 +119,7 @@
             </div>
           </div>
         </div>
+        
       </div>
     </div>
   </div>
