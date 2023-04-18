@@ -10,12 +10,27 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-  <title>Faculty Log In</title>
+  <title>Lost Password</title>
 </head>
 
 
 <body onload="clearAll()">
-  <?php require '../../php/clear_session.php'; ?>
+<?php
+  session_start();
+  if (!(isset($_SESSION['otp']) && ($_SESSION['sentmail']==TRUE))) {
+    session_unset();
+    session_destroy();
+    echo "
+        <script>
+        function logout() {
+            alert('You are not authorized to view this page!');
+            window.location.replace('../../');
+        };
+        logout();
+        </script>";
+  }
+  $_SESSION['sentmail']=FALSE;
+  ?>
   <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
     <div class="container-fluid">
       <a class="navbar-brand" href="../../"><img src="../../images/iiita_logo.png" alt="iiita_logo" width="100px" height="100px" class="d-inline-block align-text-middle"></a>
@@ -29,26 +44,18 @@
   <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item" style="text-decoration: none;"><a href="../../">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Faculty Log In</li>
+      <li class="breadcrumb-item active" aria-current="page">Lost Password</li>
     </ol>
   </nav>
   <div id="login">
     <div class="newform">
-      <form name="f1" action="../../php/faculty/authentication.php" onsubmit="return validation()" method="post" style="display:grid;width: 350px;" id="FORM">
+      <form name="f1" action="../../php/faculty/verifyotp.php" onsubmit="return validation()" method="post" style="display:grid;width: 350px;" id="FORM">
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email address</label>
-          <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="email@iiita.ac.in" pattern="[a-z]+@iiita.ac.in" required>
-          <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input type="password" name="pass" class="form-control" id="exampleInputPassword1" pattern="\w{8,20}" required>
-          <div id="passwordHelp" class="form-text" id="passwordHelpInline">
-            Must be 8-20 characters long.
-          </div>
-          <div id="passwordHelp" class="form-text" id="passwordHelpInline">
-          <a href="lostpass.php">Lost Password? Click Here.</a>
-          </div>
+          <label for="otp" class="form-label">OTP</label>
+          <input name="otp" class="form-control" id="otp" aria-describedby="emailHelp" placeholder="Your One time password" required>
+          <div id="otpHelp" class="form-text"><span id="timer"></span></div>
+          <div id="otpHelp" class="form-text">Please don't refresh the page!</div>
+          <!-- <div id="emailHelp" class="form-text">A new password will be mailed to you.</div> -->
         </div>
         <button id="submitbtn" type="submit" class="btn btn-primary">Submit</button>
       </form>
@@ -56,8 +63,7 @@
     <script>
       function validation() {
         var id = document.f1.exampleInputEmail1;
-        var ps = document.f1.exampleInputPassword1;
-        if (id.length == "" && ps.length == "") {
+        if (id.length == "" ) {
           alert("User fields are empty");
           return false;
         }
@@ -73,6 +79,7 @@
       document.getElementById("exampleInputPassword1").value = "";
     }
   </script>
+    <script type="module" src="../../js/timer.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
   <!-- Option 2: Separate Popper and Bootstrap JS -->

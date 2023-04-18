@@ -53,6 +53,9 @@
           <div id="passwordHelp" class="form-text" id="passwordHelpInline">
             Must be 8-20 characters long.
           </div>
+          <div id="passwordHelp" class="form-text" id="passwordHelpInline">
+          <a href="lostpass.php">Lost Password? Click Here.</a>
+          </div>
         </div>
         <button id="submitbtn" type="submit" class="btn btn-primary">Submit</button>
       </form>
