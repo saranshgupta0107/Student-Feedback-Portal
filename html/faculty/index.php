@@ -62,7 +62,7 @@
       <div class="row mt-4">
         <div class="col">
           <div class="card">
-            <img src="https://source.unsplash.com/1400x700/?view" class="card-img-top" alt="...">
+            <img src="../../images/addremove.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">Add Students</h5>
               <p class="card-text">Add students to a course taught by you.</p>
@@ -72,7 +72,7 @@
         </div>
         <div class="col">
           <div class="card">
-            <img src="https://source.unsplash.com/1400x700/?view" class="card-img-top" alt="...">
+            <img src="../../images/feedback.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">View Feedback</h5>
               <p class="card-text">View the feedback.</p>
