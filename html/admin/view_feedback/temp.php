@@ -10,41 +10,8 @@
   <!-- Bootstrap CSS -->
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.js" integrity="sha512-VW8/i4IZkHxdD8OlqNdF7fGn3ba0+lYqag+Uy4cG6BtJ/LIr8t23s/vls70pQ41UasHH0tL57GQfKDApqc9izA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
   <title>Student Dashboard</title>
-  <!--<style>
-    .carousel .carousel-item {
-        transition-duration: 0s;
-    }
-    </style>-->
-  <style>
-    .carousel-control-prev-icon {
-      width: 5%;
-      position: absolute;
-      left: 0;
-      margin-left: 0;
-      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
-    }
-
-    .carousel-control-next-icon {
-      width: 5%;
-      position: absolute;
-      right: 0;
-      margin-right: 0;
-      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
-    }
-
-    .carousel-control-prev-icon {
-      width: 24px;
-      height: 24px;
-    }
-
-    .carousel-control-next-icon {
-      width: 24px;
-      height: 24px;
-    }
-  </style>
 </head>
 
 <body>
@@ -92,7 +59,7 @@
       <li class="breadcrumb-item active" aria-current="page">View Feedback</li>
     </ol>
   </nav>
-  <div style='display:flex;align-items:center;justify-content: center;' class="container-sm mb-2">
+  <div style='display:flex;align-items:center;justify-content: center;' class="container-sm">
     <select class="form-select form-select-md" id='instructor' name='instructor' aria-label=".form-select-sm example" style='width:15%;'>
       <option selected>All</option>
     </select>
@@ -106,55 +73,6 @@
       <option selected>All</option>
     </select>
     <button id='reset' class='btn btn-primary'>Reset</button>
-  </div>
-  <div id="carouselExampleIndicators" class="carousel slide" data-interval="false">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1" style='background-color:#33ffff'></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2" style='background-color:#33ffff'></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3" style='background-color:#33ffff'></button>
-    </div>
-    <div class="carousel-inner mt-4" data-interval="false">
-      <div class="carousel-item active">
-        <div style=' display:flex;border-style:ridge;width:90%;margin:auto;align-items:center;justify-content:center'>
-          <div style='width:100%;margin:4%;padding:0;height:200px' id='div1'>
-            <canvas id="myChart1" style='width:inherit;'></canvas>
-          </div>
-          <div style='width:100%;margin:4%;padding:0;height:200px' id='div2'>
-            <canvas id="myChart2" style='width:inherit;'></canvas>
-          </div>
-
-        </div>
-        <div style='display:flex;border-style:ridge;width:90%;margin:auto;align-items:center;justify-content:center'>
-          <div style='width:100%;margin:4%;padding:0;height:200px' id='div3'>
-            <canvas id="myChart3" style='width:inherit;'></canvas>
-          </div>
-          <div style='width:100%;margin:4%;padding:0;height:200px' id='div4'>
-            <canvas id="myChart4" style='width:inherit;'></canvas>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div style='display:flex;border-style:ridge;width:90%;margin:auto;align-items:center;justify-content:center'>
-          <div style='width:100%;margin:4%;padding:0;height:300px;margin-left:10%' id='div5'>
-            <canvas id="myChart5" style='width:inherit;'></canvas>
-          </div>
-          <div style='width:100%;margin:4%;padding:0;height:300px' id='div6'>
-            <canvas id="myChart6" style='width:inherit;height:300px'></canvas>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev" style='width:2%'>
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next" style='width:2%'>
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
   </div>
   <script>
     function generateOptions(course, section, semester, instructor) {
@@ -235,16 +153,6 @@
     if(!teach.has('" . $x['id'] . "'))teach.set('" . $x['id'] . "',new Set());
     generateOptions(['All','" . $x['course_id'] . "'],['All','" . $x['sec_id'] . "'],['All','" . $x['semester'] . "'],teach.get('" . $x['id'] . "'));
     </script>";
-    $sql = "select takes.anon_id,teaches.ID,teaches.course_id,teaches.sec_id,teaches.semester from (select * from takes inner join represents on takes.id=represents.stud_id) takes inner join teaches on takes.course_id=teaches.course_id and takes.sec_id=teaches.sec_id and takes.semester=teaches.semester;";
-    $result = $con->query($sql);
-    $arr = [];
-    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-      array_push($arr, $row);
-    }
-    $var = json_encode($arr);
-    echo "<script>
-    var enrollment_data=$var;
-    </script>";
   }
   ?>
   <div id="top" class='table-responsive '>
@@ -266,22 +174,14 @@
   <!-- Option 1: Bootstrap Bundle with Popper -->
   <script>
     var tbody = document.getElementById('table-body');
-    var new_data = [];
-    var new_data2 = new Set();
-    var distinct_users = new Set();
 
     function create_table() {
-      new_data.length = 0;
-      new_data2 = new Set();
-      distinct_users = new Set();
       for (var key in data) {
         //Create each row
         if (instructor.value != 'All' && !teach.get(instructor.value).has(data[key].course_id + "_" + data[key].sec_id + "_" + data[key].semester)) continue;
         if (course_id.value != 'All' && data[key].course_id != course_id.value) continue;
         if (sec_id.value != 'All' && data[key].sec_id != sec_id.value) continue;
         if (semester.value != 'All' && data[key].semester != semester.value) continue;
-        distinct_users.add(mapper[data[key].feedback_id]);
-        new_data.push(data[key]);
         var row = document.createElement('tr');
         row.setAttribute('class', 'item');
         row.innerHTML += `<td>${mapper[data[key].feedback_id]}</td>`;
@@ -294,14 +194,8 @@
         </form></td>`;
         tbody.insertBefore(row, tbody.firstChild);
       }
-      for (var key in enrollment_data) {
-        if (instructor.value != 'All' && !teach.get(instructor.value).has(enrollment_data[key].course_id + "_" + enrollment_data[key].sec_id + "_" + enrollment_data[key].semester)) continue;
-        if (course_id.value != 'All' && enrollment_data[key].course_id != course_id.value) continue;
-        if (sec_id.value != 'All' && enrollment_data[key].sec_id != sec_id.value) continue;
-        if (semester.value != 'All' && enrollment_data[key].semester != semester.value) continue;
-        new_data2.add(enrollment_data[key].anon_id);
-      }
     }
+    create_table();
   </script>
   <script>
     var course_id = document.getElementById('course_id');
@@ -350,6 +244,8 @@
         addOption(k, semester);
       }
     }
+    reset();
+    create_table();
 
     function addInstructorOptions() {
       const initial = instructor.value;
@@ -460,200 +356,6 @@
       semester.firstChild.selected = true;
     }
 
-    var ratings = new Map();
-    var evaluations = new Map();
-    var exams = new Map();
-    var assignment = new Map();
-    let canvas1 = document.getElementById('myChart1');
-    let canvas2 = document.getElementById('myChart2');
-    let canvas3 = document.getElementById('myChart3');
-    let canvas4 = document.getElementById('myChart4');
-    let canvas5 = document.getElementById('myChart5');
-    let canvas6 = document.getElementById('myChart6');
-    var myChart1 = null,
-      myChart2 = null,
-      myChart3 = null,
-      myChart4 = null;
-
-    //function for sum
-    const calculateSum = (arr) => {
-      return arr.reduce((total, current) => {
-        return total + current;
-      }, 0);
-    }
-
-    function inc(a, b) {
-      if (!a.has(b)) a.set(b, 1);
-      else a.set(b, a.get(b) + 1);
-    }
-
-    var eval_map = new Map();
-    var exam_map = new Map();
-    eval_map.set('1', 'Too few');
-    eval_map.set('2', 'Can add more');
-    eval_map.set('3', 'Ok');
-    eval_map.set('4', 'Reduce a bit');
-    eval_map.set('5', 'Too many');
-    exam_map.set('1', 'Easy');
-    exam_map.set('2', 'Moderate');
-    exam_map.set('3', 'Hard');
-
-    function recreate() {
-      ratings = new Map();
-      evaluations = new Map();
-      exams = new Map();
-      assignment = new Map();
-      for (var k in new_data) {
-        inc(ratings, new_data[k].rating);
-        inc(evaluations, new_data[k]['lab evaluations']);
-        inc(exams, new_data[k].exams);
-        inc(assignment, new_data[k].assignments);
-      }
-      for (var k of [{
-          canvas: canvas1,
-          map: ratings,
-          label: 'Ratings',
-          id: '1'
-        }, {
-          canvas: canvas2,
-          map: evaluations,
-          label: 'Opinion about lab evaluations',
-          id: '2'
-        }, {
-          canvas: canvas3,
-          map: exams,
-          label: 'Opinion about exams',
-          id: '3'
-        }, {
-          canvas: canvas4,
-          map: assignment,
-          label: 'Opinion about assignment',
-          id: '4'
-        }]) {
-        if (k.canvas) {
-          document.getElementById('myChart' + k.id).remove();
-          k.canvas = document.createElement('canvas');
-          k.canvas.setAttribute('id', 'myChart' + k.id);
-          document.getElementById('div' + k.id).appendChild(k.canvas);
-        }
-        var ctx = k.canvas.getContext('2d');
-        var labels = [];
-        if (k.id == '2' || k.id == '4') {
-          for (var i of ['Too few', 'Can add more', 'Ok', 'Reduce a bit', 'Too many']) {
-            labels.push(i);
-          }
-        } else if (k.id == '3') {
-          for (var i of ['Easy', 'Moderate', 'Hard']) {
-            labels.push(i);
-          }
-        } else {
-          for (var i of ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']) {
-            labels.push(i);
-          }
-        }
-        var new_datas = {};
-        if (k.id == '1') new_datas = Object.fromEntries(k.map);
-        else if (k.id == '3') Object.entries(Object.fromEntries(k.map)).map(([o_key, o_val]) => {
-          new_datas[exam_map.get(o_key)] = o_val
-        });
-        else Object.entries(Object.fromEntries(k.map)).map(([o_key, o_val]) => {
-          new_datas[eval_map.get(o_key)] = o_val
-        });
-        new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: labels,
-            datasets: [{
-              label: k.label,
-              data: new_datas
-            }, ],
-          }
-        })
-      }
-      for (var k of [{
-          canvas: canvas5,
-          label: 'Use Statistics',
-          id: '5'
-        }]) {
-        if (k.canvas) {
-          document.getElementById('myChart' + k.id).remove();
-          k.canvas = document.createElement('canvas');
-          k.canvas.setAttribute('id', 'myChart' + k.id);
-          //k.canvas.setAttribute('style', 'width:80%');
-          document.getElementById('div' + k.id).appendChild(k.canvas);
-        }
-        var ctx = k.canvas.getContext('2d');
-        var labels = ['Given Feedback', 'Not Given'];
-        new Chart(ctx, {
-          type: 'doughnut',
-          data: {
-            labels: labels,
-            datasets: [{
-              data: [distinct_users.size, new_data2.size - distinct_users.size],
-              backgroundColor: [
-                'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
-              ],
-              hoverOffset: 4
-            }]
-          },
-          options: {
-            responsive: false
-          }
-        })
-      }
-      for (var k of [{
-          canvas: canvas6,
-          map: ratings,
-          id: '6'
-        }]) {
-        if (k.canvas) {
-          document.getElementById('myChart' + k.id).remove();
-          k.canvas = document.createElement('canvas');
-          k.canvas.setAttribute('id', 'myChart' + k.id);
-          document.getElementById('div' + k.id).appendChild(k.canvas);
-        }
-        var ctx = k.canvas.getContext('2d');
-        var labels = ['Highest', 'Median', 'Average', 'Lowest'];
-        var ans = [0, 0, 0, 0];
-        var arr = [];
-        for (var [key, value] of ratings) {
-          for (var k1 = 0; k1 < value; k1++) {
-            arr.push(parseInt(key));
-          }
-        }
-        if (arr.length) {
-          ans[0] = math.max(arr);
-          ans[3] = math.min(arr);
-          ans[1] = math.median(arr);
-          ans[2] = math.mean(arr);
-        }
-        new Chart(ctx, {
-          type: 'line',
-          data: {
-            labels: labels,
-            datasets: [{
-              label: 'Ratings Statistics',
-              data: ans,
-              fill: false,
-              borderColor: 'rgb(75, 192, 192)',
-              tension: 0.1
-            }]
-          },
-          options: {
-            responsive: true,
-            scales: {
-              y: {
-                beginAtZero: true,
-                max: 11
-              }
-            }
-          }
-        })
-        k.canvas.setAttribute('style', 'height:300px');
-      }
-
-    }
     for (var k1 of ['change', 'click']) {
       for (var k2 of [instructor, semester, sec_id, course_id]) {
         k2.addEventListener(k1, () => {
@@ -663,18 +365,14 @@
           addSectionOptions();
           addSemesterOptions();
           create_table();
-          recreate();
         })
       }
     }
     document.getElementById('reset').addEventListener('click', () => {
       reset();
       create_table();
-      recreate();
     });
-    document.getElementById('semester').click();
   </script>
-
   <!-- Optional JavaScript; choose one of the two! -->
 
   <!-- Option 1: Bootstrap Bundle with Popper -->
