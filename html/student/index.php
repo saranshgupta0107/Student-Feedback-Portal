@@ -69,7 +69,7 @@
       <div class="row mt-4">
         <div class="col">
           <div class="card">
-            <img src="https://source.unsplash.com/1400x700/?view" class="card-img-top" alt="...">
+            <img src="../../images/feedback.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">View Feedback</h5>
               <p class="card-text">View your given Feedbacks.</p>
@@ -79,7 +79,7 @@
         </div>
         <div class="col">
           <div class="card">
-            <img src="https://source.unsplash.com/1400x700/?teacher" class="card-img-top" alt="...">
+            <img src="../../images/givefeedback.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">Give Feedback</h5>
               <p class="card-text">Give your Feedback</p>
