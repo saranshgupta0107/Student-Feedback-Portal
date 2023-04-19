@@ -14,13 +14,13 @@
 
 <body>
   <?php
-  require('../../php/gen_id.php');
-  session_start();
-  if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
-    session_unset();
-    session_destroy();
-    erase_cookies();
-    echo "
+require('../../php/gen_id.php');
+session_start();
+if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
+  session_unset();
+  session_destroy();
+  erase_cookies();
+  echo "
         <script>
         function logout() {
             alert('You have been logged in for more than 30 minutes, Timeout!');
@@ -28,15 +28,15 @@
         };
         logout();
         </script>";
-  }
-  ?>
+}
+?>
   <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'admin') {
-    session_unset();
-    session_destroy();
-    erase_cookies();
-    echo "<script> alert('You are not authorised to this page'); window.location.replace('../../')</script>";
-  }
-  ?>
+  session_unset();
+  session_destroy();
+  erase_cookies();
+  echo "<script> alert('You are not authorised to this page'); window.location.replace('../../')</script>";
+}
+?>
   <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
     <div class="container-fluid">
       <a class="navbar-brand" href="../../"><img src="../../images/iiita_logo.png" alt="" width="100px" height="100px" class="d-inline-block align-text-middle"></a>
@@ -64,7 +64,7 @@
     </div>
   </div>
   <div id="group">
-    <div class="card-group" style="padding: 10%; background-color: rgba(0, 0, 0, 0.558);">
+    <div class="card-group" style="padding: 10%; background-color: rgba(0, 0, 0, 0.558);align-content:center;justify-content:center;">
       <div class="row mt-4">
         <div class="col">
           <div class="card">

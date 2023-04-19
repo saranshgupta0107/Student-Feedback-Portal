@@ -15,13 +15,13 @@
 
 <body>
   <?php
-  session_start();
-  require('../../php/gen_id.php');
-  if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
-    session_unset();
-    session_destroy();
-    erase_cookies();
-    echo "
+session_start();
+require('../../php/gen_id.php');
+if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
+  session_unset();
+  session_destroy();
+  erase_cookies();
+  echo "
         <script>
         function logout() {
             alert('You have been logged in for more than 30 minutes, Timeout!');
@@ -29,15 +29,15 @@
         };
         logout();
         </script>";
-  }
-  ?>
+}
+?>
   <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'faculty') {
-    session_unset();
-    session_destroy();
-    erase_cookies();
-    echo "<script> alert('You are not authorised to this page'); window.location.replace('../../')</script>";
-  }
-  ?>
+  session_unset();
+  session_destroy();
+  erase_cookies();
+  echo "<script> alert('You are not authorised to this page'); window.location.replace('../../')</script>";
+}
+?>
   <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
     <div class="container-fluid">
       <a class="navbar-brand" href="../../"><img src="../../images/iiita_logo.png" alt="" width="100px" height="100px" class="d-inline-block align-text-middle"></a>
@@ -47,18 +47,17 @@
         </a>
       </div>
       <a href="../../php/logout.php"><button type="button" class="btn btn-primary" id="liveAlertn" style="margin-bottom: 1%;margin-left: -20%;">Logout</button></a>
-
     </div>
   </nav>
   <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item" style="text-decoration: none;"><a href="../../">Home</a></li>
       <li class="breadcrumb-item" style="text-decoration: none;"><a href="login.php">Log In</a></li>
-      <li class="breadcrumb-item active" aria-current="page"><?php echo ($_SESSION['id']); ?></li>
+      <li class="breadcrumb-item active" aria-current="page"><?php echo($_SESSION['id']); ?></li>
     </ol>
   </nav>
   <div id="group">
-    <div class="card-group" style="padding: 10%; background-color: rgba(0, 0, 0, 0.558);">
+    <div class="card-group" style="padding-top:10%;padding-bottom:10%;padding-left:20%;padding-right:20%; background-color: rgba(0, 0, 0, 0.558);">
       <div class="row mt-4">
         <div class="col">
           <div class="card">

@@ -50,12 +50,12 @@
 <body>
   <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
   <?php
-  require('../../../php/gen_id.php');
-  session_start();
-  if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
-    session_unset();
-    session_destroy();
-    echo "
+require('../../../php/gen_id.php');
+session_start();
+if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
+  session_unset();
+  session_destroy();
+  echo "
         <script>
         function logout() {
             alert('You have been logged in for more than 30 minutes, Timeout!');
@@ -63,16 +63,16 @@
         };
         logout();
         </script>";
-  }
+}
 
-  ?>
+?>
 
   <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'admin') {
-    session_unset();
-    session_destroy();
-    echo "<script> alert('You are not authorised to this page'); window.location.replace('../../../')</script>";
-  }
-  ?>
+  session_unset();
+  session_destroy();
+  echo "<script> alert('You are not authorised to this page'); window.location.replace('../../../')</script>";
+}
+?>
   <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
     <div class="container-fluid">
       <a class="navbar-brand" href="../../index.html"><img src="../../../images/iiita_logo.png" alt="" width="100px" height="100px" class="d-inline-block align-text-middle"></a>
@@ -168,37 +168,37 @@
     }
   </script>
   <?php
-  require_once('../../../php/connection.php');
-  $sql = "select * from feedback ;";
-  $result = $con->query($sql);
-  $arr = [];
-  while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-    array_push($arr, $row);
-  }
-  $var = json_encode($arr);
-  echo "<script>var data=$var;</script>";
-  $sql = "select id from instructor;";
-  $result = $con->query($sql);
-  $arr = [];
-  while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-    array_push($arr, $row);
-  }
-  $var = json_encode($arr);
-  echo "<script>
+require_once('../../../php/connection.php');
+$sql = "select * from feedback ;";
+$result = $con->query($sql);
+$arr = [];
+while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+  array_push($arr, $row);
+}
+$var = json_encode($arr);
+echo "<script>var data=$var;</script>";
+$sql = "select id from instructor;";
+$result = $con->query($sql);
+$arr = [];
+while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+  array_push($arr, $row);
+}
+$var = json_encode($arr);
+echo "<script>
     var instructorSet=new Set();
     var temp=$var;
     for(var k in temp){
       instructorSet.add(temp[k].id);
     }
     </script>";
-  $sql = "select course_id,sec_id,semester from section;";
-  $result = $con->query($sql);
-  $arr = [];
-  while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-    array_push($arr, $row);
-  }
-  $var = json_encode($arr);
-  echo "<script>
+$sql = "select course_id,sec_id,semester from section;";
+$result = $con->query($sql);
+$arr = [];
+while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+  array_push($arr, $row);
+}
+$var = json_encode($arr);
+echo "<script>
     var courseSet=new Set();
     var sectionSet=new Set();
     var semesterSet=new Set();
@@ -209,14 +209,14 @@
       semesterSet.add(temp[k].semester);
     }
     </script>";
-  $sql = "select * from gives;";
-  $result = $con->query($sql);
-  $arr = [];
-  while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-    array_push($arr, $row);
-  }
-  $var = json_encode($arr);
-  echo "<script>
+$sql = "select * from gives;";
+$result = $con->query($sql);
+$arr = [];
+while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+  array_push($arr, $row);
+}
+$var = json_encode($arr);
+echo "<script>
   var anon_id=$var;
   var mapper={};
   for(var k=0;k<anon_id.length;k++){
@@ -224,29 +224,29 @@
   }
   var teach=new Map();
   </script>";
-  $sql = "select * from teaches;";
+$sql = "select * from teaches;";
+$result = $con->query($sql);
+$arr = [];
+while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+  array_push($arr, $row);
+}
+foreach ($arr as $x) {
+  echo "<script>
+    if(!teach.has('" . $x['id'] . "'))teach.set('" . $x['id'] . "',new Set());
+    generateOptions(['All','" . $x['course_id'] . "'],['All','" . $x['sec_id'] . "'],['All','" . $x['semester'] . "'],teach.get('" . $x['id'] . "'));
+    </script>";
+  $sql = "select takes.anon_id,teaches.ID,teaches.course_id,teaches.sec_id,teaches.semester from (select * from takes inner join represents on takes.id=represents.stud_id) takes inner join teaches on takes.course_id=teaches.course_id and takes.sec_id=teaches.sec_id and takes.semester=teaches.semester;";
   $result = $con->query($sql);
   $arr = [];
   while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
     array_push($arr, $row);
   }
-  foreach ($arr as $x) {
-    echo "<script>
-    if(!teach.has('" . $x['id'] . "'))teach.set('" . $x['id'] . "',new Set());
-    generateOptions(['All','" . $x['course_id'] . "'],['All','" . $x['sec_id'] . "'],['All','" . $x['semester'] . "'],teach.get('" . $x['id'] . "'));
-    </script>";
-    $sql = "select takes.anon_id,teaches.ID,teaches.course_id,teaches.sec_id,teaches.semester from (select * from takes inner join represents on takes.id=represents.stud_id) takes inner join teaches on takes.course_id=teaches.course_id and takes.sec_id=teaches.sec_id and takes.semester=teaches.semester;";
-    $result = $con->query($sql);
-    $arr = [];
-    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-      array_push($arr, $row);
-    }
-    $var = json_encode($arr);
-    echo "<script>
+  $var = json_encode($arr);
+  echo "<script>
     var enrollment_data=$var;
     </script>";
-  }
-  ?>
+}
+?>
   <div id="top" class='table-responsive '>
     <table class='table sortable'>
       <thead class='p-3 mb-2 bg-primary text-white'>
@@ -673,6 +673,7 @@
       recreate();
     });
     document.getElementById('semester').click();
+    window.addEventListener('slid.bs.carousel',()=>{recreate()});
   </script>
 
   <!-- Optional JavaScript; choose one of the two! -->
