@@ -93,7 +93,7 @@
     </div>
     <div id="drop" class='table-responsive' style="margin-left:2%;margin-right:2%;padding:5%;padding-top:2%;display:none;">
         <h2>Drop student</h2>
-        <form action="../../../php/faculty/add_student/add_student.php" method="POST" enctype="multipart/form-data" style="display:grid;width:100%;" id="FORM3">
+        <form action="../../../php/faculty/add_student/drop_student.php" method="POST" enctype="multipart/form-data" style="display:grid;width:100%;" id="FORM3">
             <div class="mb-3">
                 <br>
                 <label for="ID" class="form-label">Enter the student to drop:</label>

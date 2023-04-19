@@ -23,4 +23,4 @@ function timer(remaining) {
   window.location.replace('../../');
 }
 
-timer(120);
+timer(180);
