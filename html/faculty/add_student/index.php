@@ -107,7 +107,7 @@
         <br>
         <label for="csvfile" class="form-label">Or Upload CSV file for mass drop:</label>
         <input type="file" id="csvfile2" name="csvfile2" required class="form-control" accept=".csv,.xlsx">
-        <form action="../../../php/faculty/add_student/add_student.php" method="POST" enctype="multipart/form-data" style="display:grid;width:100%;" id="FORM4">
+        <form action="../../../php/faculty/add_student/drop_student.php" method="POST" enctype="multipart/form-data" style="display:grid;width:100%;" id="FORM4">
             <div class="mb-3">
                 <input type="text" id="sec2" name="sec2" required class="form-control" placeholder="SECTION Example: B">
                 <input type="text" id="course2" name="course2" required class="form-control" placeholder="COURSE Example: DBMS">
