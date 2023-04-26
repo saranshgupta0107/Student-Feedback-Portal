@@ -24,7 +24,7 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
         <script>
         function logout() {
             alert('You have been logged in for more than 30 minutes, Timeout!');
-            window.location.replace('http://localhost/DBMS-Project/');
+            window.location.replace('../../');
         };
         logout();
         </script>";

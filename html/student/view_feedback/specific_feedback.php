@@ -24,7 +24,7 @@
         <script>
         function logout() {
             alert('You have been logged in for more than 30 minutes, Timeout!');
-            window.location.replace('http://localhost/DBMS-Project/');
+            window.location.replace('../../../');
         };
         logout();
         </script>";
@@ -33,7 +33,7 @@
     <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'student') {
         session_unset();
         session_destroy();
-        echo "<script> alert('You are not authorised to this page'); window.location.replace('../../')</script>";
+        echo "<script> alert('You are not authorised to this page'); window.location.replace('../../../')</script>";
     }
     ?>
     <?php
@@ -56,7 +56,7 @@
     <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item" style="text-decoration: none;"><a href="../../../">Home</a></li>
-            <li class="breadcrumb-item" style="text-decoration: none;"><a href="../../">Log In</a></li>
+            <li class="breadcrumb-item" style="text-decoration: none;"><a href="../login_student.php">Log In</a></li>
             <li class="breadcrumb-item" style="text-decoration: none;"><a href="../">Student</a></li>
             <li class="breadcrumb-item" style="text-decoration: none;"><a href="index.php">View Feedback</a></li>
         </ol>

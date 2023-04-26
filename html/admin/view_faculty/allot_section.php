@@ -24,7 +24,7 @@
         <script>
         function logout() {
             alert('You have been logged in for more than 30 minutes, Timeout!');
-            window.location.replace('http://localhost/DBMS-Project/');
+            window.location.replace('../../../');
         };
         logout();
         </script>";
@@ -50,7 +50,7 @@
     <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item" style="text-decoration: none;"><a href="../../../">Home</a></li>
-            <li class="breadcrumb-item" style="text-decoration: none;"><a href="login_admin.html">Log In</a></li>
+            <li class="breadcrumb-item" style="text-decoration: none;"><a href="../login_admin.php">Log In</a></li>
             <li class="breadcrumb-item" style="text-decoration: none;"><a href="../">Admin</a></li>
             <li class="breadcrumb-item" style="text-decoration: none;"" aria-current=" page"><a href="../view_faculty/">View Faculty</a></li>
             <li class="breadcrumb-item active" aria-current="page">Allot Section</li>
