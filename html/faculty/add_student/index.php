@@ -140,6 +140,7 @@
             drop.style.display = 'none';
             add.style.display = 'block';
         };
+        addBtn.click();
     </script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
