@@ -138,7 +138,98 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
         </div>
       </div>
       <div class="carousel-item">
-
+        <div class="container py-5">
+          <div class="row d-flex justify-content-center">
+            <div class="col-md-10 col-xl-8 text-center">
+              <h3 class="fw-bold mb-4">Reviews</h3>
+                <p class="mb-4 pb-2 mb-md-5 pb-md-0">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet
+                  numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum
+                  quisquam eum porro a pariatur veniam.
+                </p>
+            </div>
+          </div>
+          <div class="row text-center">
+            <div class="col-md-4 mb-4 mb-md-0">
+              <div class="card">
+                <div class="card-body py-4 mt-2">
+                  <h5 class="font-weight-bold">Soumyadev Maity</h5>
+                  <h6 class="font-weight-bold my-3">Faculty co-ordinator DBMS, 4th semester</h6>
+                    <ul class="list-unstyled d-flex justify-content-center">
+                      <li><i class="fas fa-star fa-sm text-info"></i></li>
+                      <li><i class="fas fa-star fa-sm text-info"></i></li>
+                      <li><i class="fas fa-star fa-sm text-info"></i></li>
+                      <li><i class="fas fa-star fa-sm text-info"></i></li>
+                      <li><i class="fas fa-star fa-sm text-info"></i></li>
+                      <li><i class="fas fa-star fa-sm text-info"></i></li>
+                      <li><i class="fas fa-star fa-sm text-info"></i></li>
+                      <li><i class="fas fa-star fa-sm text-info"></i></li>
+                      <li><i class="fas fa-star fa-sm text-info"></i></li>
+                      <li><i class="fas fa-star-half-alt fa-sm text-info"></i></li>
+                    </ul>
+                    <p class="mb-2">
+                      <i class="fas fa-quote-left pe-2"></i>
+                        Lorem ipsum dolor sit amet,
+                        consectetur adipisicing elit. Quod eos id officiis hic tenetur quae quaerat
+                        ad velit ab hic tenetur.
+                    </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-4 mb-md-0">
+              <div class="card">
+                <div class="card-body py-4 mt-2">
+                  <h5 class="font-weight-bold">Sonali Agrawal</h5>
+                  <h6 class="font-weight-bold my-3">Faculty Software Engineering, 4th semester</h6>
+                    <ul class="list-unstyled d-flex justify-content-center">
+                      <li><i class="fas fa-star fa-sm text-info"></i></li>
+                      <li><i class="fas fa-star fa-sm text-info"></i></li>
+                      <li><i class="fas fa-star fa-sm text-info"></i></li>
+                      <li><i class="fas fa-star fa-sm text-info"></i></li>
+                      <li><i class="fas fa-star fa-sm text-info"></i></li>
+                      <li><i class="fas fa-star fa-sm text-info"></i></li>
+                      <li><i class="fas fa-star fa-sm text-info"></i></li>
+                      <li><i class="fas fa-star fa-sm text-info"></i></li>
+                      <li><i class="fas fa-star fa-sm text-info"></i></li>
+                      <li><i class="far fa-star fa-sm text-info"></i></li>
+                    </ul>
+                    <p class="mb-2">
+                      <i class="fas fa-quote-left pe-2"></i>
+                      Autem, totam debitis suscipit saepe
+                      sapiente magnam officiis quaerat necessitatibus odio assumenda perferendis
+                      labore laboriosam.
+                    </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-0">
+              <div class="card">
+                <div class="card-body py-4 mt-2">
+                  <h5 class="font-weight-bold">Surya Prakash</h5>
+                  <h6 class="font-weight-bold my-3">Faculty FEE, 1st semester</h6>
+                    <ul class="list-unstyled d-flex justify-content-center">
+                      <li><i class="fas fa-star fa-sm text-info"></i></li>
+                      <li><i class="fas fa-star fa-sm text-info"></i></li>
+                      <li><i class="fas fa-star fa-sm text-info"></i></li>
+                      <li><i class="fas fa-star fa-sm text-info"></i></li>
+                      <li><i class="fas fa-star fa-sm text-info"></i></li>
+                      <li><i class="fas fa-star fa-sm text-info"></i></li>
+                      <li><i class="fas fa-star fa-sm text-info"></i></li>
+                      <li><i class="fas fa-star fa-sm text-info"></i></li>
+                      <li><i class="fas fa-star-half-alt fa-sm text-info"></i></li>
+                      <li><i class="far fa-star fa-sm text-info"></i></li>
+                    </ul>
+                    <p class="mb-2">
+                      <i class="fas fa-quote-left pe-2"></i>
+                      Cras sit amet nibh libero, in gravida
+                      nulla metus scelerisque ante sollicitudin commodo cras purus odio,
+                      vestibulum in tempus viverra turpis.
+                    </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev" style='width:2%'>
@@ -603,6 +694,7 @@ echo "<script>
     document.getElementById('semester').click();
     window.addEventListener('slid.bs.carousel',()=>{recreate()});
   </script>
+  <script src="https://kit.fontawesome.com/10950362e3.js" crossorigin="anonymous"></script>
   <!-- Optional JavaScript; choose one of the two! -->
 
   <!-- Option 1: Bootstrap Bundle with Popper -->
