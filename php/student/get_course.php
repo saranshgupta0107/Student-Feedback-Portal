@@ -6,8 +6,14 @@ session_start();
 
         $directions=(json_decode(file_get_contents('php://input'), true));
         $email=$directions['email'];
+        $email=stripcslashes($email);
+        $email=mysqli_real_escape_string($con,$email);
         $pass =$directions['pass'];
+        $pass=stripcslashes($pass);
+        $pass=mysqli_real_escape_string($con,$pass);
         $course=$directions['course'];
+        $course=stripcslashes($course);
+        $course=mysqli_real_escape_string($con,$course);
             $sql = "select * from takes where student_id='$email';";  
             if($course!='none')$sql=$sql." and course_id='$course'";
             $result = $con->query($sql);

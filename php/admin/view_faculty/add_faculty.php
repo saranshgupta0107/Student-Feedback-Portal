@@ -14,7 +14,7 @@ session_start();
         <script>
         function logout() {
             alert('You have been logged in for more than 30 minutes, Timeout!');
-            window.location.replace('http://localhost/DBMS-Project/');
+            window.location.replace('../../../');
         };
         logout();
         </script>";

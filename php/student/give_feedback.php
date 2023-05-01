@@ -7,11 +7,17 @@ session_start();
             $sql = "select uuid() as id;";  
             $result = $con->query($sql);
             $comment=$_POST['comment'];
+            $comment=stripcslashes($comment);
+            $comment=mysqli_real_escape_string($con,$comment);
             $rating=(int)$_POST['rating'];
+            $rating=mysqli_real_escape_string($con,$rating);
             $course=$_POST['course'];
+            $course=stripcslashes($course);
+            $course=mysqli_real_escape_string($con,$course);
             $date=date("Y-m-d");
-            echo $date;
             $username=$_POST['student'];
+            $username=stripcslashes($username);
+            $username=mysqli_real_escape_string($con,$username);
             $checkQ=mysqli_query($con,"select * from takes where student_id='$username' and course_id='$course'");
             if(mysqli_num_rows($checkQ)==1){
                 $sql=$result->fetch_assoc()['id'];

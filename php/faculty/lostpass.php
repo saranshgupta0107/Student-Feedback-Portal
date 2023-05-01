@@ -6,6 +6,7 @@ require_once('../lostpass.php');
 $username = $_POST['email'];
 //to prevent from mysqli injection  
 $username = stripcslashes($username);
+$username=mysqli_real_escape_string($username);
 $sql = "select * from instructor where id = '$username'";
 $result = mysqli_query($con, $sql);
 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);

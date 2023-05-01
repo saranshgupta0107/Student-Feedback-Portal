@@ -3,6 +3,7 @@ session_start();
     require('../connection.php');
     $pass = $_POST['password'];
     $pass = stripcslashes($pass);
+    $pass=mysqli_real_escape_string($con,$pass);
     $pass = $pass . "randomsalt";
     $pass = hash('ripemd160', $pass);
     $pass= mysqli_real_escape_string($con, $pass);

@@ -6,6 +6,8 @@ session_start();
 
         $directions=(json_decode(file_get_contents('php://input'), true));
         $email=$directions['email'];
+        $email=stripcslashes($email);
+        $email=mysqli_real_escape_string($con,$email);
             $sql = "select course_id from teaches where email='$email'";  
             $result = $con->query($sql);
             if($result->num_rows>0){

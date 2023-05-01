@@ -14,7 +14,7 @@ session_start();
         <script>
         function logout() {
             alert('You have been logged in for more than 30 minutes, Timeout!');
-            window.location.replace('http://localhost/DBMS-Project/');
+            window.location.replace('../../../');
         };
         logout();
         </script>";
@@ -22,7 +22,7 @@ session_start();
     }
     ?>
     <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'student') {
-        echo "<script> alert('You are not authorised to this page'); window.location.replace('../../')</script>";
+        echo "<script> alert('You are not authorised to this page'); window.location.replace('../../../')</script>";
     } ?>
     <?php
     $anon_id = $_SESSION['username'];
