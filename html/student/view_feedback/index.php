@@ -66,33 +66,37 @@
   </div>
   <?php
   require_once('../../../php/connection.php');
-  $sql = "select * from feedback natural join (select feedback_id from gives where anon_id ='" . $_SESSION['username'] . "') e1;";
-  $result = $con->query($sql);
-  $arr = [];
-  while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-    array_push($arr, $row);
-  }
-  $var = json_encode($arr);
-  echo "<script>var data=$var;</script>";
-  $sql =
-    "select course_id,sec_id,semester from feedback natural join (select feedback_id from gives where anon_id ='" . $_SESSION['username'] . "') e1;";
-  $result = $con->query($sql);
-  $arr = [];
-  while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-    array_push($arr, $row);
-  }
-  $var = json_encode($arr);
-  echo "<script>
-    var courseSet=new Set();
-    var sectionSet=new Set();
-    var semesterSet=new Set();
-    var temp=$var;
-    for(var k in temp){
-      courseSet.add(temp[k].course_id);
-      sectionSet.add(temp[k].sec_id);
-      semesterSet.add(temp[k].semester);
+  try{
+    $sql = "select * from feedback natural join (select feedback_id from gives where anon_id ='" . $_SESSION['username'] . "') e1;";
+    $result = $con->query($sql);
+    $arr = [];
+    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+      array_push($arr, $row);
     }
-    </script>";
+    $var = json_encode($arr);
+    echo "<script>var data=$var;</script>";
+    $sql =
+      "select course_id,sec_id,semester from feedback natural join (select feedback_id from gives where anon_id ='" . $_SESSION['username'] . "') e1;";
+    $result = $con->query($sql);
+    $arr = [];
+    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+      array_push($arr, $row);
+    }
+    $var = json_encode($arr);
+    echo "<script>
+      var courseSet=new Set();
+      var sectionSet=new Set();
+      var semesterSet=new Set();
+      var temp=$var;
+      for(var k in temp){
+        courseSet.add(temp[k].course_id);
+        sectionSet.add(temp[k].sec_id);
+        semesterSet.add(temp[k].semester);
+      }
+      </script>";
+    }catch(Exception $e){
+      echo "<script>alert('There has been some error on this page, please contact administrator!');window.location.replace('../');</script>";
+    }
   ?>
   <div id="top" class='table-responsive '>
     <table class='table sortable'>

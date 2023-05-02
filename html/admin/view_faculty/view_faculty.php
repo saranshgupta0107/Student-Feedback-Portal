@@ -56,14 +56,18 @@
       </li>
       <li class="breadcrumb-item active" aria-current="page">Edit
         <?php require('../../../php/connection.php');
-        $email = array_values($_POST)[0];
-        setcookie('Teacher', $email, time() + 60 * 5);
-        $email = stripcslashes($email);
-        $email = mysqli_real_escape_string($con, $email);
-        $sql = "select name from instructor where id='" . $email . "';";
-        $result = mysqli_query($con, $sql);
-        $row = $result->fetch_row();
-        echo $row[0]; ?>
+        try{
+          $email = array_values($_POST)[0];
+          setcookie('Teacher', $email, time() + 60 * 5);
+          $email = stripcslashes($email);
+          $email = mysqli_real_escape_string($con, $email);
+          $sql = "select name from instructor where id='" . $email . "';";
+          $result = mysqli_query($con, $sql);
+          $row = $result->fetch_row();
+          echo $row[0];
+         }catch(Exception $e){
+            echo "<script>alert('There has been some error on this page, please contact administrator!');window.location.replace('../');</script>";
+          } ?>
       </li>
     </ol>
   </nav>
@@ -78,11 +82,16 @@
     </script>
     <?php
     require('../../../php/connection.php');
-    $email = array_values($_POST)[0];
-    $email = stripcslashes($email);
-    $email = mysqli_real_escape_string($con, $email);
-    $sql = "select sec_id,semester,course_id from teaches where id='" . $email . "';";
-    $result = $con->query($sql);
+    try{
+      $email = array_values($_POST)[0];
+      $email = stripcslashes($email);
+      $email = mysqli_real_escape_string($con, $email);
+      $sql = "select sec_id,semester,course_id from teaches where id='" . $email . "';";
+      $result = $con->query($sql);
+    }
+    catch(Exception $e){
+      echo "<script>alert('There has been some error on this page, please contact administrator!');window.location.replace('../');</script>";
+    }
     echo "<table class='table'>";
     echo "<thead class='p-3 mb-2 bg-primary text-white'>";
     echo ("<th scope='col' style='width: 25%;text-align: center;'>Section</th>");

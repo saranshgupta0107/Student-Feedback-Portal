@@ -357,75 +357,16 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
   </script>
   <?php
 require_once('../../../php/connection.php');
-$sql = "select * from feedback ;";
-$result = $con->query($sql);
-$arr = [];
-while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-  array_push($arr, $row);
-}
-$var = json_encode($arr);
-echo "<script>var data=$var;</script>";
-$sql = "select id,name from instructor;";
-$result = $con->query($sql);
-$arr = [];
-while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-  array_push($arr, $row);
-}
-$var = json_encode($arr);
-echo "<script>
-    var instructorSet=new Set();
-    var instructorMap=new Map();
-    var temp=$var;
-    for(var k in temp){
-      instructorSet.add(temp[k].id);
-      instructorMap.set(temp[k].id,temp[k].name);
-    }
-    </script>";
-$sql = "select course_id,sec_id,semester from section;";
-$result = $con->query($sql);
-$arr = [];
-while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-  array_push($arr, $row);
-}
-$var = json_encode($arr);
-echo "<script>
-    var courseSet=new Set();
-    var sectionSet=new Set();
-    var semesterSet=new Set();
-    var temp=$var;
-    for(var k in temp){
-      courseSet.add(temp[k].course_id);
-      sectionSet.add(temp[k].sec_id);
-      semesterSet.add(temp[k].semester);
-    }
-    </script>";
-$sql = "select * from gives;";
-$result = $con->query($sql);
-$arr = [];
-while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-  array_push($arr, $row);
-}
-$var = json_encode($arr);
-echo "<script>
-  var anon_id=$var;
-  var mapper={};
-  for(var k=0;k<anon_id.length;k++){
-    mapper[anon_id[k].feedback_id]=anon_id[k].anon_id;
+try{
+  $sql = "select * from feedback ;";
+  $result = $con->query($sql);
+  $arr = [];
+  while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+    array_push($arr, $row);
   }
-  var teach=new Map();
-  </script>";
-$sql = "select * from teaches;";
-$result = $con->query($sql);
-$arr = [];
-while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-  array_push($arr, $row);
-}
-foreach ($arr as $x) {
-  echo "<script>
-    if(!teach.has('" . $x['id'] . "'))teach.set('" . $x['id'] . "',new Set());
-    generateOptions(['All','" . $x['course_id'] . "'],['All','" . $x['sec_id'] . "'],['All','" . $x['semester'] . "'],teach.get('" . $x['id'] . "'));
-    </script>";
-  $sql = "select takes.anon_id,teaches.ID,teaches.course_id,teaches.sec_id,teaches.semester from (select * from takes inner join represents on takes.id=represents.stud_id) takes inner join teaches on takes.course_id=teaches.course_id and takes.sec_id=teaches.sec_id and takes.semester=teaches.semester;";
+  $var = json_encode($arr);
+  echo "<script>var data=$var;</script>";
+  $sql = "select id,name from instructor;";
   $result = $con->query($sql);
   $arr = [];
   while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
@@ -433,9 +374,72 @@ foreach ($arr as $x) {
   }
   $var = json_encode($arr);
   echo "<script>
-    var enrollment_data=$var;
+      var instructorSet=new Set();
+      var instructorMap=new Map();
+      var temp=$var;
+      for(var k in temp){
+        instructorSet.add(temp[k].id);
+        instructorMap.set(temp[k].id,temp[k].name);
+      }
+      </script>";
+  $sql = "select course_id,sec_id,semester from section;";
+  $result = $con->query($sql);
+  $arr = [];
+  while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+    array_push($arr, $row);
+  }
+  $var = json_encode($arr);
+  echo "<script>
+      var courseSet=new Set();
+      var sectionSet=new Set();
+      var semesterSet=new Set();
+      var temp=$var;
+      for(var k in temp){
+        courseSet.add(temp[k].course_id);
+        sectionSet.add(temp[k].sec_id);
+        semesterSet.add(temp[k].semester);
+      }
+      </script>";
+  $sql = "select * from gives;";
+  $result = $con->query($sql);
+  $arr = [];
+  while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+    array_push($arr, $row);
+  }
+  $var = json_encode($arr);
+  echo "<script>
+    var anon_id=$var;
+    var mapper={};
+    for(var k=0;k<anon_id.length;k++){
+      mapper[anon_id[k].feedback_id]=anon_id[k].anon_id;
+    }
+    var teach=new Map();
     </script>";
-}
+  $sql = "select * from teaches;";
+  $result = $con->query($sql);
+  $arr = [];
+  while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+    array_push($arr, $row);
+  }
+  foreach ($arr as $x) {
+    echo "<script>
+      if(!teach.has('" . $x['id'] . "'))teach.set('" . $x['id'] . "',new Set());
+      generateOptions(['All','" . $x['course_id'] . "'],['All','" . $x['sec_id'] . "'],['All','" . $x['semester'] . "'],teach.get('" . $x['id'] . "'));
+      </script>";
+    $sql = "select takes.anon_id,teaches.ID,teaches.course_id,teaches.sec_id,teaches.semester from (select * from takes inner join represents on takes.id=represents.stud_id) takes inner join teaches on takes.course_id=teaches.course_id and takes.sec_id=teaches.sec_id and takes.semester=teaches.semester;";
+    $result = $con->query($sql);
+    $arr = [];
+    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+      array_push($arr, $row);
+    }
+    $var = json_encode($arr);
+    echo "<script>
+      var enrollment_data=$var;
+      </script>";
+  }
+}catch(Exception $e){
+    echo "<script>alert('There has been some error on this page, please contact administrator!');window.location.replace('../');</script>";
+  }
 ?>
   <div id="top" class='table-responsive '>
     <table class='table sortable'>

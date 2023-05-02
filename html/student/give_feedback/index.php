@@ -38,14 +38,18 @@
     ?>
     <?php
     require('../../../php/connection.php');
-    $sql = "select * from takes where ID='" . $_SESSION['id'] . "'";
-    $result = mysqli_query($con, $sql);
-    $arr = [];
-    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-        array_push($arr, $row);
+    try{
+        $sql = "select * from takes where ID='" . $_SESSION['id'] . "'";
+        $result = mysqli_query($con, $sql);
+        $arr = [];
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            array_push($arr, $row);
+        }
+        $var = json_encode($arr);
+        echo "<script>var data=$var</script>";
+    }catch(Exception $e){
+        echo "<script>alert('There has been some error on this page, please contact administrator!');window.location.replace('../');</script>";
     }
-    $var = json_encode($arr);
-    echo "<script>var data=$var</script>";
     ?>
     <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
         <div class="container-fluid">

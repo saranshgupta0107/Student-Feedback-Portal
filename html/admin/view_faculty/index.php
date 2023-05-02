@@ -57,15 +57,20 @@
   </nav>
   <?php
   require('../../../php/connection.php');
-  $sql = "select name,id from instructor;";
-  $result = mysqli_query($con, $sql);
-  $arr = [];
-  while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-    array_push($arr, $row);
+  try{
+    $sql = "select name,id from instructor;";
+    $result = mysqli_query($con, $sql);
+    $arr = [];
+    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+      array_push($arr, $row);
+    }
+    $var = json_encode($arr);
+    echo "<script>var data=$var;</script>";
+    setcookie('Teacher', 'destroy', time() - 10 * 60 * 5);
   }
-  $var = json_encode($arr);
-  echo "<script>var data=$var;</script>";
-  setcookie('Teacher', 'destroy', time() - 10 * 60 * 5);
+  catch(Exception $e){
+    echo "<script>alert('There has been some error on this page, please contact administrator!');window.location.replace('../');</script>";
+  }
   ?>
   <div id="top" class='table-responsive'>
     <table class='table'>

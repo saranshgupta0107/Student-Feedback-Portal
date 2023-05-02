@@ -24,85 +24,89 @@ session_start();
     <?php
     require('../../connection.php');
     $sql = "insert into takes";
-    if (isset($_POST['ID1'])) {
-        $id = $_POST['ID1'];
-        $course = $_POST['course1'];
-        $_sec = $_POST['sec1'];
-        $_semes = $_POST['semes1'];
-        $id = stripcslashes($id);
-        $id = mysqli_real_escape_string($con, $id);
-        $course = stripcslashes($course);
-        $course = mysqli_real_escape_string($con, $course);
-        $_sec = stripcslashes($_sec);
-        $_sec = mysqli_real_escape_string($con, $_sec);
-        $_semes = stripcslashes($_semes);
-        $_semes = mysqli_real_escape_string($con, $_semes);
-        $sqlchk1 = "select * from student where id='" . $id . "@iiita.ac.in';";
-        $sqlchk2 = "select * from teaches where id='" . $_SESSION['id'] . "' and course_id='" . $course . "' and semester=" . (int)$_semes . " and sec_id='" . $_sec . "';";
-        $resultchk1 = mysqli_query($con, $sqlchk1);
-        if (mysqli_num_rows($resultchk1) == 0) {
-            echo "<script>alert('The student with the name and id is not present in the database!');setTimeout(()=>{window.location.replace('../../../html/faculty/add_student/');},700);</script>";
-            return;
-        }
-        $resultchk2 = mysqli_query($con, $sqlchk2);
-        if (mysqli_num_rows($resultchk2) == 0) {
-            echo "<script>alert('You dont currently teach this course!\\nPlease check the semester or section');setTimeout(()=>{window.location.replace('../../../html/faculty/add_student/');},700);</script>";
-            return;
-        }
-        $sql = $sql . " values ('" . $id . "@iiita.ac.in','" . $course . "','" . $_sec . "'," . (int)$_semes . ");";
-        // echo($sql);
-        try {
-            $result = mysqli_query($con, $sql);
-            if ($result) {
-                mysqli_commit($con);
-                echo "<script>alert('Success!');setTimeout(()=>{window.location.replace('../../../html/faculty/add_student/');},700);</script>";
-            }
-        } catch (mysqli_sql_exception $e) {
-            // echo "<script>alert('Erroreneous operation!');setTimeout(()=>{window.location.replace('../../../html/faculty/add_student/');},700);</script>";
-        }
-    } else {
-        $arr = json_decode($_POST['file_data1']);
-        $course = $_POST['course1'];
-        $_sec = $_POST['sec1'];
-        $_semes = $_POST['semes1'];
-        $course = stripcslashes($course);
-        $course = mysqli_real_escape_string($con, $course);
-        $_sec = stripcslashes($_sec);
-        $_sec = mysqli_real_escape_string($con, $_sec);
-        $_semes = stripcslashes($_semes);
-        $_semes = mysqli_real_escape_string($con, $_semes);
-        foreach ($arr as $row => $val) {
-            $val = json_decode(json_encode($val), true);
-            $id = $val['Roll Number'] . '@iiita.ac.in';
+    try{
+        if (isset($_POST['ID1'])) {
+            $id = $_POST['ID1'];
+            $course = $_POST['course1'];
+            $_sec = $_POST['sec1'];
+            $_semes = $_POST['semes1'];
             $id = stripcslashes($id);
             $id = mysqli_real_escape_string($con, $id);
-            $sqlchk1 = "select * from student where id='" . $id . "';";
+            $course = stripcslashes($course);
+            $course = mysqli_real_escape_string($con, $course);
+            $_sec = stripcslashes($_sec);
+            $_sec = mysqli_real_escape_string($con, $_sec);
+            $_semes = stripcslashes($_semes);
+            $_semes = mysqli_real_escape_string($con, $_semes);
+            $sqlchk1 = "select * from student where id='" . $id . "@iiita.ac.in';";
             $sqlchk2 = "select * from teaches where id='" . $_SESSION['id'] . "' and course_id='" . $course . "' and semester=" . (int)$_semes . " and sec_id='" . $_sec . "';";
             $resultchk1 = mysqli_query($con, $sqlchk1);
             if (mysqli_num_rows($resultchk1) == 0) {
-                echo "<script>alert('The student with the id:$id is not present in the database!');setTimeout(()=>{window.location.replace('../../../html/faculty/add_student/');},700);</script>";
-                mysqli_rollback($con);
+                echo "<script>alert('The student with the name and id is not present in the database!');setTimeout(()=>{window.location.replace('../../../html/faculty/add_student/');},700);</script>";
                 return;
             }
             $resultchk2 = mysqli_query($con, $sqlchk2);
             if (mysqli_num_rows($resultchk2) == 0) {
                 echo "<script>alert('You dont currently teach this course!\\nPlease check the semester or section');setTimeout(()=>{window.location.replace('../../../html/faculty/add_student/');},700);</script>";
-                mysqli_rollback($con);
                 return;
             }
-            $sql1 = $sql . " values ('" . $id . "','" . $course . "','" . $_sec . "'," . (int)$_semes . ");";
+            $sql = $sql . " values ('" . $id . "@iiita.ac.in','" . $course . "','" . $_sec . "'," . (int)$_semes . ");";
+            // echo($sql);
             try {
-                $result = mysqli_query($con, $sql1);
+                $result = mysqli_query($con, $sql);
                 if ($result) {
+                    mysqli_commit($con);
+                    echo "<script>alert('Success!');setTimeout(()=>{window.location.replace('../../../html/faculty/add_student/');},700);</script>";
                 }
             } catch (mysqli_sql_exception $e) {
-                mysqli_rollback($con);
-                echo "<script>alert('Erroreneous operation!');window.location.replace('../../../html/faculty/add_student/');;</script>";
-                return;
+                // echo "<script>alert('Erroreneous operation!');setTimeout(()=>{window.location.replace('../../../html/faculty/add_student/');},700);</script>";
             }
+        } else {
+            $arr = json_decode($_POST['file_data1']);
+            $course = $_POST['course1'];
+            $_sec = $_POST['sec1'];
+            $_semes = $_POST['semes1'];
+            $course = stripcslashes($course);
+            $course = mysqli_real_escape_string($con, $course);
+            $_sec = stripcslashes($_sec);
+            $_sec = mysqli_real_escape_string($con, $_sec);
+            $_semes = stripcslashes($_semes);
+            $_semes = mysqli_real_escape_string($con, $_semes);
+            foreach ($arr as $row => $val) {
+                $val = json_decode(json_encode($val), true);
+                $id = $val['Roll Number'] . '@iiita.ac.in';
+                $id = stripcslashes($id);
+                $id = mysqli_real_escape_string($con, $id);
+                $sqlchk1 = "select * from student where id='" . $id . "';";
+                $sqlchk2 = "select * from teaches where id='" . $_SESSION['id'] . "' and course_id='" . $course . "' and semester=" . (int)$_semes . " and sec_id='" . $_sec . "';";
+                $resultchk1 = mysqli_query($con, $sqlchk1);
+                if (mysqli_num_rows($resultchk1) == 0) {
+                    echo "<script>alert('The student with the id:$id is not present in the database!');setTimeout(()=>{window.location.replace('../../../html/faculty/add_student/');},700);</script>";
+                    mysqli_rollback($con);
+                    return;
+                }
+                $resultchk2 = mysqli_query($con, $sqlchk2);
+                if (mysqli_num_rows($resultchk2) == 0) {
+                    echo "<script>alert('You dont currently teach this course!\\nPlease check the semester or section');setTimeout(()=>{window.location.replace('../../../html/faculty/add_student/');},700);</script>";
+                    mysqli_rollback($con);
+                    return;
+                }
+                $sql1 = $sql . " values ('" . $id . "','" . $course . "','" . $_sec . "'," . (int)$_semes . ");";
+                try {
+                    $result = mysqli_query($con, $sql1);
+                    if ($result) {
+                    }
+                } catch (mysqli_sql_exception $e) {
+                    mysqli_rollback($con);
+                    echo "<script>alert('Erroreneous operation!');window.location.replace('../../../html/faculty/add_student/');;</script>";
+                    return;
+                }
+            }
+            echo "<script>alert('Success!');window.location.replace('../../../html/faculty/add_student/');;</script>";
+            mysqli_commit($con);
         }
-        echo "<script>alert('Success!');window.location.replace('../../../html/faculty/add_student/');;</script>";
-        mysqli_commit($con);
+    }catch(Exception $e){
+        echo "<script>alert('There has been some error on this page, please contact administrator!');window.location.replace('../../../html/faculty/add_student/');</script>";
     }
     ?>
 </body>

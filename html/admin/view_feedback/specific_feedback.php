@@ -41,9 +41,13 @@
     ?>
     <?php
     require('../../../php/connection.php');
-    $sql = "select * from feedback where feedback_id='" . $_POST['feedback'] . "'";
-    $result = mysqli_query($con, $sql);
-    $result = $result->fetch_assoc();
+    try{
+        $sql = "select * from feedback where feedback_id='" . $_POST['feedback'] . "'";
+        $result = mysqli_query($con, $sql);
+        $result = $result->fetch_assoc();
+    }catch(Exception $e){
+        echo "<script>alert('There has been some error on this page, please contact administrator!');window.location.replace('../');</script>";
+    }
     ?>
     <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
         <div class="container-fluid">
