@@ -48,14 +48,14 @@
   <?php
 require('../../../php/gen_id.php');
 session_start();
-if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
+if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800*2)) {
   session_unset();
   session_destroy();
   erase_cookies();
   echo "
         <script>
         function logout() {
-            alert('You have been logged in for more than 30 minutes, Timeout!');
+            alert('You have been logged in for more than 1 hours, Timeout!');
             window.location.replace('../../../');
         };
         logout();

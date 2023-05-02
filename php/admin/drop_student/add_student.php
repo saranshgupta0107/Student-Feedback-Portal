@@ -7,13 +7,13 @@ session_start();
 <body>
     <?php
     require_once("../../connection.php");
-    if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
+    if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800*6)) {
         session_unset();
         session_destroy();
         echo "
         <script>
         function logout() {
-            alert('You have been logged in for more than 30 minutes, Timeout!');
+            alert('You have been logged in for more than 3 hours, Timeout!');
             window.location.replace('http://localhost/DBMS-Project/');
         };
         logout();
