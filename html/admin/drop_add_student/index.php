@@ -11,13 +11,13 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.min.js"></script>
-    <title>Show Faculty</title>
+    <title>Drop/Add Student</title>
 </head>
 
 <body>
     <?php
     session_start();
-    if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800*6)) {
+    if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800 * 6)) {
         session_unset();
         session_destroy();
         echo "
@@ -44,18 +44,26 @@
             this.form.submit();
         }
     </script>
-    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../../../"><img src="../../../images/iiita_logo.png" alt="" width="100px" height="100px" class="d-inline-block align-text-middle"></a>
-            <div class="new">
-                <a class="navbar-text">
-                    Welcome to Student Feedback Portal
-                </a>
+    <div class="container-fluid fixed-top" style="margin:0;padding:0;">
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="../../"><img src="../../../images/iiita_logo.png" alt="IIITA" width="60vw" height=auto class="align-text-middle" style='display:block;margin: 0 auto;max-width: 100%;'></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active text-success" aria-current="page" href="../../" style="font-size:1.5rem;text-align:center">Welcome to Student Feedback Portal</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <a href="../../../php/logout.php"><button class="btn btn-outline-primary" id="liveAlertn" type="button">Log Out</button></a>
+                    </form>
+                </div>
             </div>
-            <a href="../../../php/logout.php"><button type="button" class="btn btn-primary" id="liveAlertn" style="margin-bottom: 1%;margin-left: -20%;">Logout</button></a>
-        </div>
-    </nav>
-    <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+        </nav>
+        <nav class="bg-white py-1" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item" style="text-decoration: none;"><a href="../../../">Home</a></li>
             <li class="breadcrumb-item" style="text-decoration: none;"><a href="../login_admin.php">Log In</a></li>
@@ -63,7 +71,8 @@
             <li class="breadcrumb-item active" aria-current="page">Drop/Add Students</li>
         </ol>
     </nav>
-    <div role="group" class="btn-group d-flex justify-center" aria-label="Basic radio toggle button group" style="margin-left:2%;margin-right:2%;padding-left:5%;padding-right:5%;padding-top:2%;width:55%;display:flex;position:relative;left:20%;">
+    </div>
+    <div role="group" class="btn-group d-flex justify-center" aria-label="Basic radio toggle button group" style="margin-left:2%;margin-right:2%;padding-left:5%;padding-right:5%;padding-top:2%;width:55%;display:flex;position:relative;left:20%;margin-top:200px;">
         <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
         <label class="btn btn-outline-primary" for="btnradio1">Add Student</label>
         <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
@@ -124,7 +133,18 @@
             </div>
         </div>
     </div>
-    <!-- Optional JavaScript; choose one of the two! -->
+    <footer class="text-center text-white bg-primary">
+    <h6 class="text-uppercase fw-bold py-4 text-center">Contact</h6>
+      <div class="container-fluid text-center d-block">
+        <p><i class="fas fa-home me-1 text-white"></i>Indian Institute of Information Technology, Allahabad</p>
+        <p><i class="fas fa-envelope me-1 text-white"></i>iit2021122@iiita.ac.in</p>
+        <p><i class="fas fa-phone me-1 text-white"></i>+91 9351414799</p>
+      </div>
+    <div class="text-center py-4">
+      © 2023 Copyright: <a class="text-reset fw-bold" href="../../index.php">Group-1</a>
+    </div>
+    </footer>
+    <script src="https://kit.fontawesome.com/10950362e3.js" crossorigin="anonymous"></script>
     <script src="../../../js/admin/drop_student/drop_student.js"></script>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -145,11 +165,6 @@
             add.style.display = 'block';
         };
     </script>
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    -->
 </body>
 
 </html>

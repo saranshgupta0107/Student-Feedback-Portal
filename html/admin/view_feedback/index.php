@@ -12,7 +12,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.js" integrity="sha512-VW8/i4IZkHxdD8OlqNdF7fGn3ba0+lYqag+Uy4cG6BtJ/LIr8t23s/vls70pQ41UasHH0tL57GQfKDApqc9izA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <title>Student Dashboard</title>
+  <title>View Feedback</title>
   <!--<style>
     .carousel .carousel-item {
         transition-duration: 0s;
@@ -50,12 +50,12 @@
 <body>
   <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
   <?php
-require('../../../php/gen_id.php');
-session_start();
-if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800*6)) {
-  session_unset();
-  session_destroy();
-  echo "
+  require('../../../php/gen_id.php');
+  session_start();
+  if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800 * 6)) {
+    session_unset();
+    session_destroy();
+    echo "
         <script>
         function logout() {
             alert('You have been logged in for more than 3 hours, Timeout!');
@@ -63,49 +63,58 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
         };
         logout();
         </script>";
-}
+  }
 
-?>
+  ?>
 
   <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'admin') {
-  session_unset();
-  session_destroy();
-  echo "<script> alert('You are not authorised to this page'); window.location.replace('../../../')</script>";
-}
-?>
-  <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="../../../"><img src="../../../images/iiita_logo.png" alt="" width="100px" height="100px" class="d-inline-block align-text-middle"></a>
-      <div class="new">
-        <a class="navbar-text">
-          Welcome to Student Feedback Portal
-        </a>
+    session_unset();
+    session_destroy();
+    echo "<script> alert('You are not authorised to this page'); window.location.replace('../../../')</script>";
+  }
+  ?>
+  <div class="container-fluid fixed-top" style="margin:0;padding:0;">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../../"><img src="../../../images/iiita_logo.png" alt="IIITA" width="60vw" height=auto class="align-text-middle" style='display:block;margin: 0 auto;max-width: 100%;'></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active text-success" aria-current="page" href="../../" style="font-size:1.5rem;text-align:center">Welcome to Student Feedback Portal</a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <a href="../../../php/logout.php"><button class="btn btn-outline-primary" id="liveAlertn" type="button">Log Out</button></a>
+          </form>
+        </div>
       </div>
-      <a href="../../../php/logout.php"><button type="button" class="btn btn-primary" id="liveAlertn" style="margin-bottom: 1%;margin-left: -20%;">Logout</button></a>
-    </div>
-  </nav>
-  <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item" style="text-decoration: none;"><a href="../../../">Home</a></li>
-      <li class="breadcrumb-item" style="text-decoration: none;"><a href="../login_admin.php">Log In</a></li>
-      <li class="breadcrumb-item" style="text-decoration: none;"><a href="../">Admin</a></li>
-      <li class="breadcrumb-item active" aria-current="page">View Feedback</li>
-    </ol>
-  </nav>
-  <div style='display:flex;align-items:center;justify-content: center;' class="container-sm mb-2">
-    <select class="form-select form-select-md" id='instructor' name='instructor' aria-label=".form-select-sm example" style='width:15%;'>
+    </nav>
+    <nav class="bg-white py-1" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item" style="text-decoration: none;"><a href="../../../">Home</a></li>
+        <li class="breadcrumb-item" style="text-decoration: none;"><a href="../login_admin.php">Log In</a></li>
+        <li class="breadcrumb-item" style="text-decoration: none;"><a href="../">Admin</a></li>
+        <li class="breadcrumb-item active" aria-current="page">View Feedback</li>
+      </ol>
+    </nav>
+  </div>
+  <div style='display:flex;align-items:center;justify-content: center;margin-top:200px' class="container-sm mb-2">
+    <select class="form-select form-select-md" id='instructor' name='instructor' aria-label=".form-select-sm example" style='width:15%;margin:1%;'>
       <option selected>All</option>
     </select>
-    <select class="form-select form-select-md" id='course_id' name='course_id' aria-label=".form-select-sm example" style='width:15%;'>
+    <select class="form-select form-select-md" id='course_id' name='course_id' aria-label=".form-select-sm example" style='width:15%;margin:1%;'>
       <option selected>All</option>
     </select>
-    <select class="form-select form-select-md" id='sec_id' name='sec_id' aria-label=".form-select-sm example" style='width:15%;'>
+    <select class="form-select form-select-md" id='sec_id' name='sec_id' aria-label=".form-select-sm example" style='width:15%;margin:1%;'>
       <option selected>All</option>
     </select>
-    <select class="form-select form-select-md" id='semester' name='semester' aria-label=".form-select-sm example" style='width:15%;'>
+    <select class="form-select form-select-md" id='semester' name='semester' aria-label=".form-select-sm example" style='width:15%;margin:1%;'>
       <option selected>All</option>
     </select>
-    <button id='reset' class='btn btn-primary'>Reset</button>
+    <button id='reset' class='btn btn-primary' style='margin:1%'>Reset</button>
   </div>
   <div id="carouselExampleIndicators" class="carousel slide" data-interval="false">
     <div class="carousel-indicators">
@@ -154,85 +163,84 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
           <div class="row text-center">
             <div class="col-md-4 mb-4 mb-md-0">
               <div class="card">
-                <div  class="container-fluid bg-primary">
+                <div class="container-fluid bg-primary">
                   <h5 class="font-weight-bold my-3 text-white" id='instructor_highest1'>N/A</h5>
                   <h6 class="font-weight-bold my-3 text-white" id='course_highest1'>N/A</h6>
                   <h6 class="font-weight-bold my-3 text-white" id='semester_highest1'>N/A</h6>
                 </div>
                 <div class="card-body py-4 mt-2">
-                  
-                    <ul class="list-unstyled d-flex justify-content-center">
-                      <li><i class="fa-solid fa-star rating_highest1" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest1" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest1" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest1" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest1" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest1" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest1" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest1" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest1" style="color: #fef058;"></i></li>
-                      <li><i class="fa-regular fa-star rating_highest1" style="color: #fef058;"></i></li>
-                    </ul>
-                    <p class="mb-2" id='comment_highest1'>
-                      <i class="fas fa-quote-left pe-2"></i>
-                      N/A
-                    </p>
+
+                  <ul class="list-unstyled d-flex justify-content-center">
+                    <li><i class="fa-solid fa-star rating_highest1" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest1" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest1" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest1" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest1" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest1" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest1" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest1" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest1" style="color: #fef058;"></i></li>
+                    <li><i class="fa-regular fa-star rating_highest1" style="color: #fef058;"></i></li>
+                  </ul>
+                  <p class="mb-2" id='comment_highest1'>
+                    <i class="fas fa-quote-left pe-2"></i>
+                    N/A
+                  </p>
                 </div>
               </div>
             </div>
             <div class="col-md-4 mb-4 mb-md-0">
               <div class="card">
-                <div  class="container-fluid bg-primary">
+                <div class="container-fluid bg-primary">
                   <h5 class="font-weight-bold my-3 text-white" id='instructor_highest2'>N/A</h5>
                   <h6 class="font-weight-bold my-3 text-white" id='course_highest2'>N/A</h6>
                   <h6 class="font-weight-bold my-3 text-white" id='semester_highest2'>N/A</h6>
                 </div>
                 <div class="card-body py-4 mt-2">
-                  
-                    <ul class="list-unstyled d-flex justify-content-center">
-                      <li><i class="fa-solid fa-star rating_highest2" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest2" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest2" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest2" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest2" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest2" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest2" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest2" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest2" style="color: #fef058;"></i></li>
-                      <li><i class="fa-regular fa-star rating_highest2" style="color: #fef058;"></i></li>
-                    </ul>
-                    <p class="mb-2" id='comment_highest2'>
-                      <i class="fas fa-quote-left pe-2"></i>
-                      N/A
-                    </p>
+                  <ul class="list-unstyled d-flex justify-content-center">
+                    <li><i class="fa-solid fa-star rating_highest2" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest2" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest2" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest2" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest2" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest2" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest2" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest2" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest2" style="color: #fef058;"></i></li>
+                    <li><i class="fa-regular fa-star rating_highest2" style="color: #fef058;"></i></li>
+                  </ul>
+                  <p class="mb-2" id='comment_highest2'>
+                    <i class="fas fa-quote-left pe-2"></i>
+                    N/A
+                  </p>
                 </div>
               </div>
             </div>
             <div class="col-md-4 mb-4 mb-md-0">
               <div class="card">
-                <div  class="container-fluid bg-primary">
+                <div class="container-fluid bg-primary">
                   <h5 class="font-weight-bold my-3 text-white" id='instructor_highest3'>N/A</h5>
                   <h6 class="font-weight-bold my-3 text-white" id='course_highest3'>N/A</h6>
                   <h6 class="font-weight-bold my-3 text-white" id='semester_highest3'>N/A</h6>
                 </div>
                 <div class="card-body py-4 mt-2">
-                  
-                    <ul class="list-unstyled d-flex justify-content-center">
-                      <li><i class="fa-solid fa-star rating_highest3" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest3" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest3" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest3" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest3" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest3" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest3" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest3" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest3" style="color: #fef058;"></i></li>
-                      <li><i class="fa-regular fa-star rating_highest3" style="color: #fef058;"></i></li>
-                    </ul>
-                    <p class="mb-2" id='comment_highest3'>
-                      <i class="fas fa-quote-left pe-2"></i>
-                      N/A
-                    </p>
+
+                  <ul class="list-unstyled d-flex justify-content-center">
+                    <li><i class="fa-solid fa-star rating_highest3" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest3" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest3" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest3" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest3" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest3" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest3" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest3" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest3" style="color: #fef058;"></i></li>
+                    <li><i class="fa-regular fa-star rating_highest3" style="color: #fef058;"></i></li>
+                  </ul>
+                  <p class="mb-2" id='comment_highest3'>
+                    <i class="fas fa-quote-left pe-2"></i>
+                    N/A
+                  </p>
                 </div>
               </div>
             </div>
@@ -249,85 +257,84 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
           <div class="row text-center">
             <div class="col-md-4 mb-4 mb-md-0">
               <div class="card">
-                <div  class="container-fluid bg-primary">
+                <div class="container-fluid bg-primary">
                   <h5 class="font-weight-bold my-3 text-white" id='instructor_highest4'>N/A</h5>
                   <h6 class="font-weight-bold my-3 text-white" id='course_highest4'>N/A</h6>
                   <h6 class="font-weight-bold my-3 text-white" id='semester_highest4'>N/A</h6>
                 </div>
                 <div class="card-body py-4 mt-2">
-                  
-                    <ul class="list-unstyled d-flex justify-content-center">
-                      <li><i class="fa-solid fa-star rating_highest4" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest4" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest4" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest4" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest4" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest4" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest4" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest4" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest4" style="color: #fef058;"></i></li>
-                      <li><i class="fa-regular fa-star rating_highest4" style="color: #fef058;"></i></li>
-                    </ul>
-                    <p class="mb-2" id='comment_highest4'>
-                      <i class="fas fa-quote-left pe-2"></i>
-                      N/A
-                    </p>
+                  <ul class="list-unstyled d-flex justify-content-center">
+                    <li><i class="fa-solid fa-star rating_highest4" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest4" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest4" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest4" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest4" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest4" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest4" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest4" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest4" style="color: #fef058;"></i></li>
+                    <li><i class="fa-regular fa-star rating_highest4" style="color: #fef058;"></i></li>
+                  </ul>
+                  <p class="mb-2" id='comment_highest4'>
+                    <i class="fas fa-quote-left pe-2"></i>
+                    N/A
+                  </p>
                 </div>
               </div>
             </div>
             <div class="col-md-4 mb-4 mb-md-0">
               <div class="card">
-                <div  class="container-fluid bg-primary">
+                <div class="container-fluid bg-primary">
                   <h5 class="font-weight-bold my-3 text-white" id='instructor_highest5'>N/A</h5>
                   <h6 class="font-weight-bold my-3 text-white" id='course_highest5'>N/A</h6>
                   <h6 class="font-weight-bold my-3 text-white" id='semester_highest5'>N/A</h6>
                 </div>
                 <div class="card-body py-4 mt-2">
-                  
-                    <ul class="list-unstyled d-flex justify-content-center">
-                      <li><i class="fa-solid fa-star rating_highest5" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest5" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest5" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest5" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest5" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest5" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest5" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest5" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest5" style="color: #fef058;"></i></li>
-                      <li><i class="fa-regular fa-star rating_highest5" style="color: #fef058;"></i></li>
-                    </ul>
-                    <p class="mb-2" id='comment_highest5'>
-                      <i class="fas fa-quote-left pe-2"></i>
-                      N/A
-                    </p>
+
+                  <ul class="list-unstyled d-flex justify-content-center">
+                    <li><i class="fa-solid fa-star rating_highest5" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest5" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest5" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest5" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest5" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest5" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest5" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest5" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest5" style="color: #fef058;"></i></li>
+                    <li><i class="fa-regular fa-star rating_highest5" style="color: #fef058;"></i></li>
+                  </ul>
+                  <p class="mb-2" id='comment_highest5'>
+                    <i class="fas fa-quote-left pe-2"></i>
+                    N/A
+                  </p>
                 </div>
               </div>
             </div>
             <div class="col-md-4 mb-4 mb-md-0">
               <div class="card">
-                <div  class="container-fluid bg-primary">
+                <div class="container-fluid bg-primary">
                   <h5 class="font-weight-bold my-3 text-white" id='instructor_highest6'>N/A</h5>
                   <h6 class="font-weight-bold my-3 text-white" id='course_highest6'>N/A</h6>
                   <h6 class="font-weight-bold my-3 text-white" id='semester_highest6'>N/A</h6>
                 </div>
                 <div class="card-body py-4 mt-2">
-                  
-                    <ul class="list-unstyled d-flex justify-content-center">
-                      <li><i class="fa-solid fa-star rating_highest6" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest6" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest6" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest6" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest6" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest6" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest6" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest6" style="color: #fef058;"></i></li>
-                      <li><i class="fa-solid fa-star rating_highest6" style="color: #fef058;"></i></li>
-                      <li><i class="fa-regular fa-star rating_highest6" style="color: #fef058;"></i></li>
-                    </ul>
-                    <p class="mb-2" id='comment_highest6'>
-                      <i class="fas fa-quote-left pe-2"></i>
-                      N/A
-                    </p>
+
+                  <ul class="list-unstyled d-flex justify-content-center">
+                    <li><i class="fa-solid fa-star rating_highest6" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest6" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest6" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest6" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest6" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest6" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest6" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest6" style="color: #fef058;"></i></li>
+                    <li><i class="fa-solid fa-star rating_highest6" style="color: #fef058;"></i></li>
+                    <li><i class="fa-regular fa-star rating_highest6" style="color: #fef058;"></i></li>
+                  </ul>
+                  <p class="mb-2" id='comment_highest6'>
+                    <i class="fas fa-quote-left pe-2"></i>
+                    N/A
+                  </p>
                 </div>
               </div>
             </div>
@@ -356,24 +363,24 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
     }
   </script>
   <?php
-require_once('../../../php/connection.php');
-try{
-  $sql = "select * from feedback ;";
-  $result = $con->query($sql);
-  $arr = [];
-  while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-    array_push($arr, $row);
-  }
-  $var = json_encode($arr);
-  echo "<script>var data=$var;</script>";
-  $sql = "select id,name from instructor;";
-  $result = $con->query($sql);
-  $arr = [];
-  while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-    array_push($arr, $row);
-  }
-  $var = json_encode($arr);
-  echo "<script>
+  require_once('../../../php/connection.php');
+  try {
+    $sql = "select * from feedback ;";
+    $result = $con->query($sql);
+    $arr = [];
+    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+      array_push($arr, $row);
+    }
+    $var = json_encode($arr);
+    echo "<script>var data=$var;</script>";
+    $sql = "select id,name from instructor;";
+    $result = $con->query($sql);
+    $arr = [];
+    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+      array_push($arr, $row);
+    }
+    $var = json_encode($arr);
+    echo "<script>
       var instructorSet=new Set();
       var instructorMap=new Map();
       var temp=$var;
@@ -382,14 +389,14 @@ try{
         instructorMap.set(temp[k].id,temp[k].name);
       }
       </script>";
-  $sql = "select course_id,sec_id,semester from section;";
-  $result = $con->query($sql);
-  $arr = [];
-  while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-    array_push($arr, $row);
-  }
-  $var = json_encode($arr);
-  echo "<script>
+    $sql = "select course_id,sec_id,semester from section;";
+    $result = $con->query($sql);
+    $arr = [];
+    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+      array_push($arr, $row);
+    }
+    $var = json_encode($arr);
+    echo "<script>
       var courseSet=new Set();
       var sectionSet=new Set();
       var semesterSet=new Set();
@@ -400,33 +407,7 @@ try{
         semesterSet.add(temp[k].semester);
       }
       </script>";
-  $sql = "select * from gives;";
-  $result = $con->query($sql);
-  $arr = [];
-  while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-    array_push($arr, $row);
-  }
-  $var = json_encode($arr);
-  echo "<script>
-    var anon_id=$var;
-    var mapper={};
-    for(var k=0;k<anon_id.length;k++){
-      mapper[anon_id[k].feedback_id]=anon_id[k].anon_id;
-    }
-    var teach=new Map();
-    </script>";
-  $sql = "select * from teaches;";
-  $result = $con->query($sql);
-  $arr = [];
-  while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-    array_push($arr, $row);
-  }
-  foreach ($arr as $x) {
-    echo "<script>
-      if(!teach.has('" . $x['id'] . "'))teach.set('" . $x['id'] . "',new Set());
-      generateOptions(['All','" . $x['course_id'] . "'],['All','" . $x['sec_id'] . "'],['All','" . $x['semester'] . "'],teach.get('" . $x['id'] . "'));
-      </script>";
-    $sql = "select takes.anon_id,teaches.ID,teaches.course_id,teaches.sec_id,teaches.semester from (select * from takes inner join represents on takes.id=represents.stud_id) takes inner join teaches on takes.course_id=teaches.course_id and takes.sec_id=teaches.sec_id and takes.semester=teaches.semester;";
+    $sql = "select * from gives;";
     $result = $con->query($sql);
     $arr = [];
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
@@ -434,14 +415,40 @@ try{
     }
     $var = json_encode($arr);
     echo "<script>
+    var anon_id=$var;
+    var mapper={};
+    for(var k=0;k<anon_id.length;k++){
+      mapper[anon_id[k].feedback_id]=anon_id[k].anon_id;
+    }
+    var teach=new Map();
+    </script>";
+    $sql = "select * from teaches;";
+    $result = $con->query($sql);
+    $arr = [];
+    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+      array_push($arr, $row);
+    }
+    foreach ($arr as $x) {
+      echo "<script>
+      if(!teach.has('" . $x['id'] . "'))teach.set('" . $x['id'] . "',new Set());
+      generateOptions(['All','" . $x['course_id'] . "'],['All','" . $x['sec_id'] . "'],['All','" . $x['semester'] . "'],teach.get('" . $x['id'] . "'));
+      </script>";
+      $sql = "select takes.anon_id,teaches.ID,teaches.course_id,teaches.sec_id,teaches.semester from (select * from takes inner join represents on takes.id=represents.stud_id) takes inner join teaches on takes.course_id=teaches.course_id and takes.sec_id=teaches.sec_id and takes.semester=teaches.semester;";
+      $result = $con->query($sql);
+      $arr = [];
+      while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+        array_push($arr, $row);
+      }
+      $var = json_encode($arr);
+      echo "<script>
       var enrollment_data=$var;
       </script>";
-  }
-}catch(Exception $e){
+    }
+  } catch (Exception $e) {
     echo "<script>alert('There has been some error on this page, please contact administrator!');window.location.replace('../');</script>";
   }
-?>
-  <div id="top" class='table-responsive '>
+  ?>
+  <div id="top" class='table-responsive'>
     <table class='table sortable'>
       <thead class='p-3 mb-2 bg-primary text-white'>
         <th scope='col' style='width: 25%;text-align: center;'>Given by</th>
@@ -464,71 +471,75 @@ try{
     var new_data2 = new Set();
     var distinct_users = new Set();
 
-    function setWorst(reviews){
-      for(var i=1;i<=3;i++){
-        if(i>reviews.length){
-          document.getElementById('instructor_highest'+(i+3)).textContent="N/A";
-          document.getElementById('course_highest'+(i+3)).textContent="N/A";
-          document.getElementById('semester_highest'+(i+3)).textContent="N/A";
-          document.getElementById('comment_highest'+(i+3)).textContent="N/A";
-          var arr=Array.from(document.getElementsByClassName('rating_highest'+(i+3)));
-          for(var j=0;j<arr.length;j++){
-            arr[j].setAttribute('class','fa-regular fa-star rating_highest'+(i+3));
+    function setWorst(reviews) {
+      for (var i = 1; i <= 3; i++) {
+        if (i > reviews.length) {
+          document.getElementById('instructor_highest' + (i + 3)).textContent = "N/A";
+          document.getElementById('course_highest' + (i + 3)).textContent = "N/A";
+          document.getElementById('semester_highest' + (i + 3)).textContent = "N/A";
+          document.getElementById('comment_highest' + (i + 3)).textContent = "N/A";
+          var arr = Array.from(document.getElementsByClassName('rating_highest' + (i + 3)));
+          for (var j = 0; j < arr.length; j++) {
+            arr[j].setAttribute('class', 'fa-regular fa-star rating_highest' + (i + 3));
           }
           continue;
         }
         for (const key of instructorSet) {
-          if(teach.get(key).has(reviews[i-1].course_id+"_"+reviews[i-1].sec_id+"_"+reviews[i-1].semester)){
-              document.getElementById('instructor_highest'+(i+3)).textContent=instructorMap.get(key);
+          if (teach.get(key).has(reviews[i - 1].course_id + "_" + reviews[i - 1].sec_id + "_" + reviews[i - 1].semester)) {
+            document.getElementById('instructor_highest' + (i + 3)).textContent = instructorMap.get(key);
             break;
           }
         }
-        document.getElementById('course_highest'+(i+3)).textContent=reviews[i-1].course_id;
-        document.getElementById('semester_highest'+(i+3)).textContent=reviews[i-1].semester;
-        document.getElementById('comment_highest'+(i+3)).textContent=reviews[i-1].comment;
-        var arr=Array.from(document.getElementsByClassName('rating_highest'+(i+3)));
-        for(var j=0;j<arr.length;j++){
-          if(parseInt(reviews[i-1].rating)>=j+1)arr[j].setAttribute('class','fa-solid fa-star rating_highest'+(i+3));
-          else arr[j].setAttribute('class','fa-regular fa-star rating_highest'+(i+3));
+        document.getElementById('course_highest' + (i + 3)).textContent = reviews[i - 1].course_id;
+        document.getElementById('semester_highest' + (i + 3)).textContent = reviews[i - 1].semester;
+        document.getElementById('comment_highest' + (i + 3)).textContent = reviews[i - 1].comment;
+        var arr = Array.from(document.getElementsByClassName('rating_highest' + (i + 3)));
+        for (var j = 0; j < arr.length; j++) {
+          if (parseInt(reviews[i - 1].rating) >= j + 1) arr[j].setAttribute('class', 'fa-solid fa-star rating_highest' + (i + 3));
+          else arr[j].setAttribute('class', 'fa-regular fa-star rating_highest' + (i + 3));
         }
       }
     }
 
-    function setBest(reviews){
-      for(var i=1;i<=3;i++){
-        if(i>reviews.length){
-          document.getElementById('instructor_highest'+(i)).textContent="N/A";
-          document.getElementById('course_highest'+(i)).textContent="N/A";
-          document.getElementById('semester_highest'+(i)).textContent="N/A";
-          document.getElementById('comment_highest'+(i)).textContent="N/A";
-          var arr=Array.from(document.getElementsByClassName('rating_highest'+(i)));
-          for(var j=0;j<arr.length;j++){
-            arr[j].setAttribute('class','fa-regular fa-star rating_highest'+(i));
+    function setBest(reviews) {
+      for (var i = 1; i <= 3; i++) {
+        if (i > reviews.length) {
+          document.getElementById('instructor_highest' + (i)).textContent = "N/A";
+          document.getElementById('course_highest' + (i)).textContent = "N/A";
+          document.getElementById('semester_highest' + (i)).textContent = "N/A";
+          document.getElementById('comment_highest' + (i)).textContent = "N/A";
+          var arr = Array.from(document.getElementsByClassName('rating_highest' + (i)));
+          for (var j = 0; j < arr.length; j++) {
+            arr[j].setAttribute('class', 'fa-regular fa-star rating_highest' + (i));
           }
           continue;
         }
         for (const key of instructorSet) {
-          if(teach.get(key).has(reviews[i-1].course_id+"_"+reviews[i-1].sec_id+"_"+reviews[i-1].semester)){
-              document.getElementById('instructor_highest'+(i)).textContent=instructorMap.get(key);
+          if (teach.get(key).has(reviews[i - 1].course_id + "_" + reviews[i - 1].sec_id + "_" + reviews[i - 1].semester)) {
+            document.getElementById('instructor_highest' + (i)).textContent = instructorMap.get(key);
             break;
           }
         }
-        document.getElementById('course_highest'+(i)).textContent=reviews[i-1].course_id;
-        document.getElementById('semester_highest'+(i)).textContent=reviews[i-1].semester;
-        document.getElementById('comment_highest'+(i)).textContent=reviews[i-1].comment;
-        var arr=Array.from(document.getElementsByClassName('rating_highest'+(i)));
-        for(var j=0;j<arr.length;j++){
-          if(parseInt(reviews[i-1].rating)>=j+1)arr[j].setAttribute('class','fa-solid fa-star rating_highest'+(i));
-          else arr[j].setAttribute('class','fa-regular fa-star rating_highest'+(i));
+        document.getElementById('course_highest' + (i)).textContent = reviews[i - 1].course_id;
+        document.getElementById('semester_highest' + (i)).textContent = reviews[i - 1].semester;
+        document.getElementById('comment_highest' + (i)).textContent = reviews[i - 1].comment;
+        var arr = Array.from(document.getElementsByClassName('rating_highest' + (i)));
+        for (var j = 0; j < arr.length; j++) {
+          if (parseInt(reviews[i - 1].rating) >= j + 1) arr[j].setAttribute('class', 'fa-solid fa-star rating_highest' + (i));
+          else arr[j].setAttribute('class', 'fa-regular fa-star rating_highest' + (i));
         }
       }
     }
 
-    function resetReviews(){
-      var worstReview=new_data;
-      worstReview=worstReview.sort((a,b)=>{return parseInt(a.rating)-parseInt(b.rating)}).slice(0,3);
-      var bestReview=new_data;
-      bestReview=bestReview.sort((a,b)=>{return -(parseInt(a.rating)-parseInt(b.rating))}).slice(0,3);
+    function resetReviews() {
+      var worstReview = new_data;
+      worstReview = worstReview.sort((a, b) => {
+        return parseInt(a.rating) - parseInt(b.rating)
+      }).slice(0, 3);
+      var bestReview = new_data;
+      bestReview = bestReview.sort((a, b) => {
+        return -(parseInt(a.rating) - parseInt(b.rating))
+      }).slice(0, 3);
       setWorst(worstReview);
       setBest(bestReview);
     }
@@ -934,14 +945,25 @@ try{
       reset();
       create_table();
       recreate();
-      
+
     });
     document.getElementById('semester').click();
-    window.addEventListener('slid.bs.carousel',()=>{recreate()});
+    window.addEventListener('slid.bs.carousel', () => {
+      recreate()
+    });
   </script>
-
-  <!-- Optional JavaScript; choose one of the two! -->
-<script src="https://kit.fontawesome.com/10950362e3.js" crossorigin="anonymous"></script>
+   <footer class="text-center text-white bg-primary">
+    <h6 class="text-uppercase fw-bold py-4 text-center">Contact</h6>
+      <div class="container-fluid text-center d-block">
+        <p><i class="fas fa-home me-1 text-white"></i>Indian Institute of Information Technology, Allahabad</p>
+        <p><i class="fas fa-envelope me-1 text-white"></i>iit2021122@iiita.ac.in</p>
+        <p><i class="fas fa-phone me-1 text-white"></i>+91 9351414799</p>
+      </div>
+    <div class="text-center py-4">
+      © 2023 Copyright: <a class="text-reset fw-bold" href="../../index.php">Group-1</a>
+    </div>
+  </footer>
+  <script src="https://kit.fontawesome.com/10950362e3.js" crossorigin="anonymous"></script>
   <!-- Option 1: Bootstrap Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 

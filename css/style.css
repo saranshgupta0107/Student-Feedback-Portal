@@ -15,8 +15,6 @@
 
 .navbar-text {
     text-decoration: none;
-    font-size: 2.0rem;
-    display: inline-block;
 }
 
 /* .navbar-brand{
@@ -159,7 +157,6 @@
 
 .table-responsive {
     display: flex;
-    justify-content: center;
     margin: 5%;
     box-sizing: border-box;
     border-radius: 10px;

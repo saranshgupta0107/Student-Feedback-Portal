@@ -17,7 +17,7 @@
 <body>
     <?php
     session_start();
-    if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800*2)) {
+    if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800 * 2)) {
         session_unset();
         session_destroy();
         echo "
@@ -40,26 +40,35 @@
             this.form.submit();
         }
     </script>
-    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../../../"><img src="../../../images/iiita_logo.png" alt="" width="100px" height="100px" class="d-inline-block align-text-middle"></a>
-            <div class="new">
-                <a class="navbar-text">
-                    Welcome to Student Feedback Portal
-                </a>
+    <div class="container-fluid fixed-top" style="margin:0;padding:0;">
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="../../"><img src="../../../images/iiita_logo.png" alt="IIITA" width="60vw" height=auto class="align-text-middle" style='display:block;margin: 0 auto;max-width: 100%;'></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active text-success" aria-current="page" href="../../" style="font-size:1.5rem;text-align:center">Welcome to Student Feedback Portal</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <a href="../../../php/logout.php"><button class="btn btn-outline-primary" id="liveAlertn" type="button">Log Out</button></a>
+                    </form>
+                </div>
             </div>
-            <a href="../../../php/logout.php"><button type="button" class="btn btn-primary" id="liveAlertn" style="margin-bottom: 1%;margin-left: -20%;">Logout</button></a>
-        </div>
-    </nav>
-    <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item" style="text-decoration: none;"><a href="../../../">Home</a></li>
-            <li class="breadcrumb-item" style="text-decoration: none;"><a href="../login.php">Log In</a></li>
-            <li class="breadcrumb-item" style="text-decoration: none;"><a href="../"><?php echo ($_SESSION['id']) ?></a></li>
-            <li class="breadcrumb-item active" aria-current="page">Add Students</li>
-        </ol>
-    </nav>
-    <div role="group" class="btn-group d-flex justify-center" aria-label="Basic radio toggle button group" style="margin-left:2%;margin-right:2%;padding-left:5%;padding-right:5%;padding-top:2%;width:55%;display:flex;position:relative;left:20%;">
+        </nav>
+        <nav class="bg-white py-1" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item" style="text-decoration: none;"><a href="../../../">Home</a></li>
+                <li class="breadcrumb-item" style="text-decoration: none;"><a href="../login.php">Log In</a></li>
+                <li class="breadcrumb-item" style="text-decoration: none;"><a href="../"><?php echo ($_SESSION['id']) ?></a></li>
+                <li class="breadcrumb-item active" aria-current="page">Add Students</li>
+            </ol>
+        </nav>
+    </div>
+    <div role="group" class="btn-group d-flex justify-center" aria-label="Basic radio toggle button group" style="margin-left:2%;margin-right:2%;padding-left:5%;padding-right:5%;padding-top:2%;width:55%;display:flex;position:relative;left:20%;margin-top:200px;">
         <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
         <label class="btn btn-outline-primary" for="btnradio1">Add Student</label>
         <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
@@ -70,24 +79,24 @@
         <form action="../../../php/faculty/add_student/add_student.php" method="POST" enctype="multipart/form-data" style="display:grid;width:100%;" id="FORM1">
             <div class="mb-3">
                 <br>
-                <label for="ID1" class="form-label">Enter the student to add:</label>
-                <input type="text" id="ID1" name="ID1" required class="form-control" placeholder="ID Example: IIT2021155">
-                <input type="text" id="sec1" name="sec1" required class="form-control" placeholder="SECTION Example: B">
-                <input type="text" id="course1" name="course1" required class="form-control" placeholder="COURSE Example: DBMS">
-                <input type="number" id="semes1" name="semes1" required class="form-control" placeholder="SEMESTER Example: 4" min="1" max="8">
-                <input type="submit" name="submit_add_single" id='submit_add_single' value="Submit" class='btn btn-primary'>
+                <label for="ID1" class="form-label mt-2">Enter the student to add:</label>
+                <input type="text" id="ID1" name="ID1" required class="form-control mt-1" placeholder="ID Example: IIT2021155">
+                <input type="text" id="sec1" name="sec1" required class="form-control mt-4" placeholder="SECTION Example: B">
+                <input type="text" id="course1" name="course1" required class="form-control mt-4" placeholder="COURSE Example: DBMS">
+                <input type="number" id="semes1" name="semes1" required class="form-control mt-4" placeholder="SEMESTER Example: 4" min="1" max="8">
+                <input type="submit" name="submit_add_single" id='submit_add_single' value="Submit" class='btn btn-primary mt-4'>
             </div>
         </form>
         <br>
         <label for="csvfile" class="form-label">Or Upload CSV file for mass add:</label>
-        <input type="file" id="csvfile1" name="csvfile1" required class="form-control" accept=".csv,.xlsx">
+        <input type="file" id="csvfile1" name="csvfile1" required class="form-control mt-1" accept=".csv,.xlsx">
         <form action="../../../php/faculty/add_student/add_student.php" method="POST" enctype="multipart/form-data" style="display:grid;width:100%;" id="FORM2">
             <div class="mb-3">
-                <input type="text" id="sec1" name="sec1" required class="form-control" placeholder="SECTION Example: B">
-                <input type="text" id="course1" name="course1" required class="form-control" placeholder="COURSE Example: DBMS">
-                <input type="number" id="semes1" name="semes1" required class="form-control" placeholder="SEMESTER Example: 4" min="1" max="8">
+                <input type="text" id="sec1" name="sec1" required class="form-control mt-4" placeholder="SECTION Example: B">
+                <input type="text" id="course1" name="course1" required class="form-control mt-4" placeholder="COURSE Example: DBMS">
+                <input type="number" id="semes1" name="semes1" required class="form-control mt-4" placeholder="SEMESTER Example: 4" min="1" max="8">
                 <input type='hidden' name='file_data1' id='file_data1'>
-                <input type="submit" name="submit2" id='submit2' value="Submit" disabled='true' class='btn btn-primary'>
+                <input type="submit" name="submit2" id='submit2' value="Submit" disabled='true' class='btn btn-primary mt-4'>
             </div>
         </form>
     </div>
@@ -96,24 +105,24 @@
         <form action="../../../php/faculty/add_student/drop_student.php" method="POST" enctype="multipart/form-data" style="display:grid;width:100%;" id="FORM3">
             <div class="mb-3">
                 <br>
-                <label for="ID" class="form-label">Enter the student to drop:</label>
-                <input type="text" id="ID2" name="ID2" required class="form-control" placeholder="ID Example: IIT2021155">
-                <input type="text" id="sec2" name="sec2" required class="form-control" placeholder="SECTION Example: B">
-                <input type="text" id="course2" name="course2" required class="form-control" placeholder="COURSE Example: DBMS">
-                <input type="number" id="semes2" name="semes2" required class="form-control" placeholder="SEMESTER Example: 4" min="1" max="8">
-                <input type="submit" name="submit_drop_single" id='submit_drop_single' value="Submit" class='btn btn-primary'>
+                <label for="ID" class="form-label mt-2">Enter the student to drop:</label>
+                <input type="text" id="ID2" name="ID2" required class="form-control mt-1" placeholder="ID Example: IIT2021155">
+                <input type="text" id="sec2" name="sec2" required class="form-control mt-4" placeholder="SECTION Example: B">
+                <input type="text" id="course2" name="course2" required class="form-control mt-4" placeholder="COURSE Example: DBMS">
+                <input type="number" id="semes2" name="semes2" required class="form-control mt-4" placeholder="SEMESTER Example: 4" min="1" max="8">
+                <input type="submit" name="submit_drop_single" id='submit_drop_single' value="Submit" class='btn btn-primary mt-4'>
             </div>
         </form>
         <br>
         <label for="csvfile" class="form-label">Or Upload CSV file for mass drop:</label>
-        <input type="file" id="csvfile2" name="csvfile2" required class="form-control" accept=".csv,.xlsx">
+        <input type="file" id="csvfile2" name="csvfile2" required class="form-control mt-1" accept=".csv,.xlsx">
         <form action="../../../php/faculty/add_student/drop_student.php" method="POST" enctype="multipart/form-data" style="display:grid;width:100%;" id="FORM4">
             <div class="mb-3">
-                <input type="text" id="sec2" name="sec2" required class="form-control" placeholder="SECTION Example: B">
-                <input type="text" id="course2" name="course2" required class="form-control" placeholder="COURSE Example: DBMS">
-                <input type="number" id="semes2" name="semes2" required class="form-control" placeholder="SEMESTER Example: 4" min="1" max="8">
+                <input type="text" id="sec2" name="sec2" required class="form-control mt-4" placeholder="SECTION Example: B">
+                <input type="text" id="course2" name="course2" required class="form-control mt-4" placeholder="COURSE Example: DBMS">
+                <input type="number" id="semes2" name="semes2" required class="form-control mt-4" placeholder="SEMESTER Example: 4" min="1" max="8">
                 <input type='hidden' name='file_data2' id='file_data2'>
-                <input type="submit" name="submit3" id='submit3' value="Submit" disabled='true' class='btn btn-primary'>
+                <input type="submit" name="submit3" id='submit3' value="Submit" disabled='true' class='btn btn-primary mt-4'>
             </div>
         </form>
     </div>
@@ -142,6 +151,18 @@
         };
         addBtn.click();
     </script>
+     <footer class="text-center text-white bg-primary">
+    <h6 class="text-uppercase fw-bold py-4 text-center">Contact</h6>
+      <div class="container-fluid text-center d-block">
+        <p><i class="fas fa-home me-1 text-white"></i>Indian Institute of Information Technology, Allahabad</p>
+        <p><i class="fas fa-envelope me-1 text-white"></i>iit2021122@iiita.ac.in</p>
+        <p><i class="fas fa-phone me-1 text-white"></i>+91 9351414799</p>
+      </div>
+    <div class="text-center py-4">
+      © 2023 Copyright: <a class="text-reset fw-bold" href="../../index.php">Group-1</a>
+    </div>
+  </footer>
+  <script src="https://kit.fontawesome.com/10950362e3.js" crossorigin="anonymous"></script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
