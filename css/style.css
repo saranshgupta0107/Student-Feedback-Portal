@@ -40,11 +40,14 @@
 .newform {
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    /* margin-top: 50px; */
     box-sizing: border-box;
     border: 2px solid #474646;
-    padding: 50px 50px;
-    margin-bottom: 100px;
+    /* padding: 50px 50px;
+    margin-bottom: 100px; */
+    padding: 50px;
+    margin: 3%;
+    max-width: 80%;
     border-radius: 15px;
     background-color: rgba(254, 255, 255, 0.858);
     /* Black w/opacity/see-through */
@@ -65,22 +68,21 @@
 }
 
 #group {
-    /* margin-top: 80px; */
-    margin-bottom: 150px;
     background-image: url(../images/iiita_buil.jpg);
     display: flex;
     justify-content: center;
-    width: 85%;
+    margin: 5%;
+    /* width: 100%;
     margin-left: 6%;
-    margin-right: 9%;
+    margin-right: 9%; */
 }
 
 #choose {
     background-color: aliceblue;
-    padding: 10px;
+    padding: 1.5%;
     height: 25%;
-    width: 25%;
-    border-radius: 10px;
+    width: 30%;
+    border-radius: 12px;
     border: 1px blue;
 }
 
@@ -99,6 +101,7 @@
 #login {
     background-image: url(../images/iiita_buil2.jpg);
     display: flex;
+    margin: 2%;
     /* margin-bottom: 5%; */
     justify-content: center;
 }

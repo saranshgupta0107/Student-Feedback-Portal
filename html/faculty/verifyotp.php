@@ -44,9 +44,6 @@
               <a class="nav-link active text-success" aria-current="page" href="../../" style="font-size:1.5rem;text-align:center">Welcome to Student Feedback Portal</a>
             </li>
           </ul>
-          <form class="d-flex">
-            <a href="../../php/logout.php"><button class="btn btn-outline-primary" id="liveAlertn" type="button">Log Out</button></a>
-          </form>
         </div>
       </div>
     </nav>
