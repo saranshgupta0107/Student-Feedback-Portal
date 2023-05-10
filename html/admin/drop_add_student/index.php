@@ -137,8 +137,8 @@
     <h6 class="text-uppercase fw-bold py-4 text-center">Contact</h6>
       <div class="container-fluid text-center d-block">
         <p><i class="fas fa-home me-1 text-white"></i>Indian Institute of Information Technology, Allahabad</p>
-        <p><i class="fas fa-envelope me-1 text-white"></i>iit2021122@iiita.ac.in</p>
-        <p><i class="fas fa-phone me-1 text-white"></i>+91 9351414799</p>
+        <p><i class="fas fa-envelope me-1 text-white"></i>contact@iiita.ac.in</p>
+        <p><i class="fas fa-phone me-1 text-white"></i>+91 5322 922000</p>
       </div>
     <div class="text-center py-4">
       © 2023 Copyright: <a class="text-reset fw-bold" href="../../index.php">Group-1</a>
