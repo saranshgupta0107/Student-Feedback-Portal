@@ -34,7 +34,7 @@ session_start();
     $feedback_id = stripcslashes($feedback_id);
     $feedback_id = mysqli_real_escape_string($con, $feedback_id);
 
-    $sql = "delete from feedback where feedback_id='$feedback_id';";
+    $sql = "delete from p1_feedback where feedback_id='$feedback_id';";
     try {
         $result = mysqli_query($con, $sql);
         if ($result) {

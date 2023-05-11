@@ -39,7 +39,7 @@
     <?php
     require('../../../php/connection.php');
     try{
-        $sql = "select * from takes where ID='" . $_SESSION['id'] . "'";
+        $sql = "select * from p1_takes where ID='" . $_SESSION['id'] . "'";
         $result = mysqli_query($con, $sql);
         $arr = [];
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {

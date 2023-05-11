@@ -48,7 +48,7 @@ session_start();
         $password = mysqli_real_escape_string($con, $password);
         $dept_name = mysqli_real_escape_string($con, $dept_name);
         $name = mysqli_real_escape_string($con, $name);
-        $sql = "insert into instructor values('$id','$password','$name','$dept_name');";
+        $sql = "insert into p1_instructor values('$id','$password','$name','$dept_name');";
         try {
             $result = mysqli_query($con, $sql);
             if ($result) {

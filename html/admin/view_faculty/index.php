@@ -67,7 +67,7 @@
   <?php
   require('../../../php/connection.php');
   try {
-    $sql = "select name,id from instructor;";
+    $sql = "select name,id from p1_instructor;";
     $result = mysqli_query($con, $sql);
     $arr = [];
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {

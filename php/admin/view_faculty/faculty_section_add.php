@@ -40,7 +40,7 @@ session_start();
         $semester = mysqli_real_escape_string($con, $semester);
         $course_id = mysqli_real_escape_string($con, $course_id);
         $sec_id = mysqli_real_escape_string($con, $sec_id);
-        $sql = "insert into teaches values('$id','$sec_id',$semester,'$course_id');";
+        $sql = "insert into p1_teaches values('$id','$sec_id',$semester,'$course_id');";
         try {
             $result = mysqli_query($con, $sql);
             if ($result) {

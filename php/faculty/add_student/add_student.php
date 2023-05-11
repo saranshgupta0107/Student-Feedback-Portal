@@ -23,7 +23,7 @@ session_start();
     endif; ?>
     <?php
     require('../../connection.php');
-    $sql = "insert into takes";
+    $sql = "insert into p1_takes";
     try{
         if (isset($_POST['ID1'])) {
             $id = $_POST['ID1'];
@@ -38,8 +38,8 @@ session_start();
             $_sec = mysqli_real_escape_string($con, $_sec);
             $_semes = stripcslashes($_semes);
             $_semes = mysqli_real_escape_string($con, $_semes);
-            $sqlchk1 = "select * from student where id='" . $id . "@iiita.ac.in';";
-            $sqlchk2 = "select * from teaches where id='" . $_SESSION['id'] . "' and course_id='" . $course . "' and semester=" . (int)$_semes . " and sec_id='" . $_sec . "';";
+            $sqlchk1 = "select * from p1_student where id='" . $id . "@iiita.ac.in';";
+            $sqlchk2 = "select * from p1_teaches where id='" . $_SESSION['id'] . "' and course_id='" . $course . "' and semester=" . (int)$_semes . " and sec_id='" . $_sec . "';";
             $resultchk1 = mysqli_query($con, $sqlchk1);
             if (mysqli_num_rows($resultchk1) == 0) {
                 echo "<script>alert('The student with the name and id is not present in the database!');setTimeout(()=>{window.location.replace('../../../html/faculty/add_student/');},700);</script>";
@@ -77,8 +77,8 @@ session_start();
                 $id = $val['Roll Number'] . '@iiita.ac.in';
                 $id = stripcslashes($id);
                 $id = mysqli_real_escape_string($con, $id);
-                $sqlchk1 = "select * from student where id='" . $id . "';";
-                $sqlchk2 = "select * from teaches where id='" . $_SESSION['id'] . "' and course_id='" . $course . "' and semester=" . (int)$_semes . " and sec_id='" . $_sec . "';";
+                $sqlchk1 = "select * from p1_student where id='" . $id . "';";
+                $sqlchk2 = "select * from p1_teaches where id='" . $_SESSION['id'] . "' and course_id='" . $course . "' and semester=" . (int)$_semes . " and sec_id='" . $_sec . "';";
                 $resultchk1 = mysqli_query($con, $sqlchk1);
                 if (mysqli_num_rows($resultchk1) == 0) {
                     echo "<script>alert('The student with the id:$id is not present in the database!');setTimeout(()=>{window.location.replace('../../../html/faculty/add_student/');},700);</script>";

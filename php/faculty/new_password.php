@@ -9,7 +9,7 @@ try{
     $pass = hash('ripemd160', $pass);
     $pass = mysqli_real_escape_string($con, $pass);
     $email = $_SESSION['email'];
-    $sql = "UPDATE instructor SET password='$pass' WHERE id='$email'";
+    $sql = "UPDATE p1_instructor SET password='$pass' WHERE id='$email'";
     if ($con->query($sql) == TRUE) {
         echo "<script>
                     alert('PASSWORD HAS BEEN SUCCESSFULLY UPDATED');setTimeout(()=>{window.location.replace('../../');},100);

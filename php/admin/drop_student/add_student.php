@@ -29,7 +29,7 @@ session_start();
     require_once('../../gen_id.php');
     require_once('../../mailtesting.php');
     try{
-        $sql = "insert into student values";
+        $sql = "insert into p1_student values";
         if (isset($_POST['ID'])) {
             $id = $_POST['ID'] . "@iiita.ac.in";
             $id = stripcslashes($id);
@@ -50,12 +50,12 @@ session_start();
             try {
                 $result = mysqli_query($con, $sql);
                 if ($result) {
-                    $sql = "select * from represents where anon_id='User";
+                    $sql = "select * from p1_represents where anon_id='User";
                     $anon_id = gen_id();
                     while (mysqli_num_rows(mysqli_query($con, $sql . $anon_id . "'"))) {
                         $anon_id = gen_id();
                     }
-                    $sql = "insert into represents values ('$id','User$anon_id')";
+                    $sql = "insert into p1_represents values ('$id','User$anon_id')";
                     $result = mysqli_query($con, $sql);
                     mysqli_commit($con);
                     echo "<script>alert('Success!');setTimeout(()=>{window.location.replace('../../../html/admin/drop_add_student/');},70);</script>";
@@ -91,12 +91,12 @@ session_start();
                 try {
                     $result = mysqli_query($con, $sql1);
                     if ($result) {
-                        $sql2 = "select * from represents where anon_id='User";
+                        $sql2 = "select * from p1_represents where anon_id='User";
                         $anon_id = gen_id();
                         while (mysqli_num_rows(mysqli_query($con, $sql2 . $anon_id . "'"))) {
                             $anon_id = gen_id();
                         }
-                        $sql2 = "insert into represents values ('$id','User$anon_id')";
+                        $sql2 = "insert into p1_represents values ('$id','User$anon_id')";
                         $result = mysqli_query($con, $sql2);;
                     }
                 } catch (mysqli_sql_exception $e) {

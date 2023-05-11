@@ -39,7 +39,7 @@
     <?php
     require('../../../php/connection.php');
     try{
-        $sql = "select * from feedback where feedback_id='" . $_POST['feedback'] . "'";
+        $sql = "select * from p1_feedback where feedback_id='" . $_POST['feedback'] . "'";
         $result = mysqli_query($con, $sql);
         $result = $result->fetch_assoc();
     }catch(Exception $e){

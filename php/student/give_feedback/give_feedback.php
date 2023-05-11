@@ -63,21 +63,21 @@ session_start();
         $exam = mysqli_real_escape_string($con, $exam);
         $comment = mysqli_real_escape_string($con, $comment);
 
-        $sqlcheck = "select * from takes where id='" . $_SESSION['id'] . "' and course_id='$course_id' and sec_id='$sec_id' and semester='$semester';";
+        $sqlcheck = "select * from p1_takes where id='" . $_SESSION['id'] . "' and course_id='$course_id' and sec_id='$sec_id' and semester='$semester';";
         $result = mysqli_query($con, $sqlcheck);
         if (mysqli_num_rows($result) == 0) {
             echo "<script>alert('No such course exists for you');</script>";
             return;
         }
         $feedback_id = gen_feedbackid();
-        while (mysqli_num_rows(mysqli_query($con, "select * from feedback where feedback_id='$feedback_id';"))) {
+        while (mysqli_num_rows(mysqli_query($con, "select * from p1_feedback where feedback_id='$feedback_id';"))) {
             $feedback_id = gen_feedbackid();
         }
-        $sql = "insert into feedback values('$feedback_id','$course_id','$sec_id','$semester','$rating','$assignment','$evaluations','$exam','$comment');";
+        $sql = "insert into p1_feedback values('$feedback_id','$course_id','$sec_id','$semester','$rating','$assignment','$evaluations','$exam','$comment');";
         try {
             $result = mysqli_query($con, $sql);
             if ($result) {
-                $sql = "insert into gives values('$anon_id','$feedback_id');";
+                $sql = "insert into p1_gives values('$anon_id','$feedback_id');";
                 $result = mysqli_query($con, $sql);
                 if ($result) echo "<script>alert('Success!');setTimeout(()=>{window.location.replace('../../../html/student/');},70);</script>", mysqli_commit(($con));
                 else {

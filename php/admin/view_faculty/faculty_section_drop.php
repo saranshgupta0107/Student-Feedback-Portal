@@ -39,7 +39,7 @@ session_start();
         $semester = mysqli_real_escape_string($con, $semester);
         $course_id = mysqli_real_escape_string($con, $course_id);
         $sec_id = mysqli_real_escape_string($con, $sec_id);
-        $sql = "delete from teaches where id = '$id' and semester=$semester and course_id='$course_id' and sec_id='$sec_id'";
+        $sql = "delete from p1_teaches where id = '$id' and semester=$semester and course_id='$course_id' and sec_id='$sec_id'";
         try {
             $result = mysqli_query($con, $sql);
             if ($result) {

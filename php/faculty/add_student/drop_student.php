@@ -23,7 +23,7 @@ session_start();
     endif; ?>
     <?php
     require('../../connection.php');
-    $sql = "delete from takes";
+    $sql = "delete from p1_takes";
     try{
         if (isset($_POST['ID2'])) {
             $id = $_POST['ID2'];
@@ -38,8 +38,8 @@ session_start();
             $_sec = mysqli_real_escape_string($con, $_sec);
             $_semes = stripcslashes($_semes);
             $_semes = mysqli_real_escape_string($con, $_semes);
-            $sqlchk1 = "select * from takes where id='" . $id . "@iiita.ac.in' and sec_id='$_sec' and course_id='$course' and semester=". (int)$_semes . ";";
-            $sqlchk2 = "select * from teaches where id='" . $_SESSION['id'] . "' and course_id='" . $course . "' and semester=" . (int)$_semes . " and sec_id='" . $_sec . "';";
+            $sqlchk1 = "select * from p1_takes where id='" . $id . "@iiita.ac.in' and sec_id='$_sec' and course_id='$course' and semester=". (int)$_semes . ";";
+            $sqlchk2 = "select * from p1_teaches where id='" . $_SESSION['id'] . "' and course_id='" . $course . "' and semester=" . (int)$_semes . " and sec_id='" . $_sec . "';";
             $resultchk1 = mysqli_query($con, $sqlchk1);
             if (mysqli_num_rows($resultchk1) == 0) {
                 echo "<script>alert('The student with the ID, course, section and semester is not alloted to your course! Please check again.');setTimeout(()=>{window.location.replace('../../../html/faculty/add_student/');},700);</script>";
@@ -72,7 +72,7 @@ session_start();
             $_sec = mysqli_real_escape_string($con, $_sec);
             $_semes = stripcslashes($_semes);
             $_semes = mysqli_real_escape_string($con, $_semes);
-            $sqlchk2 = "select * from teaches where id='" . $_SESSION['id'] . "' and course_id='" . $course . "' and semester=" . (int)$_semes . " and sec_id='" . $_sec . "';";
+            $sqlchk2 = "select * from p1_teaches where id='" . $_SESSION['id'] . "' and course_id='" . $course . "' and semester=" . (int)$_semes . " and sec_id='" . $_sec . "';";
             $resultchk2 = mysqli_query($con, $sqlchk2);
             if (mysqli_num_rows($resultchk2) == 0) {
                 echo "<script>alert('You dont currently teach this course!\\nPlease check the semester or section and submit the sheet again');setTimeout(()=>{window.location.replace('../../../html/faculty/add_student/');},700);</script>";
@@ -83,7 +83,7 @@ session_start();
                 $id = $val['Roll Number'] . '@iiita.ac.in';
                 $id = stripcslashes($id);
                 $id = mysqli_real_escape_string($con, $id);
-                $sqlchk1 = "select * from takes where id='" . $id . "' and sec_id='$_sec' and course_id='$course' and semester=". (int)$_semes . ";";
+                $sqlchk1 = "select * from p1_takes where id='" . $id . "' and sec_id='$_sec' and course_id='$course' and semester=". (int)$_semes . ";";
                 $resultchk1 = mysqli_query($con, $sqlchk1);
                 if (mysqli_num_rows($resultchk1) == 0) {
                     echo "<script>alert('The student with the ID:$id, course, section and semester is not alloted to your course! Please check and submit the sheet again.');setTimeout(()=>{window.location.replace('../../../html/faculty/add_student/');},700);</script>";

@@ -365,7 +365,7 @@
   <?php
   require_once('../../../php/connection.php');
   try {
-    $sql = "select * from feedback ;";
+    $sql = "select * from p1_feedback ;";
     $result = $con->query($sql);
     $arr = [];
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
@@ -373,7 +373,7 @@
     }
     $var = json_encode($arr);
     echo "<script>var data=$var;</script>";
-    $sql = "select id,name from instructor;";
+    $sql = "select id,name from p1_instructor;";
     $result = $con->query($sql);
     $arr = [];
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
@@ -389,7 +389,7 @@
         instructorMap.set(temp[k].id,temp[k].name);
       }
       </script>";
-    $sql = "select course_id,sec_id,semester from section;";
+    $sql = "select course_id,sec_id,semester from p1_section;";
     $result = $con->query($sql);
     $arr = [];
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
@@ -407,7 +407,7 @@
         semesterSet.add(temp[k].semester);
       }
       </script>";
-    $sql = "select * from gives;";
+    $sql = "select * from p1_gives;";
     $result = $con->query($sql);
     $arr = [];
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
@@ -422,7 +422,7 @@
     }
     var teach=new Map();
     </script>";
-    $sql = "select * from teaches;";
+    $sql = "select * from p1_teaches;";
     $result = $con->query($sql);
     $arr = [];
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
@@ -433,7 +433,7 @@
       if(!teach.has('" . $x['id'] . "'))teach.set('" . $x['id'] . "',new Set());
       generateOptions(['All','" . $x['course_id'] . "'],['All','" . $x['sec_id'] . "'],['All','" . $x['semester'] . "'],teach.get('" . $x['id'] . "'));
       </script>";
-      $sql = "select takes.anon_id,teaches.ID,teaches.course_id,teaches.sec_id,teaches.semester from (select * from takes inner join represents on takes.id=represents.stud_id) takes inner join teaches on takes.course_id=teaches.course_id and takes.sec_id=teaches.sec_id and takes.semester=teaches.semester;";
+      $sql = "select p1_takes.anon_id,p1_teaches.ID,p1_teaches.course_id,p1_teaches.sec_id,p1_teaches.semester from (select * from p1_takes inner join p1_represents on p1_takes.id=p1_represents.stud_id) p1_takes inner join p1_teaches on p1_takes.course_id=p1_teaches.course_id and p1_takes.sec_id=p1_teaches.sec_id and p1_takes.semester=p1_teaches.semester;";
       $result = $con->query($sql);
       $arr = [];
       while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {

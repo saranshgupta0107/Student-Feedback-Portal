@@ -18,7 +18,7 @@ session_start();
     $username = mysqli_real_escape_string($con, $username);
     $password = mysqli_real_escape_string($con, $password);
 
-    $sql = "select * from admin where id = '$username' and password = '$password'";
+    $sql = "select * from p1_admin where id = '$username' and password = '$password'";
     try{
         $result = mysqli_query($con, $sql);
         $row = mysqli_fetch_array($result, MYSQLI_ASSOC);

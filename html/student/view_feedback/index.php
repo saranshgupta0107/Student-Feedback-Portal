@@ -76,7 +76,7 @@
   <?php
   require_once('../../../php/connection.php');
   try{
-    $sql = "select * from feedback natural join (select feedback_id from gives where anon_id ='" . $_SESSION['username'] . "') e1;";
+    $sql = "select * from p1_feedback natural join (select feedback_id from p1_gives where anon_id ='" . $_SESSION['username'] . "') e1;";
     $result = $con->query($sql);
     $arr = [];
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
@@ -85,7 +85,7 @@
     $var = json_encode($arr);
     echo "<script>var data=$var;</script>";
     $sql =
-      "select course_id,sec_id,semester from feedback natural join (select feedback_id from gives where anon_id ='" . $_SESSION['username'] . "') e1;";
+      "select course_id,sec_id,semester from p1_feedback natural join (select feedback_id from p1_gives where anon_id ='" . $_SESSION['username'] . "') e1;";
     $result = $con->query($sql);
     $arr = [];
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {

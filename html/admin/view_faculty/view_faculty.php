@@ -66,7 +66,7 @@
           setcookie('Teacher', $email, time() + 60 * 5);
           $email = stripcslashes($email);
           $email = mysqli_real_escape_string($con, $email);
-          $sql = "select name from instructor where id='" . $email . "';";
+          $sql = "select name from p1_instructor where id='" . $email . "';";
           $result = mysqli_query($con, $sql);
           $row = $result->fetch_row();
           echo $row[0];
@@ -92,7 +92,7 @@
       $email = array_values($_POST)[0];
       $email = stripcslashes($email);
       $email = mysqli_real_escape_string($con, $email);
-      $sql = "select sec_id,semester,course_id from teaches where id='" . $email . "';";
+      $sql = "select sec_id,semester,course_id from p1_teaches where id='" . $email . "';";
       $result = $con->query($sql);
     }
     catch(Exception $e){

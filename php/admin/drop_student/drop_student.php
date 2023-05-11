@@ -26,7 +26,7 @@ session_start();
     <?php
     require('../../connection.php');
     try{
-        $sql = "delete from student";
+        $sql = "delete from p1_student";
         if (isset($_POST['ID'])) {
             $id = $_POST['ID'];
             $id = stripcslashes($id);

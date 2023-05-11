@@ -36,13 +36,13 @@ session_start();
         $anon_id = mysqli_real_escape_string($con, $anon_id);
         $feedback_id = mysqli_real_escape_string($con, $feedback_id);
 
-        $sqlcheck = "select * from gives where anon_id='$anon_id' and feedback_id='$feedback_id';";
+        $sqlcheck = "select * from p1_gives where anon_id='$anon_id' and feedback_id='$feedback_id';";
         $result = mysqli_query($con, $sqlcheck);
         if (mysqli_num_rows($result) == 0) {
             echo "<script>alert('No such feedback exists by you');</script>";
             return;
         }
-        $sql = "delete from feedback where feedback_id='$feedback_id';";
+        $sql = "delete from p1_feedback where feedback_id='$feedback_id';";
         try {
             $result = mysqli_query($con, $sql);
             if ($result) {
