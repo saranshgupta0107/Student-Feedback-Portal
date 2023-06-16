@@ -49,7 +49,7 @@
     <div class="container-fluid fixed-top" style="margin:0;padding:0;">
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
             <div class="container-fluid">
-                <a class="navbar-brand" href="../../"><img src="../../../images/iiita_logo.png" alt="IIITA" width="60vw" height=auto class="align-text-middle" style='display:block;margin: 0 auto;max-width: 100%;'></a>
+                <a class="navbar-brand" href="../../../"><img src="../../../images/iiita_logo.png" alt="IIITA" width="60vw" height=auto class="align-text-middle" style='display:block;margin: 0 auto;max-width: 100%;'></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -191,7 +191,7 @@
             <p><i class="fas fa-envelope me-1 text-white"></i>contact@iiita.ac.in</p>
         <p><i class="fas fa-phone me-1 text-white"></i>+91 5322 922000</p>
         <div class="text-center py-4">
-            © 2023 Copyright: <a class="text-reset fw-bold" href="../../index.php">Group-1</a>
+            © 2023 Copyright: <a class="text-reset fw-bold" href="../../../index.php">Group-1</a>
         </div>
     </footer>
     <script src="https://kit.fontawesome.com/10950362e3.js" crossorigin="anonymous"></script>

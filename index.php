@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -106,7 +105,7 @@
         <p><i class="fas fa-phone me-1 text-white"></i>+91 5322 922000</p>
         </div>
         <div class="text-center py-4">
-            © 2023 Copyright: <a class="text-reset fw-bold" href="../../index.php">Group-1</a>
+            © 2023 Copyright: <a class="text-reset fw-bold" href="">Group-1</a>
         </div>
     </footer>
     <script src="https://kit.fontawesome.com/10950362e3.js" crossorigin="anonymous"></script>

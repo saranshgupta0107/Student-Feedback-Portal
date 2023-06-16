@@ -44,8 +44,8 @@
       <form name="f1" action="../../php/faculty/lostpass.php" onsubmit="return validation()" method="post" style="display:grid;width: 350px;" id="FORM">
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email address</label>
-          <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="email@iiita.ac.in" pattern="[a-z0-9]+@iiita.ac.in" required>
-          <div id="emailHelp" class="form-text">A new password will be mailed to you.</div>
+          <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="email@iiita.ac.in" pattern="[a-z0-9]+@iiita.ac.in" required>
+          <!-- <div id="emailHelp" class="form-text">A new password will be mailed to you.</div> -->
         </div>
         <button id="submitbtn" type="submit" class="btn btn-primary">Submit</button>
       </form>

@@ -14,7 +14,7 @@ session_start();
         <script>
         function logout() {
             alert('You have been logged in for more than 3 hours, Timeout!');
-            window.location.replace('http://localhost/DBMS-Project/');
+            window.location.replace('../../../');
         };
         logout();
         </script>";
@@ -65,8 +65,6 @@ session_start();
             }
         } else {
             $arr = json_decode($_POST['file_data2']);
-            $arr2 = json_encode($arr);
-            echo "<script>alert($arr2);</script>";
             mysqli_commit($con);
             foreach ($arr as $row => $val) {
                 $val = json_decode(json_encode($val), true);

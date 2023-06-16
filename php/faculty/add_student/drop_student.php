@@ -13,7 +13,7 @@ session_start();
         <script>
         function logout() {
             alert('You have been logged in for more than 1 hours, Timeout!');
-            window.location.replace('../../');
+            window.location.replace('../../../');
         };
         logout();
         </script>";

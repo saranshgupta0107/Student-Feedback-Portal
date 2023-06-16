@@ -7,7 +7,7 @@ try{
     $username = $_POST['email'];
     //to prevent from mysqli injection  
     $username = stripcslashes($username);
-    $username=mysqli_real_escape_string($username);
+    $username=mysqli_real_escape_string($con,$username);
     $sql = "select * from p1_instructor where id = '$username'";
     $result = mysqli_query($con, $sql);
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);

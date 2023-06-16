@@ -44,7 +44,7 @@ session_start();
             return;
         }
         $password = $password . "randomsalt";
-        $password = hash('ripemd128', $password);
+        $password = hash('ripemd160', $password);
         $password = mysqli_real_escape_string($con, $password);
         $dept_name = mysqli_real_escape_string($con, $dept_name);
         $name = mysqli_real_escape_string($con, $name);
