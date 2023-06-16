@@ -38,12 +38,17 @@
     ?>
     <?php
     require('../../../php/connection.php');
-    try{
+    try {
         $sql = "select * from p1_takes where ID='" . $_SESSION['id'] . "'";
+        $anon_id = $_SESSION['username'];
         $result = mysqli_query($con, $sql);
         $arr = [];
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-            array_push($arr, $row);
+            $sqlcheck = "select * from (select * from p1_gives where anon_id='" . $anon_id . "')e1 natural join p1_feedback where course_id in ('" . $row['course_id'] . "')";
+            $result1 = mysqli_query($con, $sqlcheck);
+            if (mysqli_num_rows($result1) == 0) {
+                array_push($arr, $row);
+            }
         }
         $var = json_encode($arr);
         echo "<script>var data=$var</script>";
@@ -182,7 +187,7 @@
         <div class="container-fluid text-center d-block">
             <p><i class="fas fa-home me-1 text-white"></i>Indian Institute of Information Technology, Allahabad</p>
             <p><i class="fas fa-envelope me-1 text-white"></i>contact@iiita.ac.in</p>
-        <p><i class="fas fa-phone me-1 text-white"></i>+91 5322 922000</p>
+            <p><i class="fas fa-phone me-1 text-white"></i>+91 5322 922000</p>
         </div>
         <div class="text-center py-4">
             © 2023 Copyright: <a class="text-reset fw-bold" href="../../../index.php">Group-1</a>
