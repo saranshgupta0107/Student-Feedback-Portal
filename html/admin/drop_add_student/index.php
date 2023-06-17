@@ -96,7 +96,11 @@
                     <label for="csvfile" class="form-label">Or Upload CSV file for mass delete:</label>
                     <input type="file" id="csvfile1" name="csvfile1" required class="form-control mb-3" accept=".csv">
                     <input type='hidden' name='file_data1' id='file_data1'>
+                    <!-- <input type="submit" name="submit2" id='submit2' value="Submit" disabled='true' class="btn btn-primary mb-3"> -->
+                                                <div style="display:flex;">
                     <input type="submit" name="submit2" id='submit2' value="Submit" disabled='true' class="btn btn-primary mb-3">
+            <a href="../../../images/template.csv" download class="btn btn-primary mb-3" style="margin-left: 10px;">Download Template</a>
+        </div>
                 </form>
             </div>
             <div class="mb-3">
@@ -128,8 +132,15 @@
                     <label for="csvfile" class="form-label">Or Upload CSV file for mass add:</label>
                     <input type="file" id="csvfile2" name="csvfile2" required class="form-control mb-3" accept=".csv">
                     <input type='hidden' name='file_data2' id='file_data2'>
-                    <input type="submit" name="submit5" id='submit5' value="Submit" disabled='true' class="btn btn-primary mb-3">
+                            <div style="display:flex;">
+                    <input type="submit" name="submit5" id='submit5' value="Submit" disabled='true' class="btn btn-primary mb-4">
+            <!-- <a href="../../../images/template.csv"  download class="btn btn-primary mb-4" style="margin-left: 10px;">Download Template</a> -->
+            <a href="../../../images/template.csv" download class="btn btn-primary mb-4" style="margin-left: 10px;" rel="noopener noreferrer" onmouseover="window.status=''; return true;" onmouseout="window.status=''; return true;">Download Template</a>
+
+        </div>
                 </form>
+                <!-- <br> -->
+                <!-- <p/> style="font-size: 14px;">Download the CSV file template</p> -->
             </div>
         </div>
     </div>

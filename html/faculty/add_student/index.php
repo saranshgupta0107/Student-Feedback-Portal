@@ -96,7 +96,11 @@
                 <input type="text" id="course1" name="course1" required class="form-control mt-4" placeholder="COURSE Example: DBMS">
                 <input type="number" id="semes1" name="semes1" required class="form-control mt-4" placeholder="SEMESTER Example: 4" min="1" max="8">
                 <input type='hidden' name='file_data1' id='file_data1'>
-                <input type="submit" name="submit2" id='submit2' value="Submit" disabled='true' class='btn btn-primary mt-4'>
+                <!-- <input type="submit" name="submit2" id='submit2' value="Submit" disabled='true' class='btn btn-primary mt-4'> -->
+                                            <div style="display:flex;">
+                    <input type="submit" name="submit2" id='submit2' value="Submit" disabled='true' class="btn btn-primary mb-4">
+            <a href="../../../images/template.csv" download class="btn btn-primary mb-4" style="margin-left: 10px;">Download Template</a>
+        </div>
             </div>
         </form>
     </div>
@@ -122,7 +126,11 @@
                 <input type="text" id="course2" name="course2" required class="form-control mt-4" placeholder="COURSE Example: DBMS">
                 <input type="number" id="semes2" name="semes2" required class="form-control mt-4" placeholder="SEMESTER Example: 4" min="1" max="8">
                 <input type='hidden' name='file_data2' id='file_data2'>
-                <input type="submit" name="submit3" id='submit3' value="Submit" disabled='true' class='btn btn-primary mt-4'>
+                <!-- <input type="submit" name="submit3" id='submit3' value="Submit" disabled='true' class='btn btn-primary mt-4'> -->
+                                            <div style="display:flex;">
+                    <input type="submit" name="submit3" id='submit3' value="Submit" disabled='true' class="btn btn-primary mb-4">
+            <a href="../../../images/template.csv" download class="btn btn-primary mb-4" style="margin-left: 10px;">Download Template</a>
+        </div>
             </div>
         </form>
     </div>
