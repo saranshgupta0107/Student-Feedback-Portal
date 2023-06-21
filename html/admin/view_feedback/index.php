@@ -107,29 +107,52 @@
 			</ol>
 		</nav>
 	</div>
-	<div style='display:flex;align-items:center;justify-content: center;margin-top:200px' class="container-sm mb-2">
-		<select class="form-select form-select-md" id='instructor' name='instructor'
-			aria-label=".form-select-sm example" style='width:15%;margin:1%;'>
-			<option selected>All</option>
-		</select>
-		<select class="form-select form-select-md" id='course_id' name='course_id' aria-label=".form-select-sm example"
-			style='width:15%;margin:1%;'>
-			<option selected>All</option>
-		</select>
-		<select class="form-select form-select-md" id='sec_id' name='sec_id' aria-label=".form-select-sm example"
-			style='width:15%;margin:1%;'>
-			<option selected>All</option>
-		</select>
-		<select class="form-select form-select-md" id='semester' name='semester' aria-label=".form-select-sm example"
-			style='width:15%;margin:1%;'>
-			<option selected>All</option>
-		</select>
-		<select class="form-select form-select-md" id='branch' name='branch' aria-label=".form-select-sm example"
-			style='width:15%;margin:1%;'>
-			<option selected>All</option>
-		</select>
-		<button id='reset' class='btn btn-primary' style='margin:1%'>Reset</button>
-	</div>
+	<center>
+		<div style='margin-top:200px;' class="container-sm mb-2">
+			<div class='row' style='display:flex;align-items:center;justify-content: center;'>
+				<div class='col-sm-4'>
+					<label for='instructor'>Select Course</label>
+					<select class="form-select form-select-md" id='instructor' name='instructor'
+						aria-label=".form-select-sm example" style='width:50%;'>
+						<option selected>All</option>
+					</select>
+				</div>
+				<div class='col-sm-4'>
+					<label for='course_id'>Select Course</label>
+					<select class="form-select form-select-md" id='course_id' name='course_id'
+						aria-label=".form-select-sm example" style='width:50%;'>
+						<option selected>All</option>
+					</select>
+				</div>
+				<div class='col-sm-4'>
+					<label for='sec_id'>Select Course</label>
+					<select class="form-select form-select-md" id='sec_id' name='sec_id'
+						aria-label=".form-select-sm example" style='width:50%;'>
+						<option selected>All</option>
+					</select>
+				</div>
+			</div>
+			<div class='row' style='display:flex;align-items:center;justify-content: center;'>
+				<div class='col-sm-4'>
+					<label for='semester'>Select Course</label>
+					<select class="form-select form-select-md" id='semester' name='semester'
+						aria-label=".form-select-sm example" style='width:50%;'>
+						<option selected>All</option>
+					</select>
+				</div>
+				<div class='col-sm-4'>
+					<label for='branch'>Select Course</label>
+					<select class="form-select form-select-md" id='branch' name='branch'
+						aria-label=".form-select-sm example" style='width:50%;'>
+						<option selected>All</option>
+					</select>
+				</div>
+				<div class='col-sm-4'>
+					<button id='reset' class='btn btn-primary' style='width:50%'>Reset</button>
+				</div>
+			</div>
+		</div>
+	</center>
 	<div id="carouselExampleIndicators" class="carousel slide" data-interval="false">
 		<div class="carousel-indicators">
 			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
