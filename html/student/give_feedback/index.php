@@ -90,7 +90,7 @@
             <div class="mb-3">
                 <div class="mb-3" style="padding-left:3%;padding-right:3%">
                     <label for="ID" class="form-label">Your ID:</label>
-                    <input class="form-control" type="text" id="ID" name="ID" required class="form-control-plaintext" readonly placeholder="<?php echo $_SESSION['username']; ?>" value='<?php echo $_SESSION['username']; ?>'>
+                    <input class="form-control" type="text" id="ID" name="ID" required class="form-control-plaintext" readonly value='<?php echo $_SESSION['username']; ?>'>
                 </div>
                 <div class="mb-3" style="padding-left:3%;padding-right:3%">
                     <label for="course_id" class="form-label">Choose the Course</label>
@@ -198,7 +198,9 @@
         var course_id = document.getElementById('course_id');
         var sec_id = document.getElementById('sec_id');
         var semester = document.getElementById('semester');
+    
         for (var key in data) {
+        
             var temp_child = (document.createElement('option'));
             temp_child.setAttribute('value', data[key].course_id);
             temp_child.setAttribute('selected', false);
@@ -213,29 +215,32 @@
         }
         course_id.addEventListener('change', () => {
             console.log(1);
-            empty(sec_id);
-            empty(semester);
+            // empty(sec_id);
+            // empty(semester);
             for (var key in data) {
                 if (data[key].course_id == course_id.options[course_id.selectedIndex].text) {
-                    var temp_child = (document.createElement('option'));
-                    temp_child.setAttribute('value', data[key].sec_id);
-                    temp_child.appendChild(document.createTextNode(data[key].sec_id));
-                    sec_id.appendChild(temp_child);
+              
+                    var sec_id_option = document.createElement('option');
+                    sec_id_option.value = data[key].sec_id;
+                    sec_id_option.appendChild(document.createTextNode(data[key].sec_id));
+                    sec_id.appendChild(sec_id_option);
+                    sec_id.value = data[key].sec_id;                    
+                    sec_id.disabled=true;
+
+
+                    var semester_option = document.createElement('option');
+                    semester_option.value = data[key].semester;
+                    semester_option.appendChild(document.createTextNode(data[key].semester));
+                    semester.appendChild(semester_option);
+                    semester.value = data[key].semester;
+                    semester.disabled=true;
+                        
+
+                    break;
                 }
             }
         })
-        sec_id.addEventListener('change', () => {
-            empty(semester);
-            for (var key in data) {
-                if (data[key].course_id == course_id.options[course_id.selectedIndex].text &&
-                    data[key].sec_id == sec_id.options[sec_id.selectedIndex].text) {
-                    var temp_child = (document.createElement('option'));
-                    temp_child.setAttribute('value', data[key].semester);
-                    temp_child.appendChild(document.createTextNode(data[key].semester));
-                    semester.appendChild(temp_child);
-                }
-            }
-        })
+      
     </script>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
