@@ -493,6 +493,7 @@
 				<th scope='col' style='width: 25%;text-align: center;'>Course</th>
 				<th scope='col' style='width: 25%;text-align: center;'>Section</th>
 				<th scope='col' style='width: 25%;text-align: center;'>Semester</th>
+				<th scope='col' style='width: 25%;text-align: center;'>Rating</th>
 				<th scope='col' style='width: 25%;text-align: center;'></th>
 			</thead>
 			<tbody id='table-body'>
@@ -583,6 +584,7 @@
 				row.innerHTML += `<td>${data[key].course_id}</td>`;
 				row.innerHTML += `<td>${data[key].sec_id}</td>`;
 				row.innerHTML += `<td>${data[key].semester}</td>`;
+				row.innerHTML += `<td>${data[key].rating}</td>`;
 				row.innerHTML += `<td><form action='specific_feedback.php' method='POST'style='width:100%;'>
 		<input type='hidden' value='${mapper[data[key].feedback_id]}' name='User'>
 		<button name='feedback'class="btn btn-primary" type="submit" value='${data[key].feedback_id}'>View</button>
