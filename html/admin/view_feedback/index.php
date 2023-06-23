@@ -1135,6 +1135,16 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>
+		<script>
+		if (data.length == 0) {
+			document.getElementById('feedbackTable').remove();
+			let noFeedback = document.createElement('h1');
+			document.getElementById('top').setAttribute('class', 'text-center justify-content-center');
+			console.log(noFeedback);
+			noFeedback.appendChild(document.createTextNode('No feedback Submitted Yet'));
+			document.getElementById('top').appendChild(noFeedback);
+		}
+	</script>
 
 	<!-- Option 2: Separate Popper and Bootstrap JS -->
 	<!--
