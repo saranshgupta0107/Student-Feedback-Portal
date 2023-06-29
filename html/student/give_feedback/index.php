@@ -98,13 +98,13 @@
                 </div>
                 <div class="mb-3" style="padding-left:3%;padding-right:3%">
                     <label for="sec_id" class="form-label">Choose the Sec_id</label>
-                    <select class="form-select" aria-label="Default select example" id="sec_id" name='sec_id' required onfocus="this.selectedIndex = -1;empty(semester);">
-                    </select>
+                    <input type="text" class="form-select" aria-label="Default select example" id="sec_id" name='sec_id' required onfocus="this.selectedIndex = -1;empty(semester);">
+                    </input>
                 </div>
                 <div class="mb-3" style="padding-left:3%;padding-right:3%">
                     <label for="semester" class="form-label">Choose the Semester</label>
-                    <select class="form-select" aria-label="Default select example" id="semester" name='semester' required onfocus="this.selectedIndex = -1;">
-                    </select>
+                    <input type="text" class="form-select" aria-label="Default select example" id="semester" name='semester' required onfocus="this.selectedIndex = -1;">
+                    </input>
                 </div>
                 <div class="mb-3" style="padding-left:3%;padding-right:3%">
                     <label for="rating" class="form-label">Rating</label>
@@ -220,21 +220,17 @@
             for (var key in data) {
                 if (data[key].course_id == course_id.options[course_id.selectedIndex].text) {
               
-                    var sec_id_option = document.createElement('option');
-                    sec_id_option.value = data[key].sec_id;
-                    sec_id_option.appendChild(document.createTextNode(data[key].sec_id));
-                    sec_id.appendChild(sec_id_option);
-                    sec_id.value = data[key].sec_id;                    
-                    sec_id.disabled=true;
+                  
+                    sec_id.value = data[key].sec_id;     
+                    sec_id.readOnly=true;   
+                  
 
 
-                    var semester_option = document.createElement('option');
-                    semester_option.value = data[key].semester;
-                    semester_option.appendChild(document.createTextNode(data[key].semester));
-                    semester.appendChild(semester_option);
+                    
                     semester.value = data[key].semester;
-                    semester.disabled=true;
-                        
+                    semester.readOnly=true;
+              
+
 
                     break;
                 }
