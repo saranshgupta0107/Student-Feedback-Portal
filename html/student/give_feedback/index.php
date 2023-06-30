@@ -16,11 +16,11 @@
 
 <body>
     <?php
-    session_start();
-    if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
-        session_unset();
-        session_destroy();
-        echo "
+session_start();
+if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
+    session_unset();
+    session_destroy();
+    echo "
         <script>
         function logout() {
             alert('You have been logged in for more than 30 minutes, Timeout!');
@@ -28,34 +28,47 @@
         };
         logout();
         </script>";
-    }
-    ?>
+}
+?>
     <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'student') {
-        session_unset();
-        session_destroy();
-        echo "<script> alert('You are not authorised to this page'); window.location.replace('../../../')</script>";
-    }
-    ?>
+    session_unset();
+    session_destroy();
+    echo "<script> alert('You are not authorised to this page'); window.location.replace('../../../')</script>";
+}
+?>
     <?php
-    require('../../../php/connection.php');
-    try {
-        $sql = "select * from p1_takes where ID='" . $_SESSION['id'] . "'";
-        $anon_id = $_SESSION['username'];
-        $result = mysqli_query($con, $sql);
-        $arr = [];
-        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-            $sqlcheck = "select * from (select * from p1_gives where anon_id='" . $anon_id . "')e1 natural join p1_feedback where course_id in ('" . $row['course_id'] . "')";
-            $result1 = mysqli_query($con, $sqlcheck);
-            if (mysqli_num_rows($result1) == 0) {
-                array_push($arr, $row);
-            }
+require '../../../php/connection.php';
+try {
+    $sql = "select * from p1_takes where ID='" . $_SESSION['id'] . "'";
+    $anon_id = $_SESSION['username'];
+    $result = mysqli_query($con, $sql);
+    $arr = [];
+    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+        $sqlcheck = "select * from (select * from p1_gives where anon_id='" . $anon_id . "')e1 natural join p1_feedback where course_id in ('" . $row['course_id'] . "')";
+        $result1 = mysqli_query($con, $sqlcheck);
+        if (mysqli_num_rows($result1) == 0) {
+            array_push($arr, $row);
         }
-        $var = json_encode($arr);
-        echo "<script>var data=$var</script>";
-    } catch (Exception $e) {
-        echo "<script>alert('There has been some error on this page, please contact administrator!');window.location.replace('../');</script>";
     }
-    ?>
+    foreach ($arr as $key => $row) {
+        $sqll = "SELECT freeze FROM p1_teaches WHERE course_id='{$row['course_id']}' AND semester=" . intval($row['semester']) . " AND sec_id='{$row['sec_id']}';";
+        $result2 = mysqli_query($con, $sqll);
+
+        if ($result2) {
+            $freezeRow = mysqli_fetch_assoc($result2);
+            if ($freezeRow['freeze'] == 1) {
+                unset($arr[$key]); // Remove the row from the array
+            }
+        } else {
+            echo "<script>alert('There has been some error on this page, please contact administrator!');window.location.replace('../');</script>";
+        }
+    }
+    $var = json_encode($arr);
+    echo "<script>var data=$var</script>";
+} catch (Exception $e) {
+    echo "<script>alert('There has been some error on this page, please contact administrator!');window.location.replace('../');</script>";
+}
+?>
     <div class="container-fluid fixed-top" style="margin:0;padding:0;">
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
             <div class="container-fluid">
@@ -198,9 +211,9 @@
         var course_id = document.getElementById('course_id');
         var sec_id = document.getElementById('sec_id');
         var semester = document.getElementById('semester');
-    
+
         for (var key in data) {
-        
+
             var temp_child = (document.createElement('option'));
             temp_child.setAttribute('value', data[key].course_id);
             temp_child.setAttribute('selected', false);
@@ -219,24 +232,24 @@
             // empty(semester);
             for (var key in data) {
                 if (data[key].course_id == course_id.options[course_id.selectedIndex].text) {
-              
-                  
-                    sec_id.value = data[key].sec_id;     
-                    sec_id.readOnly=true;   
-                  
 
 
-                    
+                    sec_id.value = data[key].sec_id;
+                    sec_id.readOnly=true;
+
+
+
+
                     semester.value = data[key].semester;
                     semester.readOnly=true;
-              
+
 
 
                     break;
                 }
             }
         })
-      
+
     </script>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
