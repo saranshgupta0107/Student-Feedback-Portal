@@ -16,12 +16,12 @@
 <body>
   <?php
 session_start();
-require('../../php/gen_id.php');
-if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800*2)) {
-  session_unset();
-  session_destroy();
-  erase_cookies();
-  echo "
+require '../../php/gen_id.php';
+if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800 * 2)) {
+    session_unset();
+    session_destroy();
+    erase_cookies();
+    echo "
         <script>
         function logout() {
             alert('You have been logged in for more than 1 hours, Timeout!');
@@ -32,10 +32,10 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
 }
 ?>
   <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'faculty') {
-  session_unset();
-  session_destroy();
-  erase_cookies();
-  echo "<script> alert('You are not authorised to this page'); window.location.replace('../../')</script>";
+    session_unset();
+    session_destroy();
+    erase_cookies();
+    echo "<script> alert('You are not authorised to this page'); window.location.replace('../../')</script>";
 }
 ?>
  <div class="container-fluid fixed-top" style="margin:0;padding:0;">
@@ -61,7 +61,7 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
     <ol class="breadcrumb">
       <li class="breadcrumb-item" style="text-decoration: none;"><a href="../../">Home</a></li>
       <li class="breadcrumb-item" style="text-decoration: none;"><a href="login.php">Log In</a></li>
-      <li class="breadcrumb-item active" aria-current="page"><?php echo($_SESSION['id']); ?></li>
+      <li class="breadcrumb-item active" aria-current="page"><?php echo ($_SESSION['id']); ?></li>
     </ol>
     </nav>
   </div>
@@ -85,6 +85,28 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
               <h5 class="card-title">View Feedback</h5>
               <p class="card-text">View the feedback.</p>
               <a class="btn btn-primary" href="view_feedback/" role="button">View Feedback</a>
+            </div>
+          </div>
+        </div>
+      </div>
+            <div class="row mt-4">
+        <div class="col">
+          <div class="card">
+            <img src="../../images/addremove.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">View Courses</h5>
+              <p class="card-text">View and freeze courses taught by you</p>
+              <a class="btn btn-primary" href="view_courses/" role="button">View</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img src="../../images/feedback.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">View Students</h5>
+              <p class="card-text">View your students.</p>
+              <a class="btn btn-primary" href="view_feedback/" role="button">View Students</a>
             </div>
           </div>
         </div>
