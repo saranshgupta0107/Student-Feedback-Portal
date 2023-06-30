@@ -11,16 +11,16 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <title>Show Faculty</title>
+    <title>Show Feedback</title>
 </head>
 
 <body>
     <?php
-    session_start();
-    if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
-        session_unset();
-        session_destroy();
-        echo "
+session_start();
+if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
+    session_unset();
+    session_destroy();
+    echo "
         <script>
         function logout() {
             alert('You have been logged in for more than 30 minutes, Timeout!');
@@ -28,24 +28,24 @@
         };
         logout();
         </script>";
-    }
-    ?>
+}
+?>
     <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true || $_SESSION['userid'] != 'student') {
-        session_unset();
-        session_destroy();
-        echo "<script> alert('You are not authorised to this page'); window.location.replace('../../../')</script>";
-    }
-    ?>
+    session_unset();
+    session_destroy();
+    echo "<script> alert('You are not authorised to this page'); window.location.replace('../../../')</script>";
+}
+?>
     <?php
-    require('../../../php/connection.php');
-    try{
-        $sql = "select * from p1_feedback where feedback_id='" . $_POST['feedback'] . "'";
-        $result = mysqli_query($con, $sql);
-        $result = $result->fetch_assoc();
-    } catch (Exception $e) {
-        echo "<script>alert('There has been some error on this page, please contact administrator!');window.location.replace('../');</script>";
-    }
-    ?>
+require '../../../php/connection.php';
+try {
+    $sql = "select * from p1_feedback where feedback_id='" . $_POST['feedback'] . "'";
+    $result = mysqli_query($con, $sql);
+    $result = $result->fetch_assoc();
+} catch (Exception $e) {
+    echo "<script>alert('There has been some error on this page, please contact administrator!');window.location.replace('../');</script>";
+}
+?>
     <div class="container-fluid fixed-top" style="margin:0;padding:0;">
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
             <div class="container-fluid">
@@ -101,74 +101,74 @@
                 <div class="mb-3" style="padding-left:3%;padding-right:3%">
                     <h6 class='form-label' style='margin-top:2%'>What do you feel about the number of assignments?</h6>
                     <div class="form-check form-check-inline" style="padding-left:3%;padding-right:3%">
-                        <input disabled class="form-check-input" type="radio" <?php if ($result['assignments'] == 1) : echo 'checked';
-                                                                                endif; ?>>
+                        <input disabled class="form-check-input" type="radio" <?php if ($result['assignments'] == 1): echo 'checked';
+endif;?>>
                         <label class="form-check-label" for="inlineRadio1">Too few</label>
                     </div>
                     <div class="form-check form-check-inline" style="padding-left:3%;padding-right:3%">
-                        <input disabled class="form-check-input" type="radio" <?php if ($result['assignments'] == 2) : echo 'checked';
-                                                                                endif; ?>>
+                        <input disabled class="form-check-input" type="radio" <?php if ($result['assignments'] == 2): echo 'checked';
+endif;?>>
                         <label class="form-check-label" for="inlineRadio2">Can add More</label>
                     </div>
                     <div class="form-check form-check-inline" style="padding-left:3%;padding-right:3%">
-                        <input disabled class="form-check-input" type="radio" <?php if ($result['assignments'] == 3) : echo 'checked';
-                                                                                endif; ?>>
+                        <input disabled class="form-check-input" type="radio" <?php if ($result['assignments'] == 3): echo 'checked';
+endif;?>>
                         <label class="form-check-label" for="inlineRadio3">Ok</label>
                     </div>
                     <div class="form-check form-check-inline" style="padding-left:3%;padding-right:3%">
-                        <input disabled class="form-check-input" type="radio" <?php if ($result['assignments'] == 4) : echo 'checked';
-                                                                                endif; ?>>
+                        <input disabled class="form-check-input" type="radio" <?php if ($result['assignments'] == 4): echo 'checked';
+endif;?>>
                         <label class="form-check-label" for="inlineRadio4">Reduce a bit</label>
                     </div>
                     <div class="form-check form-check-inline" style="padding-left:3%;padding-right:3%">
-                        <input disabled class="form-check-input" type="radio" <?php if ($result['assignments'] == 5) : echo 'checked';
-                                                                                endif; ?>>
+                        <input disabled class="form-check-input" type="radio" <?php if ($result['assignments'] == 5): echo 'checked';
+endif;?>>
                         <label class="form-check-label" for="inlineRadio5">Too many</label>
                     </div>
                 </div>
                 <div class="mb-3" style="padding-left:3%;padding-right:3%">
                     <h6 class='form-label' style='margin-top:2%'>What do you feel about the number of lab evaluations?</h6>
                     <div class="form-check form-check-inline" style="padding-left:3%;padding-right:3%">
-                        <input disabled class="form-check-input" type="radio" <?php if ($result['lab evaluations'] == 1) : echo 'checked';
-                                                                                endif; ?>>
+                        <input disabled class="form-check-input" type="radio" <?php if ($result['lab evaluations'] == 1): echo 'checked';
+endif;?>>
                         <label class="form-check-label" for="inlineRadio6">Too few</label>
                     </div>
                     <div class="form-check form-check-inline" style="padding-left:3%;padding-right:3%">
-                        <input disabled class="form-check-input" type="radio" <?php if ($result['lab evaluations'] == 2) : echo 'checked';
-                                                                                endif; ?>>
+                        <input disabled class="form-check-input" type="radio" <?php if ($result['lab evaluations'] == 2): echo 'checked';
+endif;?>>
                         <label class="form-check-label" for="inlineRadio7">Can add More</label>
                     </div>
                     <div class="form-check form-check-inline" style="padding-left:3%;padding-right:3%">
-                        <input disabled class="form-check-input" type="radio" <?php if ($result['lab evaluations'] == 3) : echo 'checked';
-                                                                                endif; ?>>
+                        <input disabled class="form-check-input" type="radio" <?php if ($result['lab evaluations'] == 3): echo 'checked';
+endif;?>>
                         <label class="form-check-label" for="inlineRadio8">Ok</label>
                     </div>
                     <div class="form-check form-check-inline" style="padding-left:3%;padding-right:3%">
-                        <input disabled class="form-check-input" type="radio" <?php if ($result['lab evaluations'] == 4) : echo 'checked';
-                                                                                endif; ?>>
+                        <input disabled class="form-check-input" type="radio" <?php if ($result['lab evaluations'] == 4): echo 'checked';
+endif;?>>
                         <label class="form-check-label" for="inlineRadio9">Reduce a bit</label>
                     </div>
                     <div class="form-check form-check-inline" style="padding-left:3%;padding-right:3%">
-                        <input disabled class="form-check-input" type="radio" <?php if ($result['lab evaluations'] == 5) : echo 'checked';
-                                                                                endif; ?>>
+                        <input disabled class="form-check-input" type="radio" <?php if ($result['lab evaluations'] == 5): echo 'checked';
+endif;?>>
                         <label class="form-check-label" for="inlineRadio10">Too many</label>
                     </div>
                 </div>
                 <div class="mb-3" style="padding-left:3%;padding-right:3%">
                     <h6 class='form-label' style='margin-top:2%'>Level of Exams?</h6>
                     <div class="form-check form-check-inline" style="padding-left:3%;padding-right:3%">
-                        <input class="form-check-input" disabled type="radio" <?php if ($result['exams'] == 1) : echo 'checked';
-                                                                                endif; ?>>
+                        <input class="form-check-input" disabled type="radio" <?php if ($result['exams'] == 1): echo 'checked';
+endif;?>>
                         <label class="form-check-label" for="inlineRadio6">Easy</label>
                     </div>
                     <div class="form-check form-check-inline" style="padding-left:3%;padding-right:3%">
-                        <input class="form-check-input" disabled type="radio" <?php if ($result['exams'] == 2) : echo 'checked';
-                                                                                endif; ?>>
+                        <input class="form-check-input" disabled type="radio" <?php if ($result['exams'] == 2): echo 'checked';
+endif;?>>
                         <label class="form-check-label" for="inlineRadio7">Moderate</label>
                     </div>
                     <div class="form-check form-check-inline" style="padding-left:3%;padding-right:3%">
-                        <input class="form-check-input" disabled type="radio" <?php if ($result['exams'] == 3) : echo 'checked';
-                                                                                endif; ?>>
+                        <input class="form-check-input" disabled type="radio" <?php if ($result['exams'] == 3): echo 'checked';
+endif;?>>
                         <label class="form-check-label" for="inlineRadio8">Hard</label>
                     </div>
                 </div>
@@ -177,7 +177,8 @@
                     <textarea disabled class="form-control" name='comment' id="comment" required <?php echo ("placeholder='" . $result['comment'] . "'"); ?>></textarea>
                 </div>
                 <div class="mb-3 mt-4" style="padding-left:3%;padding-right:3%">
-                    <button type="submit" name="submit" value="<?php echo $_POST['feedback'] ?>" class='btn btn-primary' style="padding-left:3%;padding-right:3%">Delete</button>
+                    <button id="delete" type="submit" name="submit" value="<?php echo $_POST['feedback'] ?>" class="btn btn-primary" >Delete</button>
+                    <button id="freeze" name="freeze" value="<?php echo $_POST['feedback'] ?>" class="btn btn-primary" style="margin-left: 10px;" onclick="confirmFreeze()">Freeze</button>
                 </div>
 
         </form>
@@ -205,6 +206,50 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
+    <?php
+try {
+    $query = "select freeze from p1_gives where feedback_id='" . $_POST['feedback'] . "'";
+    $res = mysqli_query($con, $query);
+    $res = $res->fetch_assoc();
+    if ($res['freeze'] == 1) {
+        echo "<script>document.getElementById('delete').disabled=true; document.getElementById('freeze').disabled=true;document.getElementById('freeze').textContent='Frozen';</script>;";
+    }
+
+} catch (Exception $e) {
+    echo "<script>alert('There has been some error on this page, please contact administrator!');window.location.replace('../');</script>";
+}
+
+?>
+<script>
+function confirmFreeze() {
+    event.preventDefault();
+  var confirmation = confirm("Are you sure you want to freeze?");
+  if (confirmation) {
+    // Get the feedback ID value
+    var feedbackId = "<?php echo $_POST['feedback']; ?>";
+    // Perform the desired action for freezing
+    freezeAction(feedbackId);
+  }
+}
+
+function freezeAction(feedbackId) {
+  // Make an AJAX request to the PHP file
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "../../../php/student/view_feedback/freeze_feedback.php", true);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+        eval(xhr.responseText);
+    }
+  };
+
+  // Construct the request body with the feedback ID
+  var requestBody = "feedbackId=" + encodeURIComponent(feedbackId);
+
+  xhr.send(requestBody);
+
+}
+</script>
 </body>
 
 </html>
