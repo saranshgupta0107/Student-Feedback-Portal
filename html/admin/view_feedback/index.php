@@ -472,14 +472,14 @@
 	require_once('../../../php/connection.php');
 	try {
 		//Data letiable to store all feedbacks.Use this to filter the feedbacks by combination.
-		$sql = "select * from p1_feedback ;";
+		$sql = "select * from p1_feedback where feedback_id in (select feedback_id from p1_gives where freeze=1)e1;";
 		$result = $con->query($sql);
 		$arr = [];
 		while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 			array_push($arr, $row);
 		}
 		$let = json_encode($arr);
-		echo "<script>let data=$let;</script>";
+		echo "<script>var data=$let;</script>";
 		//Create Sets and Maps to store data. Allows for easier checking and mapping of Instructor email to Instructor Name.
 		$sql = "select id,name,dept_name from p1_instructor;";
 		$result = $con->query($sql);
@@ -1135,7 +1135,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>
-		<script>
+	<script>
 		if (data.length == 0) {
 			document.getElementById('feedbackTable').remove();
 			let noFeedback = document.createElement('h1');

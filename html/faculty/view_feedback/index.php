@@ -432,7 +432,7 @@
 	<?php
 	require_once('../../../php/connection.php');
 	try {
-		$sql = "select * from p1_feedback natural join (select * from p1_teaches where id='" . $_SESSION['id'] . "') e1;";
+		$sql = "select * from p1_feedback natural join (select * from p1_teaches where id='" . $_SESSION['id'] . "') e1 where p1_feedback.freeze=1;";
 		$result = $con->query($sql);
 		$arr = [];
 		while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
